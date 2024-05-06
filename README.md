@@ -1,1 +1,1 @@
-# COMPANY
+# tech-insight frontend
