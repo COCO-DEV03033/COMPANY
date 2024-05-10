@@ -75,9 +75,9 @@
               </vs-dropdown-item>
 
               <vs-dropdown-item>
-                <span class="flex items-center">
-                  <feather-icon icon="ArchiveIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>Archive</span>
+                <span class="flex items-center" @click='importData'>
+                  <feather-icon icon="ArchiveIcon"  svgClasses="h-4 w-4" class="mr-2" />
+                  <span>Import</span>
                 </span>
               </vs-dropdown-item>
 
@@ -327,6 +327,9 @@ export default {
 
       filter.setModel(modelObj)
       this.gridApi.onFilterChanged()
+    },
+    importData() {
+      this.$router.push('/import-export/import')
     },
     resetColFilters () {
       // Reset Grid Filter
