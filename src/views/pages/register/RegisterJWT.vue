@@ -51,11 +51,15 @@
         label-placeholder="UserID"
         placeholder="UserID"
         v-model="userID"
+        @input="
+          (userIDValid = false),
+            (userIDMessage = 'Please check your userID\'s available!')
+        "
       />
 
       <template slot="append">
         <div class="append-text btn-addon check-btn">
-          <vs-button class="text-white shadow" color="primary">
+          <vs-button class="text-white shadow" @click="checkAvailableID" color="primary">
             <feather-icon
               icon="CheckCircleIcon"
               class="bg-primary text-white"
@@ -65,6 +69,7 @@
         </div>
       </template>
     </vx-input-group>
+    <span v-if="!userIDValid" class="text-danger text-sm">{{ userIDMessage }}<br /></span>
     <span class="text-danger text-sm">{{ errors.first("userID") }}</span>
 
     <v-select
@@ -135,6 +140,8 @@ export default {
       isTermsConditionAccepted: true,
       dob: "",
       organization: "",
+      userIDValid: true,
+      userIDMessage: "",
     };
   },
   computed: {
@@ -148,6 +155,7 @@ export default {
         this.gender !== "" &&
         this.password !== "" &&
         this.confirm_password !== "" &&
+        this.userIDValid &&
         this.isTermsConditionAccepted === true
       );
     },
@@ -171,10 +179,27 @@ export default {
       }
       return true;
     },
-    checkAvailableID() {
-      console.log("check available userID");
+    async checkAvailableID() {
+      if (this.userID == "") {
+        this.$vs.notify({
+          title: "Warning",
+          text: "Please input one userID",
+          iconPack: "feather",
+          icon: "icon-alert-circle",
+          color: "warning",
+        });
+        return;
+      }
+      let result = await this.$store.dispatch("auth/checkuserID", {
+        userID: this.userID,
+        valid: this.userIDValid,
+      });
+      this.userIDValid = result;
+      if (!result) {
+        this.userIDMessage = "UserID is already in use. Please pick something else!";
+      }
     },
-    registerUserJWt() {
+    async registerUserJWt() {
       // If form is not validated or user is already login return
       if (!this.validateForm || !this.checkLogin()) return;
 
@@ -191,7 +216,7 @@ export default {
         notify: this.$vs.notify,
       };
 
-      this.$store.dispatch("auth/registerUserJWT", payload);
+      await this.$store.dispatch("auth/registerUserJWT", payload);
     },
   },
 };

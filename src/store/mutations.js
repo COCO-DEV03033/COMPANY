@@ -97,9 +97,11 @@ const mutations = {
   UPDATE_USER_INFO (state, payload) {
 
     // Get Data localStorage
+    console.log(payload)
     const userInfo = JSON.parse(localStorage.getItem('userInfo')) || state.AppActiveUser
 
     for (const property of Object.keys(payload)) {
+      console.log(property)
 
       if (payload[property] !== null) {
         // If some of user property is null - user default property defined in state.AppActiveUser
@@ -108,6 +110,8 @@ const mutations = {
         // Update key in localStorage
         userInfo[property] = payload[property]
       }
+
+      console.log(userInfo)
 
 
     }

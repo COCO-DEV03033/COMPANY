@@ -46,15 +46,17 @@ export default {
       return Promise.reject(error)
     })
   },
-  login (email, pwd) {
+  login (userID, pwd) {
     return axios.post(API_URL + '/api/auth/login', {
-      email,
+      userID,
       password: pwd
     })
   },
-  registerUser (name, userID, dob, organization, gender, pwd) {
+  async registerUser (name, userID, dob, organization, gender, pwd) {
 
-    return axios.post(API_URL + '/api/auth/register', {
+    console.log(name, userID, dob, organization, gender, pwd)
+
+    return await axios.post(API_URL + '/api/auth/register', {
       name,
       dob,
       gender,
