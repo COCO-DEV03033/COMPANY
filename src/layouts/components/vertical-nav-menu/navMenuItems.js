@@ -1,51 +1,153 @@
-/*=========================================================================================
-  File Name: sidebarItems.js
-  Description: Sidebar Items list. Add / Remove menu items from here.
-  Strucutre:
-          url     => router path
-          name    => name to display in sidebar
-          slug    => router path name
-          icon    => Feather Icon component/icon name
-          tag     => text to display on badge
-          tagColor  => class to apply on badge element
-          i18n    => Internationalization
-          submenu   => submenu of current item (current item will become dropdown )
-                NOTE: Submenu don't have any icon(you can add icon if u want to display)
-          isDisabled  => disable sidebar item/group
-  ----------------------------------------------------------------------------------------
-  Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-  Author: Pixinvent
-  Author URL: http://www.themeforest.net/user/pixinvent
-==========================================================================================*/
-
-
 export default [
-  // {
-  //   url: "/apps/email",
-  //   name: "Email",
-  //   slug: "email",
-  //   icon: "MailIcon",
-  //   i18n: "Email",
-  // },
   {
-    url: null,
+    url: '/dashboard',
     name: 'Dashboard',
-    tag: '2',
+    tag: '',
     tagColor: 'warning',
     icon: 'HomeIcon',
-    i18n: 'Dashboard',
+    slug: 'Today\'s analyse'
+  },
+  {
+    url: null,
+    name: 'Project',
+    tag: '10',
+    tagColor: 'danger',
+    icon: 'PackageIcon',
     submenu: [
       {
-        url: '/dashboard/analytics',
-        name: 'Analytics',
-        slug: 'dashboard-analytics',
-        i18n: 'Analytics'
+        url: '/project/list',
+        name: 'Project Lists',
+        slug: 'project-list'
       },
       {
-        url: '/dashboard/ecommerce',
-        name: 'eCommerce',
-        slug: 'dashboard-ecommerce',
-        i18n: 'eCommerce'
+        url: '/project/overview',
+        name: 'Project Overview',
+        slug: 'project-overview'
+      }
+    ]
+  },
+  {
+    url: null,
+    name: 'Earning',
+    tag: '10',
+    tagColor: 'success',
+    icon: 'DollarSignIcon',
+    submenu: [
+      {
+        url: '/earning/list',
+        name: 'Earning Lists',
+        slug: 'earning-list'
+      },
+      {
+        url: '/earning/overview',
+        name: 'Earning Overview',
+        slug: 'earning-overview'
+      }
+    ]
+  },
+  {
+    url: null,
+    name: 'Engineer',
+    tag: '10',
+    tagColor: 'warning',
+    icon: 'UsersIcon',
+    submenu: [
+      {
+        url: '/engineer/list',
+        name: 'Engineer Lists',
+        slug: 'engineer-list'
+      },
+      {
+        url: '/engineer/overview',
+        name: 'Engineer Overview',
+        slug: 'engineer-overview'
+      }
+    ]
+  },
+  {
+    url: null,
+    name: 'Technology',
+    tag: '10',
+    tagColor: 'primary',
+    icon: 'CpuIcon',
+    submenu: [
+      {
+        url: '/technology/list',
+        name: 'Technology Report Lists',
+        slug: 'technology-list'
+      },
+      {
+        url: '/technology/overview',
+        name: 'Technology Report Overview',
+        slug: 'technology-overview'
+      }
+    ]
+  },
+  {
+    url: null,
+    name: 'Skills',
+    tag: '10',
+    tagColor: 'black',
+    icon: 'CodepenIcon',
+    submenu: [
+      {
+        url: '/skills/list',
+        name: 'Skills Lists',
+        slug: 'skills-list'
+      },
+      {
+        url: '/skills/overview',
+        name: 'Skills Overview',
+        slug: 'skills-overview'
+      }
+    ]
+  },
+  {
+    header: '_______________________________',
+    items: []
+  },
+  {
+    header: '_______________________________',
+    items: []
+  },
+  {
+    header: '_______________________________',
+    items: []
+  },
+  {
+    header: '_______________________________',
+    items: []
+  },
+  {
+    header: '_______________________________',
+    items: []
+  },
+  {
+    header: 'Dashboard',
+    icon: 'LayersIcon',
+    i18n: 'Dashboard',
+    items: [
+      {
+        url: null,
+        name: 'Dashboard',
+        tag: '2',
+        tagColor: 'warning',
+        icon: 'HomeIcon',
+        i18n: 'Dashboard',
+        submenu: [
+          {
+            url: '/dashboard/analytics',
+            name: 'Analytics',
+            slug: 'dashboard-analytics',
+            i18n: 'Analytics'
+          },
+          {
+            url: '/dashboard/ecommerce',
+            name: 'eCommerce',
+            slug: 'dashboard-ecommerce',
+            i18n: 'eCommerce'
+          }
+        ]
       }
     ]
   },
@@ -655,35 +757,35 @@ export default [
         i18n: 'Authentication',
         submenu: [
           {
-            url: '/pages/login',
+            url: '/login',
             name: 'Login',
             slug: 'pages-login',
             i18n: 'Login',
             target: '_blank'
           },
           {
-            url: '/pages/register',
+            url: '/register',
             name: 'Register',
             slug: 'pages-register',
             i18n: 'Register',
             target: '_blank'
           },
           {
-            url: '/pages/forgot-password',
+            url: '/forgot-password',
             name: 'Forgot Password',
             slug: 'pages-forgot-password',
             i18n: 'ForgotPassword',
             target: '_blank'
           },
           {
-            url: '/pages/reset-password',
+            url: '/reset-password',
             name: 'Reset Password',
             slug: 'pages-reset-password',
             i18n: 'ResetPassword',
             target: '_blank'
           },
           {
-            url: '/pages/lock-screen',
+            url: '/lock-screen',
             name: 'Lock Screen',
             slug: 'pages-lock-screen',
             i18n: 'LockScreen',
@@ -698,7 +800,7 @@ export default [
         i18n: 'Miscellaneous',
         submenu: [
           {
-            url: '/pages/not-authorized',
+            url: '/not-authorized',
             name: 'Not Authorized',
             slug: 'page-not-authorized',
             icon: 'XCircleIcon',
@@ -706,7 +808,7 @@ export default [
             target: '_blank'
           },
           {
-            url: '/pages/maintenance',
+            url: '/maintenance',
             name: 'Maintenance',
             slug: 'page-maintenance',
             icon: 'AnchorIcon',
@@ -714,7 +816,7 @@ export default [
             target: '_blank'
           },
           {
-            url: '/pages/comingsoon',
+            url: '/comingsoon',
             slug: 'page-coming-soon',
             name: 'Coming Soon',
             icon: 'ClockIcon',
@@ -722,14 +824,14 @@ export default [
             target: '_blank'
           },
           {
-            url: '/pages/error-404',
+            url: '/error-404',
             name: '404',
             slug: 'page-error-404',
             i18n: '404',
             target: '_blank'
           },
           {
-            url: '/pages/error-500',
+            url: '/error-500',
             name: '500',
             slug: 'page-error-500',
             i18n: '500',

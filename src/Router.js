@@ -15,10 +15,10 @@ const router = new Router({
   },
   routes: [
 
-    {
     // =============================================================================
     // MAIN LAYOUT ROUTES
     // =============================================================================
+    {
       path: '',
       component: () => import('./layouts/main/Main.vue'),
       children: [
@@ -27,8 +27,98 @@ const router = new Router({
         // =============================================================================
         {
           path: '/',
-          redirect: '/dashboard/analytics'
+          redirect: '/dashboard'
         },
+        {
+          path: '/dashboard',
+          name: 'Today\'s analyse',
+          component: () => import('./views/DashboardAnalytics.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/project/list',
+          name: 'Project Lists',
+          component: () => import('./views/DashboardAnalytics.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/project/overview',
+          name: 'Project Overview',
+          component: () => import('./views/DashboardAnalytics.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/earning/list',
+          name: 'Earning List',
+          component: () => import('./views/DashboardAnalytics.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/earning/overview',
+          name: 'Earning Overview',
+          component: () => import('./views/DashboardAnalytics.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/engineer/list',
+          name: 'Engineer List',
+          component: () => import('./views/main/user/user-list/UserList.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/engineer/overview',
+          name: 'Engineer Overview',
+          component: () => import('./views/DashboardAnalytics.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/technology/list',
+          name: 'Technology List',
+          component: () => import('./views/DashboardAnalytics.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/technology/overview',
+          name: 'Technology Overview',
+          component: () => import('./views/DashboardAnalytics.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/skills/list',
+          name: 'Skills List',
+          component: () => import('./views/DashboardAnalytics.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/skills/overview',
+          name: 'Skills Overview',
+          component: () => import('./views/DashboardAnalytics.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+
+
         {
           path: '/dashboard/analytics',
           name: 'dashboard-analytics',
@@ -1284,7 +1374,7 @@ const router = new Router({
           }
         },
         {
-          path: '/pages/login',
+          path: '/login',
           name: 'page-login',
           component: () => import('@/views/pages/login/Login.vue'),
           meta: {
@@ -1292,7 +1382,7 @@ const router = new Router({
           }
         },
         {
-          path: '/pages/register',
+          path: '/register',
           name: 'page-register',
           component: () => import('@/views/pages/register/Register.vue'),
           meta: {
@@ -1300,7 +1390,7 @@ const router = new Router({
           }
         },
         {
-          path: '/pages/forgot-password',
+          path: '/forgot-password',
           name: 'page-forgot-password',
           component: () => import('@/views/pages/ForgotPassword.vue'),
           meta: {
@@ -1308,7 +1398,7 @@ const router = new Router({
           }
         },
         {
-          path: '/pages/reset-password',
+          path: '/reset-password',
           name: 'page-reset-password',
           component: () => import('@/views/pages/ResetPassword.vue'),
           meta: {
@@ -1316,7 +1406,7 @@ const router = new Router({
           }
         },
         {
-          path: '/pages/lock-screen',
+          path: '/lock-screen',
           name: 'page-lock-screen',
           component: () => import('@/views/pages/LockScreen.vue'),
           meta: {
@@ -1324,7 +1414,7 @@ const router = new Router({
           }
         },
         {
-          path: '/pages/comingsoon',
+          path: '/comingsoon',
           name: 'page-coming-soon',
           component: () => import('@/views/pages/ComingSoon.vue'),
           meta: {
@@ -1332,7 +1422,7 @@ const router = new Router({
           }
         },
         {
-          path: '/pages/error-404',
+          path: '/error-404',
           name: 'page-error-404',
           component: () => import('@/views/pages/Error404.vue'),
           meta: {
@@ -1340,7 +1430,7 @@ const router = new Router({
           }
         },
         {
-          path: '/pages/error-500',
+          path: '/error-500',
           name: 'page-error-500',
           component: () => import('@/views/pages/Error500.vue'),
           meta: {
@@ -1403,7 +1493,7 @@ router.beforeEach((to, from, next) => {
     // If auth required, check login. If login fails redirect to login page
     if (to.meta.authRequired) {
       if (!(auth.isAuthenticated() || firebaseCurrentUser)) {
-        router.push({ path: '/pages/login', query: { to: to.path } })
+        router.push({ path: '/login', query: { to: to.path } })
       }
     }
 

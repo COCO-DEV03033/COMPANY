@@ -1,7 +1,7 @@
 <template>
   <div id="loading-bg">
     <div class="loading-logo">
-      <img src="@/assets/images/logo/logo.png" alt="Logo">
+      <img src="@/assets/images/logo/logo.png" alt="Logo" />
     </div>
     <div class="loading">
       <div class="effect-1 effects"></div>
@@ -14,23 +14,22 @@
 <script>
 export default {
   methods: {
-    handleLoginEvent (data) {
-      this.$store.dispatch('updateUserInfo', {
+    handleLoginEvent(data) {
+      this.$store.dispatch("updateUserInfo", {
         displayName: data.profile.name,
         email: data.profile.email,
         photoURL: data.profile.picture,
-        providerId: data.profile.sub.substr(0, data.profile.sub.indexOf('|')),
-        uid: data.profile.sub
-      })
-      this.$router.push(data.state.target || '/')
-    }
+        providerId: data.profile.sub.substr(0, data.profile.sub.indexOf("|")),
+        uid: data.profile.sub,
+      });
+      this.$router.push(data.state.target || "/");
+    },
   },
-  created () {
-    this.$auth.handleAuthentication()
-    if (this.$auth.isAuthenticated()) this.$router.push('/').catch(() => {})
-  }
-}
-
+  created() {
+    this.$auth.handleAuthentication();
+    if (this.$auth.isAuthenticated()) this.$router.push("/").catch(() => {});
+  },
+};
 </script>
 
 <style lang="scss">

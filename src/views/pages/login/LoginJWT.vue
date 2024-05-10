@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="login-form">
     <vs-input
-        v-validate="'required|email|min:3'"
+        v-validate="'required|min:3'"
         data-vv-validate-on="blur"
-        name="email"
+        name="UserID"
         icon-no-border
         icon="icon icon-user"
         icon-pack="feather"
-        label-placeholder="Email"
-        v-model="email"
+        label-placeholder="UserID"
+        v-model="userID"
         class="w-full"/>
-    <span class="text-danger text-sm">{{ errors.first('email') }}</span>
+    <span class="text-danger text-sm mb-4">{{ errors.first('UserID') }}</span>
 
     <vs-input
         data-vv-validate-on="blur"
@@ -40,14 +40,14 @@
 export default {
   data () {
     return {
-      email: 'admin@admin.com',
-      password: 'adminadmin',
+      userID: '',
+      password: '',
       checkbox_remember_me: false
     }
   },
   computed: {
     validateForm () {
-      return !this.errors.any() && this.email !== '' && this.password !== ''
+      return !this.errors.any() && this.userID !== '' && this.password !== ''
     }
   },
   methods: {
@@ -80,7 +80,7 @@ export default {
       const payload = {
         checkbox_remember_me: this.checkbox_remember_me,
         userDetails: {
-          email: this.email,
+          userID: this.userID,
           password: this.password
         }
       }
@@ -100,10 +100,16 @@ export default {
     },
     registerUser () {
       if (!this.checkLogin()) return
-      this.$router.push('/pages/register').catch(() => {})
+      this.$router.push('/register').catch(() => {})
     }
   }
 }
 
 </script>
+
+<style scope>
+.login-form {
+  margin-top: 4rem;
+}
+</style>
 

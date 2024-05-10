@@ -20,7 +20,7 @@ export default {
     ListView: 'List View',
     ThumbView: 'Thumb View',
     Grid: 'Grid',
-    Vuexy: 'Vuexy',
+    Vuexy: 'CIMSS',
     Vuesax: 'Vuesax',
     Tailwind: 'Tailwind',
     Colors: 'Colors',
