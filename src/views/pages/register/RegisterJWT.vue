@@ -1,13 +1,3 @@
-<!-- =========================================================================================
-File Name: RegisterJWT.vue
-Description: Register Page for JWT
-----------------------------------------------------------------------------------------
-Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-  Author: Pixinvent
-Author URL: http://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
-
 <template>
   <div class="clearfix">
     <vs-input
@@ -17,19 +7,38 @@ Author URL: http://www.themeforest.net/user/pixinvent
       name="displayName"
       placeholder="Name"
       v-model="displayName"
-      class="w-full" />
-    <span class="text-danger text-sm">{{ errors.first('displayName') }}</span>
+      class="w-full"
+    />
+    <span class="text-danger text-sm">{{ errors.first("displayName") }}</span>
+
+    <div class="mt-8">
+      <flat-pickr
+        v-model="dob"
+        label-placeholder="Birth Date"
+        placeholder="Birth Date"
+        :config="{ dateFormat: 'd F Y' }"
+        class="w-full"
+      />
+    </div>
+    <div class="mt-8 mb-base">
+      <label class="text-sm">Gender</label>
+      <div class="mt-2">
+        <vs-radio v-model="gender" vs-value="male" class="mr-4">Male</vs-radio>
+        <vs-radio v-model="gender" vs-value="female" class="mr-4">Female</vs-radio>
+      </div>
+    </div>
 
     <vs-input
-      v-validate="'required|email'"
+      v-validate="'required|min:3'"
       data-vv-validate-on="blur"
-      name="email"
-      type="email"
-      label-placeholder="Email"
-      placeholder="Email"
-      v-model="email"
-      class="w-full mt-6" />
-    <span class="text-danger text-sm">{{ errors.first('email') }}</span>
+      name="userID"
+      type="userID"
+      label-placeholder="UserID"
+      placeholder="UserID"
+      v-model="userID"
+      class="w-full mt-6"
+    />
+    <span class="text-danger text-sm">{{ errors.first("userID") }}</span>
 
     <vs-input
       ref="password"
@@ -40,8 +49,9 @@ Author URL: http://www.themeforest.net/user/pixinvent
       label-placeholder="Password"
       placeholder="Password"
       v-model="password"
-      class="w-full mt-6" />
-    <span class="text-danger text-sm">{{ errors.first('password') }}</span>
+      class="w-full mt-6"
+    />
+    <span class="text-danger text-sm">{{ errors.first("password") }}</span>
 
     <vs-input
       type="password"
@@ -52,66 +62,96 @@ Author URL: http://www.themeforest.net/user/pixinvent
       label-placeholder="Confirm Password"
       placeholder="Confirm Password"
       v-model="confirm_password"
-      class="w-full mt-6" />
-    <span class="text-danger text-sm">{{ errors.first('confirm_password') }}</span>
+      class="w-full mt-6"
+    />
+    <span class="text-danger text-sm">{{ errors.first("confirm_password") }}</span>
 
-    <vs-checkbox v-model="isTermsConditionAccepted" class="mt-6">I accept the terms & conditions.</vs-checkbox>
-    <vs-button  type="border" to="/pages/login" class="mt-6">Login</vs-button>
-    <vs-button class="float-right mt-6" @click="registerUserJWt" :disabled="!validateForm">Register</vs-button>
+    <vs-checkbox v-model="isTermsConditionAccepted" class="mt-6"
+      >I accept the terms & conditions.</vs-checkbox
+    >
+    <vs-button type="border" to="/login" class="mt-6">Login</vs-button>
+    <vs-button class="float-right mt-6" @click="registerUserJWt" :disabled="!validateForm"
+      >Register</vs-button
+    >
   </div>
 </template>
 
 <script>
+import flatPickr from "vue-flatpickr-component";
+import "flatpickr/dist/flatpickr.css";
+
 export default {
-  data () {
+  components: {
+    flatPickr,
+  },
+  data() {
     return {
-      displayName: '',
-      email: '',
-      password: '',
-      confirm_password: '',
-      isTermsConditionAccepted: true
-    }
+      displayName: "",
+      userID: "",
+      password: "",
+      gender: 'male',
+      confirm_password: "",
+      isTermsConditionAccepted: true,
+      dob: null,
+    };
   },
   computed: {
-    validateForm () {
-      return !this.errors.any() && this.displayName !== '' && this.email !== '' && this.password !== '' && this.confirm_password !== '' && this.isTermsConditionAccepted === true
-    }
+    validateForm() {
+      return (
+        !this.errors.any() &&
+        this.displayName !== "" &&
+        this.userID !== "" &&
+        this.dob !== "" &&
+        this.gender !== "" &&
+        this.password !== "" &&
+        this.confirm_password !== "" &&
+        this.isTermsConditionAccepted === true
+      );
+    },
   },
   methods: {
-    checkLogin () {
+    checkLogin() {
       // If user is already logged in notify
       if (this.$store.state.auth.isUserLoggedIn()) {
-
         // Close animation if passed as payload
         // this.$vs.loading.close()
 
         this.$vs.notify({
-          title: 'Login Attempt',
-          text: 'You are already logged in!',
-          iconPack: 'feather',
-          icon: 'icon-alert-circle',
-          color: 'warning'
-        })
+          title: "Login Attempt",
+          text: "You are already logged in!",
+          iconPack: "feather",
+          icon: "icon-alert-circle",
+          color: "warning",
+        });
 
-        return false
+        return false;
       }
-      return true
+      return true;
     },
-    registerUserJWt () {
+    registerUserJWt() {
       // If form is not validated or user is already login return
-      if (!this.validateForm || !this.checkLogin()) return
+      if (!this.validateForm || !this.checkLogin()) return;
 
       const payload = {
         userDetails: {
           displayName: this.displayName,
-          email: this.email,
+          userID: this.userID,
+          dob: this.dob,
+          gender: this.gender,
           password: this.password,
-          confirmPassword: this.confirm_password
+          confirmPassword: this.confirm_password,
         },
-        notify: this.$vs.notify
-      }
-      this.$store.dispatch('auth/registerUserJWT', payload)
-    }
-  }
-}
+        notify: this.$vs.notify,
+      };
+      this.$store.dispatch("auth/registerUserJWT", payload);
+    },
+  },
+};
 </script>
+
+<style scope>
+.clearfix {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
+</style>

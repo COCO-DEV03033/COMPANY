@@ -50,10 +50,12 @@ export default {
       password: pwd
     })
   },
-  registerUser (name, email, pwd) {
+  registerUser (name, userID, dob, gender, pwd) {
     return axios.post('/api/auth/register', {
       displayName: name,
-      email,
+      dob: dob,
+      gender: gender,
+      userID,
       password: pwd
     })
   },
