@@ -1,26 +1,29 @@
 <template>
   <div class="clearfix">
     <vs-input
-      v-validate="'required|alpha_dash|min:3'"
+      v-validate="'required|min:2'"
       data-vv-validate-on="blur"
       label-placeholder="Name"
-      name="displayName"
+      name="name"
       placeholder="Name"
       v-model="displayName"
       class="w-full"
     />
-    <span class="text-danger text-sm">{{ errors.first("displayName") }}</span>
+    <span class="text-danger text-sm">{{ errors.first("name") }}</span>
 
-    <div class="mt-8">
+    <div class="mt-6">
       <flat-pickr
+        v-validate="'required'"
         v-model="dob"
-        label-placeholder="Birth Date"
-        placeholder="Birth Date"
+        name="birthday"
+        label-placeholder="Birthday"
+        placeholder="Birthday"
         :config="{ dateFormat: 'd F Y' }"
         class="w-full"
       />
+      <span class="text-danger text-sm">{{ errors.first("birthday") }}</span>
     </div>
-    <div class="mt-8 mb-base">
+    <div class="mt-6">
       <label class="text-sm">Gender</label>
       <div class="mt-2">
         <vs-radio v-model="gender" vs-value="male" class="mr-4">Male</vs-radio>
@@ -28,17 +31,53 @@
       </div>
     </div>
 
-    <vs-input
+    <!-- <vs-input
       v-validate="'required|min:3'"
       data-vv-validate-on="blur"
       name="userID"
-      type="userID"
+      type="text"
       label-placeholder="UserID"
       placeholder="UserID"
       v-model="userID"
       class="w-full mt-6"
-    />
+    /> -->
+
+    <vx-input-group class="w-full">
+      <vs-input
+        v-validate="'required|min:3'"
+        data-vv-validate-on="blur"
+        name="userID"
+        type="text"
+        label-placeholder="UserID"
+        placeholder="UserID"
+        v-model="userID"
+      />
+
+      <template slot="append">
+        <div class="append-text btn-addon check-btn">
+          <vs-button class="text-white shadow" color="primary">
+            <feather-icon
+              icon="CheckCircleIcon"
+              class="bg-primary text-white"
+              svgClasses="h-6 w-6"
+            ></feather-icon
+          ></vs-button>
+        </div>
+      </template>
+    </vx-input-group>
     <span class="text-danger text-sm">{{ errors.first("userID") }}</span>
+
+    <v-select
+      data-vv-validate-on="blur"
+      v-validate="'required'"
+      name="organization"
+      label-placeholder="Organization"
+      placeholder="Organization"
+      v-model="organization"
+      class="w-full mt-6"
+      :options="['President', 'Officer', 'Engineer']"
+    />
+    <span class="text-danger text-sm">{{ errors.first("organization") }}</span>
 
     <vs-input
       ref="password"
@@ -78,21 +117,24 @@
 
 <script>
 import flatPickr from "vue-flatpickr-component";
+import vSelect from "vue-select";
 import "flatpickr/dist/flatpickr.css";
 
 export default {
   components: {
     flatPickr,
+    "v-select": vSelect,
   },
   data() {
     return {
       displayName: "",
       userID: "",
       password: "",
-      gender: 'male',
+      gender: "male",
       confirm_password: "",
       isTermsConditionAccepted: true,
-      dob: null,
+      dob: "",
+      organization: "",
     };
   },
   computed: {
@@ -102,6 +144,7 @@ export default {
         this.displayName !== "" &&
         this.userID !== "" &&
         this.dob !== "" &&
+        this.organization !== "" &&
         this.gender !== "" &&
         this.password !== "" &&
         this.confirm_password !== "" &&
@@ -128,6 +171,9 @@ export default {
       }
       return true;
     },
+    checkAvailableID() {
+      console.log("check available userID");
+    },
     registerUserJWt() {
       // If form is not validated or user is already login return
       if (!this.validateForm || !this.checkLogin()) return;
@@ -137,12 +183,14 @@ export default {
           displayName: this.displayName,
           userID: this.userID,
           dob: this.dob,
+          organization: this.organization,
           gender: this.gender,
           password: this.password,
           confirmPassword: this.confirm_password,
         },
         notify: this.$vs.notify,
       };
+
       this.$store.dispatch("auth/registerUserJWT", payload);
     },
   },
@@ -153,5 +201,8 @@ export default {
 .clearfix {
   margin-top: 2rem;
   margin-bottom: 4rem;
+}
+.check-btn {
+  padding-top: 17px;
 }
 </style>

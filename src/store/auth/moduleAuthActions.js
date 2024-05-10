@@ -331,10 +331,12 @@ export default {
         reject({message: 'Password doesn\'t match. Please try again.'})
       }
 
-      jwt.registerUser(displayName, userID, dob, gender, password)
+      jwt.registerUser(displayName, userID, dob, organization, gender, password)
         .then(response => {
+
+          console.log(response)
           // Redirect User
-          router.push(router.currentRoute.query.to || '/')
+          // router.push(router.currentRoute.query.to || '/')
 
           // Update data in localStorage
           localStorage.setItem('accessToken', response.data.accessToken)

@@ -1,5 +1,7 @@
-import axios from '../../../axios/index.js'
+import axios from 'axios'
 import store from '../../../../store/store.js'
+
+const API_URL = 'http://localhost:5050'
 
 // Token Refresh
 let isAlreadyFetchingAccessToken = false
@@ -45,21 +47,23 @@ export default {
     })
   },
   login (email, pwd) {
-    return axios.post('/api/auth/login', {
+    return axios.post(API_URL + '/api/auth/login', {
       email,
       password: pwd
     })
   },
-  registerUser (name, userID, dob, gender, pwd) {
-    return axios.post('/api/auth/register', {
-      displayName: name,
-      dob: dob,
-      gender: gender,
+  registerUser (name, userID, dob, organization, gender, pwd) {
+
+    return axios.post(API_URL + '/api/auth/register', {
+      name,
+      dob,
+      gender,
       userID,
+      organization,
       password: pwd
     })
   },
   refreshToken () {
-    return axios.post('/api/auth/refresh-token', {accessToken: localStorage.getItem('accessToKen')})
+    return axios.post(API_URL + '/api/auth/refresh-token', {accessToken: localStorage.getItem('accessToKen')})
   }
 }
