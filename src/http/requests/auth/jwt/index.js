@@ -52,9 +52,9 @@ export default {
       password: pwd
     })
   },
-  async registerUser (name, userID, dob, organization, gender, pwd) {
+  async registerUser (name, userID, dob, organization, department, team, gender, pwd) {
 
-    console.log(name, userID, dob, organization, gender, pwd)
+    console.log(name, userID, dob, organization, department, team, gender, pwd)
 
     return await axios.post(API_URL + '/api/auth/register', {
       name,
@@ -62,6 +62,8 @@ export default {
       gender,
       userID,
       organization,
+      department,
+      team,
       password: pwd
     })
   },
