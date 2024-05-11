@@ -61,7 +61,21 @@ export default [
         url: '/engineer/overview',
         name: 'Engineer Overview',
         slug: 'engineer-overview'
-      }
+      },
+      {
+        url: '/engineer/import',
+        name: 'Engineer Import',
+        icon: 'HomeIcon',
+        slug: 'import',
+        i18n: 'Engineer Import'
+      },
+      {
+        url: '/engineer/export',
+        name: 'Engineer Export',
+        icon: 'HomeIcon',
+        slug: 'export',
+        i18n: 'Engineer Export'
+      },
     ]
   },
   {
