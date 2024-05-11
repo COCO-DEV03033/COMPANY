@@ -202,8 +202,8 @@ export default {
       },
       columnDefs: [
         {
-          headerName: 'ID',
-          field: 'id',
+          headerName: 'No',
+          field: 'no',
           width: 125,
           filter: true,
           checkboxSelection: true,
@@ -212,29 +212,41 @@ export default {
         },
         {
           headerName: 'Username',
-          field: 'username',
+          field: 'name',
           filter: true,
           width: 210,
           cellRendererFramework: 'CellRendererLink'
         },
         {
-          headerName: 'Email',
-          field: 'email',
+          headerName: 'userID',
+          field: 'userID',
           filter: true,
           width: 225
         },
         {
-          headerName: 'Name',
-          field: 'name',
-          filter: true,
-          width: 200
-        },
-        {
-          headerName: 'Country',
-          field: 'country',
+          headerName: 'age',
+          field: 'age',
           filter: true,
           width: 150
         },
+        {
+          headerName: 'Gender',
+          field: 'gender',
+          filter: true,
+          width: 150
+        },
+        {
+          headerName: 'Organ',
+          field: 'organization',
+          filter: true,
+          width: 200
+        },
+        // {
+        //   headerName: 'Department',
+        //   field: 'department',
+        //   filter: true,
+        //   width: 150
+        // },
         {
           headerName: 'Role',
           field: 'role',
@@ -247,20 +259,6 @@ export default {
           filter: true,
           width: 150,
           cellRendererFramework: 'CellRendererStatus'
-        },
-        {
-          headerName: 'Verified',
-          field: 'is_verified',
-          filter: true,
-          width: 125,
-          cellRendererFramework: 'CellRendererVerified',
-          cellClass: 'text-center'
-        },
-        {
-          headerName: 'Department',
-          field: 'department',
-          filter: true,
-          width: 150
         },
         {
           headerName: 'Actions',
@@ -348,11 +346,6 @@ export default {
   mounted () {
     this.gridApi = this.gridOptions.api
 
-    /* =================================================================
-      NOTE:
-      Header is not aligned properly in RTL version of agGrid table.
-      However, we given fix to this issue. If you want more robust solution please contact them at gitHub
-    ================================================================= */
     if (this.$vs.rtl) {
       const header = this.$refs.agGridTable.$el.querySelector('.ag-header-container')
       header.style.left = `-${  String(Number(header.style.transform.slice(11, -3)) + 9)  }px`

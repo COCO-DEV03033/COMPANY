@@ -300,16 +300,6 @@ export default {
       jwt.login(payload.userDetails.userID, payload.userDetails.password)
         .then(response => {
 
-          // if (response.status !== 200) {
-          //   this._vm.$vs.notify({
-          //     title: 'Error',
-          //     text: response.data.message,
-          //     iconPack: 'feather',
-          //     icon: 'icon-alert-circle',
-          //     color: 'danger'
-          //   })
-          // }
-
           // If there's user data in response
           if (response.data.userData) {
             // Navigate User to homepage
@@ -356,12 +346,25 @@ export default {
       jwt.registerUser(displayName, userID, dob, organization, gender, password)
         .then(response => {
 
-          console.log(response, this)
-          this._vm.$vs.notify({
-            title: 'Success',
-            text: response.data.message,
-            color: 'success'
-          })
+          if (response.status == 201) {
+            this._vm.$vs.notify({
+              title: 'Warning',
+              text: response.data.message,
+              color: 'warning',
+              iconPack: "feather",
+              icon: "icon-alert-circle",
+            })
+          }
+          else {
+            this._vm.$vs.notify({
+              title: 'Success',
+              text: response.data.message,
+              color: 'success',
+              iconPack: "feather",
+              icon: "icon-thumbs-up",
+            })
+            // router.push(router.currentRoute.query.to || '/login')
+          }
           // Redirect User
           // router.push(router.currentRoute.query.to || '/')
 

@@ -1,13 +1,6 @@
-/*=========================================================================================
-  File Name: moduleCalendarActions.js
-  Description: Calendar Module Actions
-  ----------------------------------------------------------------------------------------
-  Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-  Author: Pixinvent
-  Author URL: http://www.themeforest.net/user/pixinvent
-==========================================================================================*/
-
 import axios from '@/axios.js'
+
+const API_URL = 'http://localhost:5050'
 
 export default {
   // addItem({ commit }, item) {
@@ -22,9 +15,9 @@ export default {
   // },
   fetchUsers ({ commit }) {
     return new Promise((resolve, reject) => {
-      axios.get('/api/user-management/users')
+      axios.get(API_URL + '/api/auth/users')
         .then((response) => {
-          commit('SET_USERS', response.data)
+          commit('SET_USERS', response.data.allUser)
           resolve(response)
         })
         .catch((error) => { reject(error) })
@@ -32,7 +25,7 @@ export default {
   },
   fetchUser (context, userId) {
     return new Promise((resolve, reject) => {
-      axios.get(`/api/user-management/users/${userId}`)
+      axios.get(`${API_URL}/api/user-management/users/${userId}`)
         .then((response) => {
           resolve(response)
         })
@@ -41,7 +34,7 @@ export default {
   },
   removeRecord ({ commit }, userId) {
     return new Promise((resolve, reject) => {
-      axios.delete(`/api/user-management/users/${userId}`)
+      axios.delete(`${API_URL}/api/user-management/users/${userId}`)
         .then((response) => {
           commit('REMOVE_RECORD', userId)
           resolve(response)
