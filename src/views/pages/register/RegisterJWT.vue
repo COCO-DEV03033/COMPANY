@@ -79,10 +79,35 @@
       label-placeholder="Organization"
       placeholder="Organization"
       v-model="organization"
-      class="w-full mt-6"
-      :options="['President', 'Officer', 'Engineer']"
+      class="w-1/3 mt-6 float-left mr-3 select"
+      :options="['7*9', '3*9', '8*2', '5*4', 'A*', 'Net*']"
     />
     <span class="text-danger text-sm">{{ errors.first("organization") }}</span>
+
+    <v-select
+      data-vv-validate-on="blur"
+      v-validate="'required'"
+      name="team"
+      label-placeholder="Team"
+      placeholder="Team"
+      v-model="team"
+      class="w-1/4 float-right mt-6 ml-3 select"
+      :options="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']"
+    />
+    <span class="text-danger text-sm">{{ errors.first("team") }}</span>
+
+    <v-select
+      data-vv-validate-on="blur"
+      v-validate="'required'"
+      name="department"
+      label-placeholder="Department"
+      placeholder="Department"
+      v-model="department"
+      class="w-full mt-6 select"
+      :options="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']"
+    />
+    <span class="text-danger text-sm">{{ errors.first("department") }}</span>
+
 
     <vs-input
       ref="password"
@@ -140,6 +165,8 @@ export default {
       isTermsConditionAccepted: true,
       dob: "",
       organization: "",
+      department: "",
+      team: "",
       userIDValid: true,
       userIDMessage: "",
     };
@@ -152,6 +179,8 @@ export default {
         this.userID !== "" &&
         this.dob !== "" &&
         this.organization !== "" &&
+        this.department !== "" &&
+        this.team !== "" &&
         this.gender !== "" &&
         this.password !== "" &&
         this.confirm_password !== "" &&
@@ -209,6 +238,8 @@ export default {
           userID: this.userID,
           dob: this.dob,
           organization: this.organization,
+          department: this.department,
+          team: this.team,
           gender: this.gender,
           password: this.password,
           confirmPassword: this.confirm_password,
@@ -229,5 +260,8 @@ export default {
 }
 .check-btn {
   padding-top: 17px;
+}
+.select {
+  cursor: pointer;
 }
 </style>
