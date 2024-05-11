@@ -190,7 +190,7 @@ export default {
     
     exportToExcel() {
       import("@/vendor/Export2Excel").then((excel) => {
-        const list = this.users;
+        const list = this.usersData;
         const data = this.formatJson(this.headerVal, list);
         excel.export_json_to_excel({
           header: this.headerTitle,
