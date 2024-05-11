@@ -10,7 +10,7 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  scrollBehavior () {
+  scrollBehavior() {
     return { x: 0, y: 0 }
   },
   routes: [
@@ -102,7 +102,7 @@ const router = new Router({
           }
         },
 
-        
+
         {
           path: '/technology/list',
           name: 'Technology List',
@@ -211,7 +211,7 @@ const router = new Router({
           meta: {
             breadcrumb: [
               { title: 'Home', url: '/' },
-              { title: 'eCommerce'},
+              { title: 'eCommerce' },
               { title: 'Shop', active: true }
             ],
             pageTitle: 'Shop',
@@ -225,7 +225,7 @@ const router = new Router({
           meta: {
             breadcrumb: [
               { title: 'Home', url: '/' },
-              { title: 'eCommerce', url:'/apps/eCommerce/shop'},
+              { title: 'eCommerce', url: '/apps/eCommerce/shop' },
               { title: 'Wish List', active: true }
             ],
             pageTitle: 'Wish List',
@@ -239,7 +239,7 @@ const router = new Router({
           meta: {
             breadcrumb: [
               { title: 'Home', url: '/' },
-              { title: 'eCommerce', url:'/apps/eCommerce/shop'},
+              { title: 'eCommerce', url: '/apps/eCommerce/shop' },
               { title: 'Checkout', active: true }
             ],
             pageTitle: 'Checkout',
@@ -266,8 +266,8 @@ const router = new Router({
           meta: {
             breadcrumb: [
               { title: 'Home', url: '/' },
-              { title: 'eCommerce'},
-              { title: 'Shop', url: {name: 'ecommerce-shop'} },
+              { title: 'eCommerce' },
+              { title: 'Shop', url: { name: 'ecommerce-shop' } },
               { title: 'Item Details', active: true }
             ],
             parent: 'ecommerce-item-detail-view',
@@ -327,7 +327,7 @@ const router = new Router({
           meta: {
             breadcrumb: [
               { title: 'Home', url: '/' },
-              { title: 'Data List'},
+              { title: 'Data List' },
               { title: 'List View', active: true }
             ],
             pageTitle: 'List View',
@@ -341,7 +341,7 @@ const router = new Router({
           meta: {
             breadcrumb: [
               { title: 'Home', url: '/' },
-              { title: 'Data List'},
+              { title: 'Data List' },
               { title: 'Thumb View', active: true }
             ],
             pageTitle: 'Thumb View',
@@ -355,7 +355,7 @@ const router = new Router({
           meta: {
             breadcrumb: [
               { title: 'Home', url: '/' },
-              { title: 'Grid'},
+              { title: 'Grid' },
               { title: 'Vuesax', active: true }
             ],
             pageTitle: 'Grid',
@@ -369,7 +369,7 @@ const router = new Router({
           meta: {
             breadcrumb: [
               { title: 'Home', url: '/' },
-              { title: 'Grid'},
+              { title: 'Grid' },
               { title: 'Tailwind', active: true }
             ],
             pageTitle: 'Tailwind Grid',
