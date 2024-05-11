@@ -22,7 +22,7 @@
     </vs-prompt>
 
     <div class="export-table">
-      <vs-table :data="users" search>
+      <vs-table :data="usersData" search>
         <template slot="header">
           <vs-button @click="activePrompt = true">Export</vs-button>
         </template>
@@ -181,7 +181,13 @@ export default {
       activePrompt: false,
     };
   },
+  computed: {
+    usersData () {
+      return this.$store.state.userManagement.users
+    },
+  },
   methods: {
+    
     exportToExcel() {
       import("@/vendor/Export2Excel").then((excel) => {
         const list = this.users;
@@ -216,5 +222,8 @@ export default {
       this.selectedFormat = "xlsx";
     },
   },
+  created(){
+    this.$store.dispatch('userManagement/fetchUsers').catch(err => { console.error(err) });
+  }
 };
 </script>

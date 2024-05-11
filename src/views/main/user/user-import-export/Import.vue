@@ -1,20 +1,11 @@
-<!-- =========================================================================================
-    File Name: i18n.vue
-    Description: I18n demo
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-      Author: Pixinvent
-    Author URL: http://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
 <template>
   <div>
     <div class="mb-8">
       <import-excel :onSuccess="loadDataInTable" />
     </div>
-    <vs-row vs-type="flex" vs-justify="flex-end">
+    <vs-row class='mb-3' vs-type="flex" vs-justify="flex-end">
       <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="1">
-        <vs-button color="primary" type="filled">Update</vs-button>
+        <vs-button color="primary" type="filled" @click="updateUserData">Update</vs-button>
       </vs-col>
     </vs-row>
     <vx-card v-if="tableData.length && header.length">
@@ -58,7 +49,10 @@ export default {
       this.header = header
       this.tableData = results
       this.sheetName = meta.sheetName
-    }
+    },
+    updateUserData () {
+
+    },
   }
 }
 </script>
