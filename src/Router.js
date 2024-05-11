@@ -86,6 +86,24 @@ const router = new Router({
           }
         },
         {
+          path: '/engineer/import',
+          name: 'Engineer Import',
+          component: () => import('./views/main/user/user-import-export/Import.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/engineer/export',
+          name: 'Engineer Export',
+          component: () => import('./views/main/user/user-import-export/Export.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+
+        
+        {
           path: '/technology/list',
           name: 'Technology List',
           component: () => import('./views/DashboardAnalytics.vue'),
