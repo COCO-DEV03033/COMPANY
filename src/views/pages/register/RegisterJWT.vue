@@ -146,47 +146,47 @@
 </template>
 
 <script>
-import flatPickr from "vue-flatpickr-component";
-import vSelect from "vue-select";
-import "flatpickr/dist/flatpickr.css";
+import flatPickr from 'vue-flatpickr-component'
+import vSelect from 'vue-select'
+import 'flatpickr/dist/flatpickr.css'
 
 export default {
   components: {
     flatPickr,
-    "v-select": vSelect,
+    'v-select': vSelect,
   },
   data() {
     return {
-      displayName: "",
-      userID: "",
-      password: "",
-      gender: "male",
-      confirm_password: "",
+      displayName: '',
+      userID: '',
+      password: '',
+      gender: 'male',
+      confirm_password: '',
       isTermsConditionAccepted: true,
-      dob: "",
-      organization: "",
-      department: "",
-      team: "",
+      dob: '',
+      organization: '',
+      department: '',
+      team: '',
       userIDValid: true,
-      userIDMessage: "",
-    };
+      userIDMessage: '',
+    }
   },
   computed: {
     validateForm() {
       return (
         !this.errors.any() &&
-        this.displayName !== "" &&
-        this.userID !== "" &&
-        this.dob !== "" &&
-        this.organization !== "" &&
-        this.department !== "" &&
-        this.team !== "" &&
-        this.gender !== "" &&
-        this.password !== "" &&
-        this.confirm_password !== "" &&
+        this.displayName !== '' &&
+        this.userID !== '' &&
+        this.dob !== '' &&
+        this.organization !== '' &&
+        this.department !== '' &&
+        this.team !== '' &&
+        this.gender !== '' &&
+        this.password !== '' &&
+        this.confirm_password !== '' &&
         this.userIDValid &&
         this.isTermsConditionAccepted === true
-      );
+      )
     },
   },
   methods: {
@@ -197,40 +197,40 @@ export default {
         // this.$vs.loading.close()
 
         this.$vs.notify({
-          title: "Login Attempt",
-          text: "You are already logged in!",
-          iconPack: "feather",
-          icon: "icon-alert-circle",
-          color: "warning",
-        });
+          title: 'Login Attempt',
+          text: 'You are already logged in!',
+          iconPack: 'feather',
+          icon: 'icon-alert-circle',
+          color: 'warning',
+        })
 
-        return false;
+        return false
       }
-      return true;
+      return true
     },
     async checkAvailableID() {
-      if (this.userID == "") {
+      if (this.userID == '') {
         this.$vs.notify({
-          title: "Warning",
-          text: "Please input one userID",
-          iconPack: "feather",
-          icon: "icon-alert-circle",
-          color: "warning",
-        });
-        return;
+          title: 'Warning',
+          text: 'Please input one userID',
+          iconPack: 'feather',
+          icon: 'icon-alert-circle',
+          color: 'warning',
+        })
+        return
       }
-      let result = await this.$store.dispatch("auth/checkuserID", {
+      let result = await this.$store.dispatch('auth/checkuserID', {
         userID: this.userID,
         valid: this.userIDValid,
-      });
-      this.userIDValid = result;
+      })
+      this.userIDValid = result
       if (!result) {
-        this.userIDMessage = "UserID is already in use. Please pick something else!";
+        this.userIDMessage = 'UserID is already in use. Please pick something else!'
       }
     },
     async registerUserJWt() {
       // If form is not validated or user is already login return
-      if (!this.validateForm || !this.checkLogin()) return;
+      if (!this.validateForm || !this.checkLogin()) return
 
       const payload = {
         userDetails: {
@@ -245,12 +245,16 @@ export default {
           confirmPassword: this.confirm_password,
         },
         notify: this.$vs.notify,
-      };
+      }
 
-      await this.$store.dispatch("auth/registerUserJWT", payload);
+      await this.$store.dispatch('auth/registerUserJWT', payload)
     },
   },
-};
+  beforeCreate () {
+    if (this.$store.state.auth.isUserLoggedIn()) this.$router.go(-1)
+    //  User Reward Card
+  }
+}
 </script>
 
 <style scope>

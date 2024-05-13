@@ -1,30 +1,41 @@
-<!-- =========================================================================================
-  File Name: UserEditTabInformation.vue
-  Description: User Edit Information Tab content
-  ----------------------------------------------------------------------------------------
-  Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-  Author: Pixinvent
-  Author URL: http://www.themeforest.net/user/pixinvent
-========================================================================================== -->
-
 <template>
   <div id="user-edit-tab-info">
-
     <!-- Avatar Row -->
     <div class="vx-row">
       <div class="vx-col w-full">
         <div class="flex items-start flex-col sm:flex-row">
-          <img :src="data.avatar" class="mr-8 rounded h-24 w-24" />
+          <img
+            :src="
+              data_local.avatar
+                ? data_local.avatar
+                : require('@/assets/images/avatar.png')
+            "
+            class="mr-8 rounded border h-24 w-24 avatar_image"
+          />
           <!-- <vs-avatar :src="data.avatar" size="80px" class="mr-4" /> -->
           <div>
-            <p class="text-lg font-medium mb-2 mt-4 sm:mt-0">{{ data.name  }}</p>
-            <input type="file" class="hidden" ref="update_avatar_input" @change="update_avatar" accept="image/*">
+            <p class="text-lg font-medium mb-2 mt-4 sm:mt-0">{{ data_local.name }}</p>
+            <input
+              type="file"
+              class="hidden"
+              ref="update_avatar_input"
+              @change="update_avatar"
+              accept="image/*"
+            />
 
             <!-- Toggle comment of below buttons as one for actual flow & currently shown is only for demo -->
-            <vs-button class="mr-4 mb-4">Change Avatar</vs-button>
-            <!-- <vs-button type="border" class="mr-4" @click="$refs.update_avatar_input.click()">Change Avatar</vs-button> -->
+            <!-- <vs-button class="mr-4 mb-4">Change Avatar</vs-button> -->
+            <vs-button
+              type="border"
+              class="mr-4"
+              @click="$refs.update_avatar_input.click()"
+              >Change Avatar</vs-button
+            >
 
-            <vs-button type="border" color="danger">Remove Avatar</vs-button>
+            <vs-button type="border" @click="removeAvatar" color="danger"
+              >Remove Avatar</vs-button
+            >
+            <p class="text-sm mt-2">Allowed JPG, GIF or PNG. Max size of 800kB</p>
           </div>
         </div>
       </div>
@@ -33,77 +44,103 @@
     <!-- Content Row -->
     <div class="vx-row">
       <div class="vx-col md:w-1/2 w-full">
-        <vs-input class="w-full mt-4" label="Username" v-model="data_local.username" v-validate="'required|alpha_num'" name="username" />
-        <span class="text-danger text-sm"  v-show="errors.has('username')">{{ errors.first('username') }}</span>
+        <vs-input
+          class="w-full mt-4"
+          label="UserID"
+          v-model="data_local.userID"
+          v-validate="'required|'"
+          name="username"
+          disabled
+        />
+        <span class="text-danger text-sm" v-show="errors.has('username')">{{
+          errors.first("username")
+        }}</span>
 
-        <vs-input class="w-full mt-4" label="Name" v-model="data_local.name" v-validate="'required|alpha_spaces'" name="name" />
-        <span class="text-danger text-sm"  v-show="errors.has('name')">{{ errors.first('name') }}</span>
-
-        <vs-input class="w-full mt-4" label="Email" v-model="data_local.email" type="email" v-validate="'required|email'" name="email" />
-        <span class="text-danger text-sm"  v-show="errors.has('email')">{{ errors.first('email') }}</span>
-      </div>
-
-      <div class="vx-col md:w-1/2 w-full">
-
-        <div class="mt-4">
-          <label class="vs-input--label">Status</label>
-          <v-select v-model="status_local" :clearable="false" :options="statusOptions" v-validate="'required'" name="status" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-          <span class="text-danger text-sm"  v-show="errors.has('status')">{{ errors.first('status') }}</span>
-        </div>
+        <vs-input
+          class="w-full mt-4"
+          label="Name"
+          v-model="data_local.name"
+          v-validate="'required|alpha_spaces'"
+          name="name"
+        />
+        <span class="text-danger text-sm" v-show="errors.has('name')">{{
+          errors.first("name")
+        }}</span>
 
         <div class="mt-4">
           <label class="vs-input--label">Role</label>
-          <v-select v-model="role_local" :clearable="false" :options="roleOptions" v-validate="'required'" name="role" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-          <span class="text-danger text-sm"  v-show="errors.has('role')">{{ errors.first('role') }}</span>
+          <v-select
+            v-model="role_local"
+            :clearable="false"
+            :options="roleOptions"
+            v-validate="'required'"
+            name="role"
+            :dir="$vs.rtl ? 'rtl' : 'ltr'"
+          />
+          <span class="text-danger text-sm" v-show="errors.has('role')">{{
+            errors.first("role")
+          }}</span>
+        </div>
+      </div>
+
+      <div class="vx-col md:w-1/2 w-full">
+        <div class="mt-4">
+          <label class="vs-input--label">Status</label>
+          <v-select
+            v-model="status_local"
+            :clearable="false"
+            :options="statusOptions"
+            v-validate="'required'"
+            name="status"
+            :dir="$vs.rtl ? 'rtl' : 'ltr'"
+          />
+          <span class="text-danger text-sm" v-show="errors.has('status')">{{
+            errors.first("status")
+          }}</span>
         </div>
 
-        <vs-input class="w-full mt-4" label="Company" v-model="data_local.company" v-validate="'alpha_spaces'" name="company" />
-        <span class="text-danger text-sm"  v-show="errors.has('company')">{{ errors.first('company') }}</span>
+        <div class="mt-4">
+          <label class="vs-input--label">Company</label>
+          <v-select
+            v-model="data_local.organization"
+            :clearable="false"
+            :options="companyOptions"
+            v-validate="'required'"
+            name="organization"
+            :dir="$vs.rtl ? 'rtl' : 'ltr'"
+          />
+          <span class="text-danger text-sm" v-show="errors.has('organization')">{{
+            errors.first("organization")
+          }}</span>
+        </div>
 
+        <div class="mt-4">
+          <label class="vs-input--label">Team</label>
+          <v-select
+            v-model="data_local.team"
+            :clearable="false"
+            :options="teamOptions"
+            v-validate="'required'"
+            name="team"
+            :dir="$vs.rtl ? 'rtl' : 'ltr'"
+          />
+          <span class="text-danger text-sm" v-show="errors.has('team')">{{
+            errors.first("team")
+          }}</span>
+        </div>
       </div>
     </div>
-
-    <!-- Permissions -->
-    <vx-card class="mt-base" no-shadow card-border>
-
-      <div class="vx-row">
-        <div class="vx-col w-full">
-          <div class="flex items-end px-3">
-            <feather-icon svgClasses="w-6 h-6" icon="LockIcon" class="mr-2" />
-            <span class="font-medium text-lg leading-none">Permissions</span>
-          </div>
-          <vs-divider />
-        </div>
-      </div>
-
-      <div class="block overflow-x-auto">
-        <table class="w-full">
-          <tr>
-            <!--
-              You can also use `Object.keys(Object.values(data_local.permissions)[0])` this logic if you consider,
-              our data structure. You just have to loop over above variable to get table headers.
-              Below we made it simple. So, everyone can understand.
-             -->
-            <th class="font-semibold text-base text-left px-3 py-2" v-for="heading in ['Module', 'Read', 'Write', 'Create', 'Delete']" :key="heading">{{ heading }}</th>
-          </tr>
-
-          <tr v-for="(val, name) in data_local.permissions" :key="name">
-            <td class="px-3 py-2">{{ name }}</td>
-            <td v-for="(permission, name) in val" class="px-3 py-2" :key="name+permission">
-              <vs-checkbox v-model="val[name]" />
-            </td>
-          </tr>
-        </table>
-      </div>
-
-    </vx-card>
 
     <!-- Save & Reset Button -->
     <div class="vx-row">
       <div class="vx-col w-full">
         <div class="mt-8 flex flex-wrap items-center justify-end">
-          <vs-button class="ml-auto mt-2" @click="save_changes" :disabled="!validateForm">Save Changes</vs-button>
-          <vs-button class="ml-4 mt-2" type="border" color="warning" @click="reset_data">Reset</vs-button>
+          <vs-button class="ml-auto mt-2" @click="save_changes" :disabled="!validateForm"
+            >Save Changes</vs-button
+          >
+          <vs-button class="ml-4 mt-2" type="border" color="warning" @click="reset_data"
+            >Reset</vs-button
+          >
         </div>
       </div>
     </div>
@@ -111,77 +148,144 @@
 </template>
 
 <script>
-import vSelect from 'vue-select'
+import vSelect from "vue-select";
 
 export default {
   components: {
-    vSelect
+    vSelect,
   },
   props: {
-    data: {
+    userData: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  data () {
+  data() {
     return {
-
-      data_local: JSON.parse(JSON.stringify(this.data)),
+      data_local: JSON.parse(JSON.stringify(this.userData)),
 
       statusOptions: [
-        { label: 'Active',  value: 'active' },
-        { label: 'Blocked',  value: 'blocked' },
-        { label: 'Deactivated',  value: 'deactivated' }
+        { label: "Approved", value: "approved" },
+        { label: "Pending", value: "pending" },
       ],
       roleOptions: [
-        { label: 'Admin',  value: 'admin' },
-        { label: 'User',  value: 'user' },
-        { label: 'Staff',  value: 'staff' }
-      ]
-    }
+        { label: "SuperAdmin", value: "superadmin" },
+        { label: "president", value: "president" },
+        { label: "Officer", value: "officer" },
+        { label: "Researcher", value: "researcher" },
+        { label: "Engineer", value: "engineer" },
+      ],
+      companyOptions: [
+        { label: "7*9", value: "7*9" },
+        { label: "3*9", value: "3*9" },
+        { label: "5*4", value: "5*4" },
+        { label: "8*2", value: "8*2" },
+        { label: "AI", value: "ai" },
+        { label: "Net", value: "net" },
+      ],
+      teamOptions: [
+        { label: "1", value: "1" },
+        { label: "2", value: "2" },
+        { label: "3", value: "3" },
+        { label: "4", value: "4" },
+        { label: "5", value: "5" },
+        { label: "6", value: "6" },
+        { label: "7", value: "7" },
+        { label: "8", value: "8" },
+        { label: "9", value: "9" },
+      ],
+    };
   },
   computed: {
     status_local: {
-      get () {
-        return { label: this.capitalize(this.data_local.status),  value: this.data_local.status  }
+      get() {
+        const val = this.data_local.status === true ? "Approved" : "Pending";
+        return { label: this.capitalize(val), value: val };
       },
-      set (obj) {
-        this.data_local.status = obj.value
-      }
+      set(obj) {
+        this.data_local.status = obj.value;
+      },
     },
     role_local: {
-      get () {
-        return { label: this.capitalize(this.data_local.role),  value: this.data_local.role  }
+      get() {
+        return {
+          label: this.capitalize(this.data_local.role),
+          value: this.data_local.role,
+        };
       },
-      set (obj) {
-        this.data_local.role = obj.value
-      }
+      set(obj) {
+        this.data_local.role = obj.value;
+      },
     },
-    validateForm () {
-      return !this.errors.any()
-    }
+    validateForm() {
+      return !this.errors.any();
+    },
   },
   methods: {
-    capitalize (str) {
-      return str.slice(0, 1).toUpperCase() + str.slice(1, str.length)
+    capitalize(str) {
+      return str.slice(0, 1).toUpperCase() + str.slice(1, str.length);
     },
-    save_changes () {
+    save_changes() {
       /* eslint-disable */
-      if (!this.validateForm) return
+      if (!this.validateForm) return;
+
+      let avatarName = "";
+      const payload = {
+        userDetails: {
+          name: this.data_local.name,
+          userID: this.data_local.userID,
+          dob: this.data_local.dob,
+          organization: this.data_local.organization,
+          department: this.data_local.department,
+          team: this.data_local.team,
+          gender: this.data_local.gender,
+          status: this.data_local.status,
+          role: this.data_local.role,
+        },
+        file: this.data_local.avatar,
+      };
+
+      // sending file to the backendthis.$store
+      this.$store
+        .dispatch("userManagement/updateUser", payload)
+        .then((res) => {
+          console.log("update result", res);
+          this.$router.push({ name: "Engineer List" });
+          console.log(this._vm.$vs, res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
 
       // Here will go your API call for updating data
       // You can get data in "this.data_local"
 
       /* eslint-enable */
     },
-    reset_data () {
-      this.data_local = JSON.parse(JSON.stringify(this.data))
+    reset_data() {
+      this.data_local = JSON.parse(JSON.stringify(this.data));
     },
-    update_avatar () {
+    update_avatar(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      this.createImage(files[0]);
       // You can update avatar Here
       // For reference you can check dataList example
       // We haven't integrated it here, because data isn't saved in DB
-    }
-  }
-}
+    },
+    createImage(file) {
+      let reader = new FileReader();
+      let vm = this;
+      this.data_local.avatar = file;
+      reader.onload = (e) => {
+        document.getElementsByClassName("avatar_image")[0].src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
+    removeAvatar() {
+      document.getElementsByClassName(
+        "avatar_image"
+      )[0].src = require("@/assets/images/avatar.png");
+    },
+  },
+};
 </script>

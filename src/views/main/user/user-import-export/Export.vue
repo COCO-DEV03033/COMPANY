@@ -9,11 +9,7 @@
       @close="clearFields"
       :active.sync="activePrompt"
     >
-      <vs-input
-        v-model="fileName"
-        placeholder="Enter File Name.."
-        class="w-full"
-      />
+      <vs-input v-model="fileName" placeholder="Enter File Name.." class="w-full" />
       <v-select v-model="selectedFormat" :options="formats" class="my-4" />
       <div class="flex">
         <span class="mr-4">Cell Auto Width:</span>
@@ -78,7 +74,7 @@
 </template>
 
 <script>
-import vSelect from "vue-select";
+import vSelect from 'vue-select'
 
 export default {
   components: {
@@ -86,123 +82,76 @@ export default {
   },
   data() {
     return {
-      fileName: "",
-      formats: ["xlsx", "csv", "txt"],
+      fileName: '',
+      formats: ['xlsx', 'csv', 'txt'],
       cellAutoWidth: true,
-      selectedFormat: "xlsx",
+      selectedFormat: 'xlsx',
       headerTitle: [
-        "UserID",
-        "Name",
-        "status",
-        "Organization",
-        "Role",
-        "Gender",
-        "Dob",
-        "Enter_date",
-        "University",
-        "Major_subject",
-        "Old_job",
-        "Tech_field",
-        "Main_skill",
-        "Tech_level",
-        "Lang_level",
-        "Special",
-        "Overview",
-        "Created_at",
-        "Updated_at",
+        'UserID',
+        'Name',
+        'status',
+        'Organization',
+        'Role',
+        'Gender',
+        'Dob',
+        'Enter_date',
+        'University',
+        'Major_subject',
+        'Old_job',
+        'Tech_field',
+        'Main_skill',
+        'Tech_level',
+        'Lang_level',
+        'Special',
+        'Overview',
+        'Created_at',
+        'Updated_at',
       ],
       headerVal: [
-        "userID",
-        "name",
-        "status",
-        "organization",
-        "role",
-        "gender",
-        "dob",
-        "enter_date",
-        "university",
-        "major_subject",
-        "old_job",
-        "tech_field",
-        "main_skill",
-        "tech_level",
-        "lang_level",
-        "special",
-        "overview",
-        "created_at",
-        "updated_at",
+        'userID',
+        'name',
+        'status',
+        'organization',
+        'role',
+        'gender',
+        'dob',
+        'enter_date',
+        'university',
+        'major_subject',
+        'old_job',
+        'tech_field',
+        'main_skill',
+        'tech_level',
+        'lang_level',
+        'special',
+        'overview',
+        'created_at',
+        'updated_at',
       ],
-      users: [
-        {
-          userID: 1,
-          name: "Leanne Graham",
-          status: true,
-          organization: "3",
-          role: "engineer",
-          age: 30,
-          gender: "male",
-          dob: "1994/03/05",
-          enter_date: "2022/07/05",
-          university: "Oxford University",
-          major_subject: "Information Engineering",
-          old_job: "Computer Institute",
-          tech_field: "Information Processing",
-          main_skill: "Image Processing",
-          tech_level: 5,
-          lang_level: 5,
-          special: "reading, cooking, football",
-          overview: "OverView",
-          created_at: "2023/07/05",
-          updated_at: "2023/08/05",
-        },
-        {
-          userID: 2,
-          name: "Monna Graham",
-          status: true,
-          organization: "3",
-          role: "engineer",
-          age: 30,
-          gender: "male",
-          dob: "1994/03/05",
-          enter_date: "2022/07/05",
-          university: "Oxford University",
-          major_subject: "Information Engineering",
-          old_job: "Computer Institute",
-          tech_field: "Information Processing",
-          main_skill: "Image Processing",
-          tech_level: 5,
-          lang_level: 5,
-          special: "reading, cooking, football",
-          overview: "OverView",
-          created_at: "2023/07/05",
-          updated_at: "2023/08/05",
-        },
-      ],
-      activePrompt: false,
-    };
+      activePrompt: false
+    }
   },
   computed: {
     usersData () {
       return this.$store.state.userManagement.users
-    },
+    }
   },
   methods: {
-    
-    exportToExcel() {
-      import("@/vendor/Export2Excel").then((excel) => {
-        const list = this.users;
-        const data = this.formatJson(this.headerVal, list);
+    exportToExcel () {
+      import('@/vendor/Export2Excel').then((excel) => {
+        const list = this.users
+        const data = this.formatJson(this.headerVal, list)
         excel.export_json_to_excel({
           header: this.headerTitle,
           data,
           filename: this.fileName,
           autoWidth: this.cellAutoWidth,
-          bookType: this.selectedFormat,
-        });
-        this.clearFields();
+          bookType: this.selectedFormat
+        })
+        this.clearFields()
       });
     },
-    formatJson(filterVal, jsonData) {
+    formatJson (filterVal, jsonData) {
       return jsonData.map((v) =>
         filterVal.map((j) => {
           // Add col name which needs to be translated
@@ -212,18 +161,24 @@ export default {
           //   return v[j]
           // }
 
-          return v[j];
+          return v[j]
         })
-      );
+      )
     },
-    clearFields() {
-      this.filename = "";
+    clearFields () {
+      this.filename = '';
       this.cellAutoWidth = true;
-      this.selectedFormat = "xlsx";
+      this.selectedFormat = 'xlsx';
     },
   },
-  created(){
-    this.$store.dispatch('userManagement/fetchUsers').catch(err => { console.error(err) });
-  }
+  created() {
+    this.$store.dispatch('userManagement/fetchUsers').catch((err) => {
+      console.error(err);
+    });
+  },
+  beforeCreate() {
+    if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login');
+    //  User Reward Card
+  },
 };
 </script>

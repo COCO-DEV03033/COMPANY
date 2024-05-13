@@ -10,7 +10,7 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  scrollBehavior() {
+  scrollBehavior () {
     return { x: 0, y: 0 }
   },
   routes: [
@@ -31,7 +31,7 @@ const router = new Router({
         },
         {
           path: '/dashboard',
-          name: 'Today\'s analyse',
+          name: 'dashboard',
           component: () => import('./views/DashboardAnalytics.vue'),
           meta: {
             rule: 'admin'
@@ -86,6 +86,34 @@ const router = new Router({
           }
         },
         {
+          path: '/engineer/engineer-view/:userId',
+          name: 'engineer-view',
+          component: () => import('@/views/main/user/UserView.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Engineers', url: '/engineer/list' },
+              { title: 'View', active: true }
+            ],
+            pageTitle: 'User View',
+            rule: 'editor'
+          }
+        },
+        {
+          path: '/engineer/engineer-edit/:userId',
+          name: 'engineer-edit',
+          component: () => import('@/views/main/user/user-edit/UserEdit.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Engineer', url: '/engineer/list' },
+              { title: 'Edit', active: true }
+            ],
+            pageTitle: 'User Edit',
+            rule: 'editor'
+          }
+        },
+        {
           path: '/engineer/import',
           name: 'Engineer Import',
           component: () => import('./views/main/user/user-import-export/Import.vue'),
@@ -101,8 +129,6 @@ const router = new Router({
             rule: 'admin'
           }
         },
-
-
         {
           path: '/technology/list',
           name: 'Technology List',
@@ -1489,39 +1515,39 @@ router.afterEach(() => {
   }
 })
 
-router.beforeEach((to, from, next) => {
-  firebase.auth().onAuthStateChanged(() => {
+// router.beforeEach((to, from, next) => {
+//   firebase.auth().onAuthStateChanged(() => {
+    
+//     // get firebase current user
+//     const firebaseCurrentUser = firebase.auth().currentUser
 
-    // get firebase current user
-    const firebaseCurrentUser = firebase.auth().currentUser
+//     // if (
+//     //     to.path === "/pages/login" ||
+//     //     to.path === "/pages/forgot-password" ||
+//     //     to.path === "/pages/error-404" ||
+//     //     to.path === "/pages/error-500" ||
+//     //     to.path === "/pages/register" ||
+//     //     to.path === "/callback" ||
+//     //     to.path === "/pages/comingsoon" ||
+//     //     (auth.isAuthenticated() || firebaseCurrentUser)
+//     // ) {
+//     //     return next();
+//     // }
 
-    // if (
-    //     to.path === "/pages/login" ||
-    //     to.path === "/pages/forgot-password" ||
-    //     to.path === "/pages/error-404" ||
-    //     to.path === "/pages/error-500" ||
-    //     to.path === "/pages/register" ||
-    //     to.path === "/callback" ||
-    //     to.path === "/pages/comingsoon" ||
-    //     (auth.isAuthenticated() || firebaseCurrentUser)
-    // ) {
-    //     return next();
-    // }
+//     // If auth required, check login. If login fails redirect to login page
+//     if (to.meta.authRequired) {
+//       if (!(auth.isAuthenticated() || firebaseCurrentUser)) {
+//         router.push({ path: '/login', query: { to: to.path } })
+//       }
+//     }
 
-    // If auth required, check login. If login fails redirect to login page
-    if (to.meta.authRequired) {
-      if (!(auth.isAuthenticated() || firebaseCurrentUser)) {
-        router.push({ path: '/login', query: { to: to.path } })
-      }
-    }
+//     return next()
+//     // Specify the current path as the customState parameter, meaning it
+//     // will be returned to the application after auth
+//     // auth.login({ target: to.path });
 
-    return next()
-    // Specify the current path as the customState parameter, meaning it
-    // will be returned to the application after auth
-    // auth.login({ target: to.path });
+//   })
 
-  })
-
-})
+// })
 
 export default router

@@ -4,7 +4,7 @@
       <span>User record with id: {{ $route.params.userId }} not found. </span>
       <span>
         <span>Check </span
-        ><router-link :to="{ name: 'page-user-list' }" class="text-inherit underline"
+        ><router-link :to="{ name: 'Engineer List' }" class="text-inherit underline"
           >All Users</router-link
         >
       </span>
@@ -15,9 +15,16 @@
         <!-- Avatar -->
         <div class="vx-row">
           <!-- Avatar Col -->
-          <div class="vx-col" id="avatar-col">
+          <div class="vx-col border" id="avatar-col">
             <div class="img-container mb-4">
-              <img :src="user_data.avatar" class="rounded w-full" />
+              <img
+                :src="
+                  user_data.avatar
+                    ? user_data.avatar
+                    : require('@/assets/images/avatar.png')
+                "
+                class="rounded border w-full"
+              />
             </div>
           </div>
 
@@ -25,16 +32,16 @@
           <div class="vx-col flex-1" id="account-info-col-1">
             <table>
               <tr>
-                <td class="font-semibold">Username</td>
-                <td>{{ user_data.username }}</td>
-              </tr>
-              <tr>
                 <td class="font-semibold">Name</td>
                 <td>{{ user_data.name }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Email</td>
-                <td>{{ user_data.email }}</td>
+                <td class="font-semibold">UserID</td>
+                <td>{{ user_data.userID }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Role</td>
+                <td>{{ user_data.role }}</td>
               </tr>
             </table>
           </div>
@@ -45,15 +52,15 @@
             <table>
               <tr>
                 <td class="font-semibold">Status</td>
-                <td>{{ user_data.status }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Role</td>
-                <td>{{ user_data.role }}</td>
+                <td>{{ user_data.status ? "Approved" : "Pending" }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Company</td>
-                <td>{{ user_data.company }}</td>
+                <td>{{ user_data.organization }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Team</td>
+                <td>{{ user_data.team }} Group</td>
               </tr>
             </table>
           </div>
@@ -63,7 +70,7 @@
               icon-pack="feather"
               icon="icon-edit"
               class="mr-4"
-              :to="{ name: 'app-user-edit', params: { userId: $route.params.userId } }"
+              :to="{ name: 'engineer-edit', params: { userId: $route.params.userId } }"
               >Edit</vs-button
             >
             <vs-button
@@ -96,7 +103,7 @@
               </tr>
               <tr>
                 <td class="font-semibold">Languages</td>
-                <td>{{ user_data.languages_known.join(", ") }}</td>
+                <td>{{ user_data.languages_known }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Gender</td>
@@ -104,7 +111,7 @@
               </tr>
               <tr>
                 <td class="font-semibold">Contact</td>
-                <td>{{ user_data.contact_options.join(", ") }}</td>
+                <td>{{ user_data.contact_options }}</td>
               </tr>
             </table>
           </vx-card>
@@ -115,27 +122,27 @@
             <table>
               <tr>
                 <td class="font-semibold">Twitter</td>
-                <td>{{ user_data.social_links.twitter }}</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Facebook</td>
-                <td>{{ user_data.social_links.facebook }}</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Instagram</td>
-                <td>{{ user_data.social_links.instagram }}</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Github</td>
-                <td>{{ user_data.social_links.github }}</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">CodePen</td>
-                <td>{{ user_data.social_links.codepen }}</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Slack</td>
-                <td>{{ user_data.social_links.slack }}</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
             </table>
           </vx-card>
@@ -213,20 +220,27 @@ export default {
         type: "confirm",
         color: "danger",
         title: "Confirm Delete",
-        text: `You are about to delete "${this.user_data.username}"`,
+        text: `You are about to delete "${this.user_data.name}"`,
         accept: this.deleteRecord,
         acceptText: "Delete",
       });
     },
     deleteRecord() {
       /* Below two lines are just for demo purpose */
-      this.$router.push({ name: "app-user-list" });
-      this.showDeleteSuccess();
+      // this.$router.push({ name: "Engineer List" })
+      // this.showDeleteSuccess()
 
       /* UnComment below lines for enabling true flow if deleting user */
-      // this.$store.dispatch("userManagement/removeRecord", this.user_data.id)
-      //   .then(()   => { this.$router.push({name:'app-user-list'}); this.showDeleteSuccess() })
-      //   .catch(err => { console.error(err)       })
+      this.$store
+        .dispatch("userManagement/removeRecord", this.user_data.userID)
+        .then((res) => {
+          console.log(res)
+          this.$router.push({ name: "Engineer List" });
+          this.showDeleteSuccess();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
     },
     showDeleteSuccess() {
       this.$vs.notify({
@@ -247,15 +261,19 @@ export default {
     this.$store
       .dispatch("userManagement/fetchUser", userId)
       .then((res) => {
-        this.user_data = res.data;
+        this.user_data = res.data.existUser;
       })
       .catch((err) => {
-        if (err.response.status === 404) {
+        if (err.response.status > 400) {
           this.user_not_found = true;
           return;
         }
         console.error(err);
       });
+  },
+  beforeCreate() {
+    if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push("/login");
+    //  User Reward Card
   },
 };
 </script>
