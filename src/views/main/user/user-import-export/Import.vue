@@ -3,7 +3,7 @@
     <div class="mb-8">
       <import-excel :onSuccess="loadDataInTable" />
     </div>
-    <vs-row class='mb-3' vs-type="flex" vs-justify="flex-end">
+    <vs-row class="mb-3" vs-type="flex" vs-justify="flex-end">
       <vs-col :key="index" vs-type="flex" vs-justify="center" vs-align="center" vs-w="1">
         <vs-button color="primary" type="filled" @click="updateUserData">Update</vs-button>
       </vs-col>
@@ -67,6 +67,10 @@ export default {
           })
         })
     },
+  },
+  beforeCreate() {
+    if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login');
+    //  User Reward Card
   }
 }
 </script>

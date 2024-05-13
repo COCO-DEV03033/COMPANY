@@ -15,7 +15,7 @@
       <div class="vx-col w-full md:w-1/2">
         <vs-input
           class="w-full"
-          v-model="data_local.social_links.twitter"
+          v-model="data_local.social_links"
           icon-pack="feather"
           icon="icon-twitter"
           label="Twitter"
@@ -26,7 +26,7 @@
 
         <vs-input
           class="w-full mt-4"
-          v-model="data_local.social_links.facebook"
+          v-model="data_local.social_links"
           icon-pack="feather"
           icon="icon-facebook"
           label="Facebook"
@@ -37,7 +37,7 @@
 
         <vs-input
           class="w-full mt-4"
-          v-model="data_local.social_links.instagram"
+          v-model="data_local.social_links"
           icon-pack="feather"
           icon="icon-instagram"
           label="Instagram"
@@ -52,7 +52,7 @@
       <div class="vx-col w-full md:w-1/2">
         <vs-input
           class="w-full mt-4 md:mt-0"
-          v-model="data_local.social_links.github"
+          v-model="data_local.social_links"
           icon-pack="feather"
           icon="icon-github"
           label="GitHub"
@@ -63,7 +63,7 @@
 
         <vs-input
           class="w-full mt-4"
-          v-model="data_local.social_links.codepen"
+          v-model="data_local.social_links"
           icon-pack="feather"
           icon="icon-codepen"
           label="CodePen"
@@ -74,7 +74,7 @@
 
         <vs-input
           class="w-full mt-4"
-          v-model="data_local.social_links.slack"
+          v-model="data_local.social_links"
           icon-pack="feather"
           icon="icon-slack"
           label="Slack"

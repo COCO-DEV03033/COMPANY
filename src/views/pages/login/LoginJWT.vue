@@ -86,7 +86,7 @@ export default {
       }
 
       this.$store.dispatch('auth/loginJWT', payload)
-        .then((res) => { this.$vs.loading.close() })
+        .then ( () => { this.$vs.loading.close() })
         .catch(error => {
           this.$vs.loading.close()
           this.$vs.notify({
@@ -102,6 +102,10 @@ export default {
       if (!this.checkLogin()) return
       this.$router.push('/register').catch(() => {})
     }
+  },
+  beforeCreate () {
+    if (this.$store.state.auth.isUserLoggedIn()) this.$router.go(-1)
+    //  User Reward Card
   }
 }
 

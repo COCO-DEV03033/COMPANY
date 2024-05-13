@@ -4,21 +4,29 @@
 
     <vx-card ref="filterCard" title="Filters" class="user-list-filters mb-8" actionButtons @refresh="resetColFilters" @remove="resetColFilters">
       <div class="vx-row">
-        <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Role</label>
-          <v-select :options="roleOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="roleFilter" class="mb-4 md:mb-0" />
+        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+          <label class="text-sm opacity-75">Organization</label>
+          <v-select :options="organOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="organFilter" class="mb-4 md:mb-0" />
         </div>
-        <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Status</label>
-          <v-select :options="statusOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="statusFilter" class="mb-4 md:mb-0" />
-        </div>
-        <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Verified</label>
-          <v-select :options="isVerifiedOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="isVerifiedFilter" class="mb-4 sm:mb-0" />
-        </div>
-        <div class="vx-col md:w-1/4 sm:w-1/2 w-full">
+        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
           <label class="text-sm opacity-75">Department</label>
-          <v-select :options="departmentOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="departmentFilter" />
+          <v-select :options="departOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="departFilter" class="mb-4 md:mb-0" />
+        </div>
+        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+          <label class="text-sm opacity-75">Team</label>
+          <v-select :options="teamOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="teamFilter" class="mb-4 sm:mb-0" />
+        </div>
+        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+          <label class="text-sm opacity-75">Universty</label>
+          <v-select :options="universtyOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="universtyFilter" />
+        </div>
+        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+          <label class="text-sm opacity-75">Status</label>
+          <v-select :options="statusOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="statusFilter" />
+        </div>
+        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+          <label class="text-sm opacity-75">Role</label>
+          <v-select :options="roleOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="roleFilter" />
         </div>
       </div>
     </vx-card>
@@ -75,7 +83,7 @@
               </vs-dropdown-item>
 
               <vs-dropdown-item>
-                <span class="flex items-center" @click='importData'>
+                <span class="flex items-center" @click="importData">
                   <feather-icon icon="ArchiveIcon"  svgClasses="h-4 w-4" class="mr-2" />
                   <span>Import</span>
                 </span>
@@ -159,35 +167,68 @@ export default {
     return {
 
       // Filter Options
-      roleFilter: { label: 'All', value: 'all' },
-      roleOptions: [
+      organFilter: { label: 'All', value: 'all' },
+      organOptions: [
         { label: 'All', value: 'all' },
-        { label: 'Admin', value: 'admin' },
-        { label: 'User', value: 'user' },
-        { label: 'Staff', value: 'staff' }
+        { label: '7*9', value: '7*9' },
+        { label: '3*9', value: '3*9' },
+        { label: '8*2', value: '8*2' },
+        { label: '5*4', value: '5*4' },
+        { label: 'A*', value: 'A*' },
+        { label: 'Net*', value: 'net*' }
+      ],
+
+      departFilter: { label: 'All', value: 'all' },
+      departOptions: [
+        { label: 'All', value: 'all' },
+        { label: '1', value: '1' },
+        { label: '2', value: '2' },
+        { label: '3', value: '3' },
+        { label: '4', value: '4' },
+        { label: '5', value: '5' },
+        { label: '6', value: '6' },
+        { label: '7', value: '7' },
+        { label: '8', value: '8' },
+        { label: '9', value: '9' },
+        { label: '10', value: '10' }
+      ],
+
+      teamFilter: { label: 'All', value: 'all' },
+      teamOptions: [
+        { label: 'All', value: 'all' },
+        { label: '1', value: '1' },
+        { label: '2', value: '2' },
+        { label: '3', value: '3' },
+        { label: '4', value: '4' },
+        { label: '5', value: '5' },
+        { label: '6', value: '6' },
+        { label: '7', value: '7' },
+        { label: '8', value: '8' },
+        { label: '9', value: '9' },
+        { label: '10', value: '10' }
+      ],
+
+      universtyFilter: { label: 'All', value: 'all' },
+      universtyOptions: [
+        { label: 'All', value: 'all' },
+        { label: 'Sales', value: 'sales' },
+        { label: 'Development', value: 'development' },
+        { label: 'Management', value: 'management' }
       ],
 
       statusFilter: { label: 'All', value: 'all' },
       statusOptions: [
         { label: 'All', value: 'all' },
-        { label: 'Active', value: 'active' },
-        { label: 'Deactivated', value: 'deactivated' },
-        { label: 'Blocked', value: 'blocked' }
+        { label: 'Approved', value: 'approved' },
+        { label: 'Pending', value: 'pending' }
       ],
 
-      isVerifiedFilter: { label: 'All', value: 'all' },
-      isVerifiedOptions: [
+      roleFilter: { label: 'All', value: 'all' },
+      roleOptions: [
         { label: 'All', value: 'all' },
-        { label: 'Yes', value: 'yes' },
-        { label: 'No', value: 'no' }
-      ],
-
-      departmentFilter: { label: 'All', value: 'all' },
-      departmentOptions: [
-        { label: 'All', value: 'all' },
-        { label: 'Sales', value: 'sales' },
-        { label: 'Development', value: 'development' },
-        { label: 'Management', value: 'management' }
+        { label: 'Admin', value: 'admin' },
+        { label: 'Researcher', value: 'researcher' },
+        { label: 'Engineer', value: 'engineer' }
       ],
 
       searchQuery: '',
@@ -202,16 +243,16 @@ export default {
       },
       columnDefs: [
         {
-          headerName: 'No',
-          field: 'no',
-          width: 125,
-          filter: true,
+          headerName: '',
+          // field: 'no',
+          width: 40,
+          filter: false,
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
           headerCheckboxSelection: true
         },
         {
-          headerName: 'Username',
+          headerName: 'UserName',
           field: 'name',
           filter: true,
           width: 210,
@@ -224,10 +265,10 @@ export default {
           width: 225
         },
         {
-          headerName: 'age',
+          headerName: 'Age',
           field: 'age',
           filter: true,
-          width: 150
+          width: 125
         },
         {
           headerName: 'Gender',
@@ -239,14 +280,20 @@ export default {
           headerName: 'Organ',
           field: 'organization',
           filter: true,
-          width: 200
+          width: 125
         },
-        // {
-        //   headerName: 'Department',
-        //   field: 'department',
-        //   filter: true,
-        //   width: 150
-        // },
+        {
+          headerName: 'Department',
+          field: 'department',
+          filter: true,
+          width: 125
+        },
+        {
+          headerName: 'Team',
+          field: 'team',
+          filter: true,
+          width: 125
+        },
         {
           headerName: 'Role',
           field: 'role',
@@ -278,18 +325,24 @@ export default {
     }
   },
   watch: {
-    roleFilter (obj) {
+    organFilter (obj) {
       this.setColumnFilter('role', obj.value)
     },
-    statusFilter (obj) {
-      this.setColumnFilter('status', obj.value)
-    },
-    isVerifiedFilter (obj) {
-      const val = obj.value === 'all' ? 'all' : obj.value === 'yes' ? 'true' : 'false'
-      this.setColumnFilter('is_verified', val)
-    },
-    departmentFilter (obj) {
+    departFilter (obj) {
       this.setColumnFilter('department', obj.value)
+    },
+    teamFilter (obj) {
+      this.setColumnFilter('team', obj.value)
+    },
+    universtyFilter (obj) {
+      this.setColumnFilter('universty', obj.value)
+    },
+    statusFilter (obj) {
+      const val = obj.value === 'all' ? 'all' : obj.value === 'approved' ? 'true' : 'false'
+      this.setColumnFilter('status', val)
+    },
+    roleFilter (obj) {
+      this.setColumnFilter('role', obj.value)
     }
   },
   computed: {
@@ -335,7 +388,7 @@ export default {
       this.gridApi.onFilterChanged()
 
       // Reset Filter Options
-      this.roleFilter = this.statusFilter = this.isVerifiedFilter = this.departmentFilter = { label: 'All', value: 'all' }
+      this.organFilter = this.departFilter = this.teamFilter = this.universtyFilter = this.statusFilter = this.roleFilter = { label: 'All', value: 'all' }
 
       this.$refs.filterCard.removeRefreshAnimation()
     },
@@ -357,6 +410,10 @@ export default {
       moduleUserManagement.isRegistered = true
     }
     this.$store.dispatch('userManagement/fetchUsers').catch(err => { console.error(err) })
+  },
+  beforeCreate() {
+    if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login');
+    //  User Reward Card
   }
 }
 

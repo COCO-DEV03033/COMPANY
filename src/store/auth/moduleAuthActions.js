@@ -9,6 +9,7 @@ import router from '../../Router.js'
 const API_URL = 'http://localhost:5050'
 
 export default {
+
   loginAttempt({ dispatch }, payload) {
 
     // New payload for login action
@@ -334,7 +335,7 @@ export default {
   },
   registerUserJWT({ commit }, payload) {
 
-    const { displayName, userID, dob, organization, gender, password, confirmPassword } = payload.userDetails
+    const { displayName, userID, dob, organization, department, team, gender, password, confirmPassword } = payload.userDetails
 
     return new Promise((resolve, reject) => {
 
@@ -343,7 +344,7 @@ export default {
         reject({ message: 'Password doesn\'t match. Please try again.' })
       }
 
-      jwt.registerUser(displayName, userID, dob, organization, gender, password)
+      jwt.registerUser(displayName, userID, dob, organization, department, team, gender, password)
         .then(response => {
 
           if (response.status == 201) {
