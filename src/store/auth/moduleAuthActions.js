@@ -414,6 +414,33 @@ export default {
       })
     return result
   },
+  
+  async importUser({ commit }, payload) {
+    const { userData } = payload
+    let result
+    await axios.post(API_URL + '/api/auth/importUser', { userData })
+      .then((res, error) => {
+        if (res.error) {
+          this._vm.$vs.notify({
+            title: "Oooooooooops!",
+            color: 'danger',
+            text: 'Something went wrong! \n Please try again.'
+          })
+          result = false
+        }
+        else {
+          this._vm.$vs.notify({
+            title: res.status == 200 ? 'Available' : 'Un-available',
+            color: res.status == 200 ? 'success' : 'warning',
+            text: res.data.message,
+            iconPack: "feather",
+            icon: "check-circle-icon",
+          })
+          result = res.status == 200 ? true : false
+        }
+      })
+    return result
+  },
   fetchAccessToken() {
     return new Promise((resolve) => {
       jwt.refreshToken().then(response => { resolve(response) })

@@ -48,10 +48,24 @@ export default {
     loadDataInTable ({ results, header, meta }) {
       this.header = header
       this.tableData = results
-      this.sheetName = meta.sheetName
+      this.sheetName = 'Imported Users'
     },
     updateUserData () {
-
+        const payload = {
+          userData:this.tableData
+      }
+      this.$store.dispatch('auth/importUser', payload)
+        .then((res) => { this.$vs.loading.close() })
+        .catch(error => {
+          this.$vs.loading.close()
+          this.$vs.notify({
+            title: 'Error',
+            text: error.message,
+            iconPack: 'feather',
+            icon: 'icon-alert-circle',
+            color: 'danger'
+          })
+        })
     },
   },
   beforeCreate() {
