@@ -48,7 +48,7 @@
           class="w-full mt-4"
           label="UserID"
           v-model="data_local.userID"
-          v-validate="'required|'"
+          v-validate="'required'"
           name="username"
           disabled
         />
@@ -60,7 +60,7 @@
           class="w-full mt-4"
           label="Name"
           v-model="data_local.name"
-          v-validate="'required|alpha_spaces'"
+          v-validate="'required'"
           name="name"
         />
         <span class="text-danger text-sm" v-show="errors.has('name')">{{
@@ -85,21 +85,6 @@
 
       <div class="vx-col md:w-1/2 w-full">
         <div class="mt-4">
-          <label class="vs-input--label">Status</label>
-          <v-select
-            v-model="status_local"
-            :clearable="false"
-            :options="statusOptions"
-            v-validate="'required'"
-            name="status"
-            :dir="$vs.rtl ? 'rtl' : 'ltr'"
-          />
-          <span class="text-danger text-sm" v-show="errors.has('status')">{{
-            errors.first("status")
-          }}</span>
-        </div>
-
-        <div class="mt-4">
           <label class="vs-input--label">Company</label>
           <v-select
             v-model="data_local.organization"
@@ -111,6 +96,21 @@
           />
           <span class="text-danger text-sm" v-show="errors.has('organization')">{{
             errors.first("organization")
+          }}</span>
+        </div>
+
+        <div class="mt-4">
+          <label class="vs-input--label">Department</label>
+          <v-select
+            v-model="data_local.department"
+            :clearable="false"
+            :options="departOptions"
+            v-validate="'required'"
+            name="department"
+            :dir="$vs.rtl ? 'rtl' : 'ltr'"
+          />
+          <span class="text-danger text-sm" v-show="errors.has('department')">{{
+            errors.first("department")
           }}</span>
         </div>
 
@@ -164,9 +164,17 @@ export default {
     return {
       data_local: JSON.parse(JSON.stringify(this.userData)),
 
-      statusOptions: [
-        { label: "Approved", value: "approved" },
-        { label: "Pending", value: "pending" },
+      departOptions: [
+        { label: "1", value: "1" },
+        { label: "2", value: "2" },
+        { label: "3", value: "3" },
+        { label: "4", value: "4" },
+        { label: "5", value: "5" },
+        { label: "6", value: "6" },
+        { label: "7", value: "7" },
+        { label: "8", value: "8" },
+        { label: "9", value: "9" },
+        { label: "10", value: "10" }
       ],
       roleOptions: [
         { label: "SuperAdmin", value: "superadmin" },
@@ -239,7 +247,7 @@ export default {
           department: this.data_local.department,
           team: this.data_local.team,
           gender: this.data_local.gender,
-          status: this.data_local.status,
+          department: this.data_local.department,
           role: this.data_local.role,
         },
         file: this.data_local.avatar,
@@ -249,11 +257,14 @@ export default {
       this.$store
         .dispatch("userManagement/updateUser", payload)
         .then((res) => {
-          console.log("update result", res);
           this.$router.push({ name: "Engineer List" });
-          console.log(this._vm.$vs, res.data);
         })
         .catch((err) => {
+          this.$vs.notify({
+            color: "danger",
+            title: "User Upload Failed!",
+            text: res.message,
+          });
           console.error(err);
         });
 

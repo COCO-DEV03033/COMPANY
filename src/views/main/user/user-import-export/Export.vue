@@ -87,6 +87,27 @@ export default {
       cellAutoWidth: true,
       selectedFormat: 'xlsx',
       headerTitle: [
+<<<<<<< HEAD
+        "UserID",
+        "Name",
+        "status",
+        "Organization",
+        "Role",
+        "Gender",
+        "Dob",
+        "Enter_date",
+        "University",
+        "Major_subject",
+        "Old_job",
+        "Tech_field",
+        "Main_skill",
+        "Tech_level",
+        "Lang_level",
+        "Special",
+        "Overview",
+        "Created_at",
+        "Updated_at",
+=======
         'UserID',
         'Name',
         'status',
@@ -106,6 +127,7 @@ export default {
         'Overview',
         'Created_at',
         'Updated_at',
+>>>>>>> 97d606a4d71f0268cee1cb631870242d739edf03
       ],
       headerVal: [
         'userID',
@@ -140,7 +162,7 @@ export default {
     
     exportToExcel() {
       import("@/vendor/Export2Excel").then((excel) => {
-        const list = this.usersData;
+        const list = this.users;
         const data = this.formatJson(this.headerVal, list);
         excel.export_json_to_excel({
           header: this.headerTitle,

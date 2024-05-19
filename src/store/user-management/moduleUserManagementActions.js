@@ -45,11 +45,6 @@ export default {
   },
   updateUser({ commit }, payload) {
     return new Promise((resolve, reject) => {
-        this._vm.$vs.notify({
-          title: "Success",
-          text: 'Update Success!',
-          color: "Success",
-        })
       const formData = new FormData();
       formData.append("file", payload.file); // appending file
       formData.append("userID", payload.userDetails.userID);
@@ -59,7 +54,6 @@ export default {
       formData.append("department", payload.userDetails.department);
       formData.append("team", payload.userDetails.team);
       formData.append("gender", payload.userDetails.gender);
-      formData.append("status", payload.userDetails.status);
       formData.append("role", payload.userDetails.role);
       axios
         .post("/api/auth/updateUser", formData)
@@ -67,16 +61,46 @@ export default {
           commit('UPDATE_USER', { user: payload.userDetails, path: res.data.file ? res.data.path : '' })
           console.log(res.data)
           this._vm.$vs.notify({
-            title: 'Success',
-            text: 'response.data.message',
-            iconPack: 'feather',
-            icon: 'icon-thumbs-up',
-            color: 'Success'
-          })
+            color: "success",
+            title: "User Update Success!",
+            text: res.data.message,
+          });
+          resolve(res.data)
         })
         .catch((err) => {
           console.log(err);
+          reject(err)
         })
+    })
+  },
+  approveRecord({ commit }, userId) {
+    return new Promise((resolve, reject) => {
+      axios.put(`${API_URL}/api/auth/usersApprove/${userId}`)
+        .then((response) => {
+          this._vm.$vs.notify({
+            color: "success",
+            title: "User Approved",
+            text: response.data.message,
+          });
+          commit('APPROVE_USER', userId)
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
+    })
+  },
+  rejectRecord({ commit }, userId) {
+    return new Promise((resolve, reject) => {
+      axios.put(`${API_URL}/api/auth/usersReject/${userId}`)
+        .then((response) => {
+          this._vm.$vs.notify({
+            color: "danger",
+            title: "User Rejected",
+            text: response.data.message,
+          });
+          commit('REJECT_USER', userId)
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
     })
   }
 }
