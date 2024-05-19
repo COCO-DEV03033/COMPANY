@@ -12,5 +12,15 @@ export default {
 
     if (data.path != '') state.users[userIndex].avatar = data.path
     // if (data.user.userID == this.$store.state.AppActiveUser) localStorage.setItem('userInfo') = state.users[userIndex]
+  },
+  APPROVE_USER(state, data) { 
+    const userIndex = state.users.findIndex((u) => u.userID === data)
+
+    state.users[userIndex].statue = true
+  },
+  REJECT_USER(state, data) { 
+    const userIndex = state.users.findIndex((u) => u.userID === data)
+
+    state.users[userIndex].statue = false
   }
 }

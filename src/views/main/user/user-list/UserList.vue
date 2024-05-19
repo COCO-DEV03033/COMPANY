@@ -9,7 +9,7 @@
           <v-select :options="organOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="organFilter" class="mb-4 md:mb-0" />
         </div>
         <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Department</label>
+          <label class="text-sm opacity-75">Depart*</label>
           <v-select :options="departOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="departFilter" class="mb-4 md:mb-0" />
         </div>
         <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
@@ -243,10 +243,11 @@ export default {
       },
       columnDefs: [
         {
-          headerName: '',
+          headerName: 'userID',
+          field: 'userID',
+          filter: true,
+          width: 250,
           // field: 'no',
-          width: 40,
-          filter: false,
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
           headerCheckboxSelection: true
@@ -259,12 +260,6 @@ export default {
           cellRendererFramework: 'CellRendererLink'
         },
         {
-          headerName: 'userID',
-          field: 'userID',
-          filter: true,
-          width: 225
-        },
-        {
           headerName: 'Age',
           field: 'age',
           filter: true,
@@ -274,7 +269,7 @@ export default {
           headerName: 'Gender',
           field: 'gender',
           filter: true,
-          width: 150
+          width: 125
         },
         {
           headerName: 'Organ',
@@ -283,7 +278,7 @@ export default {
           width: 125
         },
         {
-          headerName: 'Department',
+          headerName: 'Depart*',
           field: 'department',
           filter: true,
           width: 125
@@ -298,13 +293,13 @@ export default {
           headerName: 'Role',
           field: 'role',
           filter: true,
-          width: 150
+          width: 125
         },
         {
           headerName: 'Status',
           field: 'status',
           filter: true,
-          width: 150,
+          width: 125,
           cellRendererFramework: 'CellRendererStatus'
         },
         {
@@ -326,7 +321,7 @@ export default {
   },
   watch: {
     organFilter (obj) {
-      this.setColumnFilter('role', obj.value)
+      this.setColumnFilter('organization', obj.value)
     },
     departFilter (obj) {
       this.setColumnFilter('department', obj.value)
@@ -380,7 +375,7 @@ export default {
       this.gridApi.onFilterChanged()
     },
     importData() {
-      this.$router.push('/import-export/import')
+      this.$router.push('/engineer/import')
     },
     resetColFilters () {
       // Reset Grid Filter
