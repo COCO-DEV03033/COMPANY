@@ -48,7 +48,7 @@ export default {
     loadDataInTable ({ results, header, meta }) {
       this.header = header
       this.tableData = results
-      this.sheetName = meta.sheetName
+      this.sheetName = 'Imported Users'
     },
     updateUserData () {
         const payload = {

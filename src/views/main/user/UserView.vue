@@ -78,8 +78,27 @@
               color="danger"
               icon-pack="feather"
               icon="icon-trash"
+              class="mr-4"
               @click="confirmDeleteRecord"
               >Delete</vs-button
+            >
+            <vs-button
+              type="border"
+              v-if="user_data.status == true"
+              :color="user_data.status == true ? 'warning' : 'success'"
+              icon-pack="feather"
+              :icon="user_data.status == true ? 'icon-user-check' : 'icon-user-x'"
+              @click="confirmRejectRecord"
+              >{{user_data.status == true ? 'Reject' : 'Approve'}}</vs-button
+            >
+            <vs-button
+              type="border"
+              v-else
+              :color="user_data.status == true ? 'warning' : 'success'"
+              icon-pack="feather"
+              :icon="user_data.status == true ? 'icon-user-check' : 'icon-user-x'"
+              @click="confirmApproveRecord"
+              >{{user_data.status == true ? 'Reject' : 'Approve'}}</vs-button
             >
           </div>
         </div>
@@ -118,7 +137,7 @@
         </div>
 
         <div class="vx-col lg:w-1/2 w-full">
-          <vx-card title="Social Links" class="mb-base">
+          <vx-card title="Career & Evaluation:" class="mb-base">
             <table>
               <tr>
                 <td class="font-semibold">Twitter</td>
@@ -148,49 +167,6 @@
           </vx-card>
         </div>
       </div>
-
-      <!-- Permissions -->
-      <vx-card>
-        <div class="vx-row">
-          <div class="vx-col w-full">
-            <div class="flex items-end px-3">
-              <feather-icon svgClasses="w-6 h-6" icon="LockIcon" class="mr-2" />
-              <span class="font-medium text-lg leading-none">Permissions</span>
-            </div>
-            <vs-divider />
-          </div>
-        </div>
-
-        <div class="block overflow-x-auto">
-          <table class="w-full permissions-table">
-            <tr>
-              <!--
-                You can also use `Object.keys(Object.values(data_local.permissions)[0])` this logic if you consider,
-                our data structure. You just have to loop over above variable to get table headers.
-                Below we made it simple. So, everyone can understand.
-               -->
-              <th
-                class="font-semibold text-base text-left px-3 py-2"
-                v-for="heading in ['Module', 'Read', 'Write', 'Create', 'Delete']"
-                :key="heading"
-              >
-                {{ heading }}
-              </th>
-            </tr>
-
-            <tr v-for="(val, name) in user_data.permissions" :key="name">
-              <td class="px-3 py-2">{{ name }}</td>
-              <td
-                v-for="(permission, name) in val"
-                class="px-3 py-2"
-                :key="name + permission"
-              >
-                <vs-checkbox v-model="val[name]" class="pointer-events-none" />
-              </td>
-            </tr>
-          </table>
-        </div>
-      </vx-card>
     </div>
   </div>
 </template>
@@ -224,6 +200,23 @@ export default {
         accept: this.deleteRecord,
         acceptText: "Delete",
       });
+    },
+    confirmRejectRecord() {
+      this.$store
+        .dispatch("userManagement/rejectRecord", this.user_data.userID)
+        .then((res) => {
+          // this.$router.push({name : 'Refresh Router'});
+          this.user_data.status = false
+          // this.$router.push('/engineer/list');
+        });
+    },
+    confirmApproveRecord() {
+      this.$store
+        .dispatch("userManagement/approveRecord", this.user_data.userID)
+        .then((res) => {
+          // this.$router.push({name : 'Refresh Router'});
+          this.user_data.status = true
+        });
     },
     deleteRecord() {
       /* Below two lines are just for demo purpose */
