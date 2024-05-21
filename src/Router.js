@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import auth from '@/auth/authService'
+// import auth from '@/auth/authService'
 
-import firebase from 'firebase/app'
+// import firebase from 'firebase/app'
 import 'firebase/auth'
 
 Vue.use(Router)
@@ -56,7 +56,7 @@ const router = new Router({
         {
           path: '/earning/list',
           name: 'Earning List',
-          component: () => import('./views/DashboardAnalytics.vue'),
+          component: () => import('./views/main/earning/list/EarningGrid.vue'),
           meta: {
             rule: 'admin'
           }
