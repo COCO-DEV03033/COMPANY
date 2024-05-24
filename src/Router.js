@@ -65,7 +65,15 @@ const router = new Router({
         {
           path: '/earning/list',
           name: 'Earning List',
-          component: () => import('./views/main/earning/list/EarningGrid.vue'),
+          component: () => import('./views/main/earning/list/Index.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/earning/setting',
+          name: 'Earning Setting',
+          component: () => import('./views/main/earning/setting/Index.vue'),
           meta: {
             rule: 'admin'
           }
