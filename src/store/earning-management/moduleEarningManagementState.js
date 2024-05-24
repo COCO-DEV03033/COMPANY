@@ -1,4 +1,5 @@
 export default {
   earnings: [],
-  dates: []
+  dates: [],
+  yearmonths:[],
 }

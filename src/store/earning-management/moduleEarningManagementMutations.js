@@ -1,8 +1,33 @@
 export default {
-  SET_EARNING(state, { earnings, dates }) {
+  GET_EARNINGS(state, { earnings, dates }) {
     state.earnings = earnings
     state.dates = dates
   },
+  CHANGE_EARNINGS(state, { changedatas }) {
+    state.earnings = changedatas
+  },
+  
+  GET_YEARMONTHS(state, { yearmonths }) {
+    state.yearmonths = yearmonths
+  },
+
+  UPDATE_YEARMONTH(state, { updatedata }) {
+    let data = state.yearmonths;
+    data.forEach((item, index) => {
+      if (item._id === updatedata._id) {
+        data[index] = { ...item, ...updatedata };
+      }
+    });
+    data.push(updatedata);
+    state.yearmonths = data
+  },
+  
+  ADD_YEARMONTH(state, { adddata }) {
+    let data = state.yearmonths;
+    state.yearmonths.push(adddata)
+    state.yearmonths = data
+  },
+
   REMOVE_RECORD(state, itemId) {
     const userIndex = state.users.findIndex((u) => u.userID === itemId)
 

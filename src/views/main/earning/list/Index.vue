@@ -363,16 +363,22 @@ export default {
   },
   watch: {},
   computed: {
-    earningData() {
-      return this.$store.state.earningManagement;
+    earnings() {
+      return this.$store.state.earningManagement.earnings;
+    },
+    dates() {
+      return this.$store.state.earningManagement.dates;
     },
   },
+  created () {
+    console.log('created function--->',this.$store.state.earningManagement.earnings);
+  },  
   methods: {
     updateSearchQuery(val) {
       this.gridApi.setQuickFilter(val);
     },
     rearrangeData(companyname) {
-      let filterdData = this.earningData.earnings.filter(
+      let filterdData = this.earnings.filter(
         (obj) => obj.organization === companyname
       );
       // Initialize the sums
@@ -658,16 +664,15 @@ export default {
       this.rearrangeData("5*4");
 
       console.log("Cell value changed:", event.data);
-      const item = this.earningData.earnings.find(
+      const item = this.earnings.find(
         (item) => item._id === event.data._id
       );
       if (item) {
         console.log("item",item._id);
-        
       }
     },
     async save() {
-      this.$store.dispatch("earningManagement/updateEarings", this.earningData.earnings)
+      this.$store.dispatch("earningManagement/updateEarings", this.earnings)
       .then((res) => {})
       .catch((err) => {
         this.user_not_found = true;
@@ -675,7 +680,6 @@ export default {
         console.error(err);
       });
 
-      console.log("save",this.datas, this.earningData.earnings);
     },
     async confirmSearch() {
       const payload = {
@@ -698,7 +702,6 @@ export default {
     //   this.$vs.loading.close();
     // }, 0);
 
-    console.log("enaringData", this.earningData.earnings);
     this.rearrangeData("3*9");
     this.rearrangeData("5*4");
   },
