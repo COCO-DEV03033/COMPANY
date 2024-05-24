@@ -105,7 +105,7 @@ export default {
         'Special',
         'Overview',
         'Created_at',
-        'Updated_at',
+        'Updated_at'
       ],
       headerVal: [
         'userID',
