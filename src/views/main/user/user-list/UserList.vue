@@ -90,16 +90,16 @@
               </vs-dropdown-item>
 
               <vs-dropdown-item>
-                <span class="flex items-center">
-                  <feather-icon icon="FileIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>Print</span>
+                <span class="flex items-center" @click="exportData">
+                  <feather-icon icon="SaveIcon" svgClasses="h-4 w-4" class="mr-2" />
+                  <span>Export</span>
                 </span>
               </vs-dropdown-item>
 
               <vs-dropdown-item>
                 <span class="flex items-center">
-                  <feather-icon icon="SaveIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>CSV</span>
+                  <feather-icon icon="FileIcon" svgClasses="h-4 w-4" class="mr-2" />
+                  <span>Print</span>
                 </span>
               </vs-dropdown-item>
 
@@ -376,6 +376,9 @@ export default {
     },
     importData() {
       this.$router.push('/engineer/import')
+    },
+    exportData() {
+      this.$router.push('/engineer/export')
     },
     resetColFilters () {
       // Reset Grid Filter
