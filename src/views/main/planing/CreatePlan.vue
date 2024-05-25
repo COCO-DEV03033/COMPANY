@@ -4,9 +4,9 @@
         <div class="vx-col w-full md:w-1/5">
           <vs-list>
             <vs-list-header title="Total Plan" color="primary" ></vs-list-header>
-            <draggable :list="list1" group="people" class="p-2 cursor-move">
+            <draggable :list="list0" group="people" class="p-2 cursor-move">
               <vs-list-item 
-                v-for="(listItem, index) in list1" 
+                v-for="(listItem, index) in list0" 
                 :key="index" 
                 :title="listItem.name" 
                 >
@@ -72,6 +72,13 @@ export default {
       supportTracker: {},
       productsOrder: {},
       salesRadar: {},
+      list0: [
+        {
+          id : 1,
+          name: '',
+          plan: ''
+        }
+      ],
       list1: [
         {
           id : 1,

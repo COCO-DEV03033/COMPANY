@@ -41,7 +41,7 @@
                 >
                   <div align="center">
                     <h2 class="mb-1 font-bold">
-                      {{ salesBarSession.analyticsData.session | k_formatter }}
+                      {{ salesBarSession.analyticsData.session[0] }}
                     </h2>
                     <p class="mt-2 text-xl font-medium">
                       <span
@@ -51,10 +51,9 @@
                             : 'text-danger'
                         "
                       >
-                        <span v-if="salesBarSession.analyticsData.comparison.result > 0"
-                          >+</span
+                        <span v-if="salesBarSession.analyticsData.comparison.result > 0">+</span
                         >
-                        <span>{{ salesBarSession.analyticsData.comparison.result }}</span>
+                        <span>+{{ salesBarSession.analyticsData.comparison.result[0] }}</span>
                       </span>
                       <span> % vs </span>
                       <span>{{ salesBarSession.analyticsData.comparison.str }}</span>
@@ -113,7 +112,7 @@
                 >
                   <div align="center">
                     <h2 class="mb-1 font-bold">
-                      {{ salesBarSession.analyticsData.session | k_formatter }}
+                      {{ salesBarSession.analyticsData.session[1] }}
                     </h2>
                     <p class="mt-2 text-xl font-medium">
                       <span
@@ -126,7 +125,7 @@
                         <span v-if="salesBarSession.analyticsData.comparison.result > 0"
                           >+</span
                         >
-                        <span>{{ salesBarSession.analyticsData.comparison.result }}</span>
+                        <span>+{{ salesBarSession.analyticsData.comparison.result[1] }}</span>
                       </span>
                       <span> % vs </span>
                       <span>{{ salesBarSession.analyticsData.comparison.str }}</span>
@@ -187,7 +186,7 @@
             >
               <div align="center">
                 <h2 class="mb-1 font-bold">
-                  {{ salesBarSession.analyticsData.session | k_formatter }}
+                  {{ salesBarSession.analyticsData.session[2] }}
                 </h2>
                 <p class="mt-2 text-xl font-medium">
                   <span
@@ -200,7 +199,7 @@
                     <span v-if="salesBarSession.analyticsData.comparison.result > 0"
                       >+</span
                     >
-                    <span>{{ salesBarSession.analyticsData.comparison.result }}</span>
+                    <span>+{{ salesBarSession.analyticsData.comparison.result[2] }}</span>
                   </span>
                   <span> % vs </span>
                   <span>{{ salesBarSession.analyticsData.comparison.str }}</span>
@@ -259,7 +258,7 @@
                 >
                   <div align="center">
                     <h2 class="mb-1 font-bold">
-                      {{ salesBarSession.analyticsData.session | k_formatter }}
+                      {{ salesBarSession.analyticsData.session[3] }}
                     </h2>
                     <p class="mt-2 text-xl font-medium">
                       <span
@@ -269,10 +268,10 @@
                             : 'text-danger'
                         "
                       >
-                        <span v-if="salesBarSession.analyticsData.comparison.result > 0"
+                        <span v-if="salesBarSession.analyticsData.comparison.result> 0"
                           >+</span
                         >
-                        <span>{{ salesBarSession.analyticsData.comparison.result }}</span>
+                        <span>+{{ salesBarSession.analyticsData.comparison.result[3] }}</span>
                       </span>
                       <span> % vs </span>
                       <span>{{ salesBarSession.analyticsData.comparison.str }}</span>
