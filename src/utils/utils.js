@@ -1,10 +1,53 @@
-export function rearrangeData(importdatas) {
+export function rearrangeData(importdatas, dates) {
     if(importdatas.length==0){
         return [];
     }
     // Company 
     let datas = [];
     let companies = ['3*9', '5*4', '8*2'];
+    // let header = {
+    //     // 'company':"Company",
+    //     // 'teamshow':"Team",
+    //     // 'name':"Name",
+    //     // 'plan':"Plan",
+    //     // 'earning':"Earning",
+    //     'day1': dates[0],
+    //     'day2': dates[1],
+    //     'day3': dates[2],
+    //     'day4': dates[3],
+    //     'day5': dates[4],
+    //     'day6': dates[5],
+    //     'day7': dates[6],
+    //     'day8': dates[7],
+    //     'day9': dates[8],
+    //     'day10': dates[9],
+    //     'day11': dates[10],
+    //     'day12': dates[11],
+    //     'day13': dates[12],
+    //     'day14': dates[13],
+    //     'day15': dates[14],
+    //     'day16': dates[15],
+    //     'day17': dates[16],
+    //     'day18': dates[17],
+    //     'day19': dates[18],
+    //     'day20': dates[19],
+    //     'day21': dates[20],
+    //     'day22': dates[21],
+    //     'day23': dates[22],
+    //     'day24': dates[23],
+    //     'day25': dates[24],
+    //     'day26': dates[25],
+    //     'day27': dates[26],
+    //     'day28': dates[27],
+    //     'day29': dates[28],
+    //     'day30': dates[29],
+    //     'day31': dates[30],
+    //     'day32': dates[31],
+    //     'day33': dates[32],
+    //     'day34': dates[33],
+    //     'day35': dates[34],
+    // }
+    // datas.push(header);
     for (let companyname of companies) {
         let filterdData = importdatas.filter(
             (obj) => obj.organization === companyname

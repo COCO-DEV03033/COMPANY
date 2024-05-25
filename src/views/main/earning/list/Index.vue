@@ -52,7 +52,8 @@
         </div>
       </div>
       <ag-grid-vue
-        ref="agGrid"
+        v-if="dates.length"
+        ref="agGridTable"
         :gridOptions="gridOptions"
         :rowClassRules="rowClassRules"
         class="ag-theme-material w-100 my-4 ag-grid-table"
@@ -70,6 +71,7 @@
         :enableRtl="$vs.rtl"
       >
       </ag-grid-vue>
+        <!-- :headerHeight="0" -->
     </vx-card>
   </div>
 </template>
@@ -79,11 +81,7 @@ import { AgGridVue } from "ag-grid-vue";
 import { ROW_DATA_EVENTS } from "ag-grid-community";
 import vSelect from "vue-select";
 import Datepicker from "vuejs-datepicker";
-import header from "./header.json";
-import incomes from "./data.json";
 import "./styles.css";
-
-import { rearrangeData } from '@/utils/utils';
 
 // Store Module
 import moduleEarningManagement from "@/store/earning-management/moduleEarningManagement.js";
@@ -120,223 +118,7 @@ export default {
         resizable: true,
         lockPinned: true,
       },
-      columnDefs: [
-        {
-          headerName: "ID",
-          field: "id",
-          hide: "true",
-        },
-        {
-          headerName: "Company",
-          field: "company",
-          width: 100,
-          editable: false,
-          pinned: "left",
-        },
-        {
-          headerName: "Team",
-          field: "teamshow",
-          width: 100,
-          editable: false,
-          pinned: "left",
-        },
-        {
-          headerName: "Name",
-          field: "name",
-          width: 100,
-          editable: false,
-          pinned: "left",
-        },
-        {
-          headerName: "Plan",
-          field: "plan",
-          width: 100,
-          editable: false,
-          pinned: "left",
-        },
-        {
-          headerName: "Earning",
-          field: "earning",
-          width: 100,
-          editable: false,
-          pinned: "left",
-        },
-        {
-          headerName: header[0],
-          field: "day1",
-          width: 100,
-        },
-        {
-          headerName: header[1],
-          field: "day2",
-          width: 100,
-        },
-        {
-          headerName: header[2],
-          field: "day3",
-          width: 100,
-        },
-        {
-          headerName: header[3],
-          field: "day4",
-          width: 100,
-        },
-        {
-          headerName: header[4],
-          field: "day5",
-          width: 100,
-        },
-        {
-          headerName: header[5],
-          field: "day6",
-          width: 100,
-        },
-        {
-          headerName: header[6],
-          field: "day7",
-          width: 100,
-        },
-        {
-          headerName: header[7],
-          field: "day8",
-          width: 100,
-        },
-        {
-          headerName: header[8],
-          field: "day9",
-          width: 100,
-        },
-        {
-          headerName: header[9],
-          field: "day10",
-          width: 100,
-        },
-        {
-          headerName: header[10],
-          field: "day11",
-          width: 100,
-        },
-        {
-          headerName: header[11],
-          field: "day12",
-          width: 100,
-        },
-        {
-          headerName: header[12],
-          field: "day13",
-          width: 100,
-        },
-        {
-          headerName: header[13],
-          field: "day14",
-          width: 100,
-        },
-        {
-          headerName: header[14],
-          field: "day15",
-          width: 100,
-        },
-        {
-          headerName: header[15],
-          field: "day16",
-          width: 100,
-        },
-        {
-          headerName: header[16],
-          field: "day17",
-          width: 100,
-        },
-        {
-          headerName: header[17],
-          field: "day18",
-          width: 100,
-        },
-        {
-          headerName: header[18],
-          field: "day19",
-          width: 100,
-        },
-        {
-          headerName: header[19],
-          field: "day20",
-          width: 100,
-        },
-        {
-          headerName: header[20],
-          field: "day21",
-          width: 100,
-        },
-        {
-          headerName: header[21],
-          field: "day22",
-          width: 100,
-        },
-        {
-          headerName: header[22],
-          field: "day23",
-          width: 100,
-        },
-        {
-          headerName: header[23],
-          field: "day24",
-          width: 100,
-        },
-        {
-          headerName: header[24],
-          field: "day25",
-          width: 100,
-        },
-        {
-          headerName: header[25],
-          field: "day26",
-          width: 100,
-        },
-        {
-          headerName: header[26],
-          field: "day27",
-          width: 100,
-        },
-        {
-          headerName: header[27],
-          field: "day28",
-          width: 100,
-        },
-        {
-          headerName: header[28],
-          field: "day29",
-          width: 100,
-        },
-        {
-          headerName: header[29],
-          field: "day30",
-          width: 100,
-        },
-        {
-          headerName: header[30],
-          field: "day31",
-          width: 100,
-        },
-        {
-          headerName: header[31],
-          field: "day32",
-          width: 100,
-        },
-        {
-          headerName: header[32],
-          field: "day33",
-          width: 100,
-        },
-        {
-          headerName: header[33],
-          field: "day34",
-          width: 100,
-        },
-        {
-          headerName: header[34],
-          field: "day35",
-          width: 100,
-        },
-      ],
+      columnDefs: [],
       rowClassRules: {
         // row style function
         "display-company": (params) => {
@@ -350,13 +132,10 @@ export default {
           );
         },
         // row style expression
+        "display-header":
+          "data.company == 'Company'",
         "display-team":
           "data.teamshow == '1'||data.teamshow == '2'||data.teamshow == '3'||data.teamshow == '4'||data.teamshow == '5'||data.teamshow == '6'||data.teamshow == '7'||data.teamshow == '8'||data.teamshow == '9'",
-        // "display-member": (params) => {
-        //     return (
-        //       params.node.rowIndex % 2 === 0
-        //     );
-        // },
       },
     };
   },
@@ -381,12 +160,231 @@ export default {
     },
     
     onGridReady(params) {
-      // this.$_agGrid.addEventListener('cell-value-changed', this.onCellValueChanged);
+      console.log("params", params.api);
+      this.columnDefs =  
+        [
+          {
+            headerName: "ID",
+            field: "id",
+            hide: "true",
+          },
+          {
+            headerName: "Company",
+            field: "company",
+            width: 100,
+            editable: false,
+            pinned: "left",
+          },
+          {
+            headerName: "Team",
+            field: "teamshow",
+            width: 100,
+            editable: false,
+            pinned: "left",
+          },
+          {
+            headerName: "Name",
+            field: "name",
+            width: 100,
+            editable: false,
+            pinned: "left",
+          },
+          {
+            headerName: "Plan",
+            field: "plan",
+            width: 100,
+            editable: false,
+            pinned: "left",
+          },
+          {
+            headerName: "Earning",
+            field: "earning",
+            width: 100,
+            editable: false,
+            pinned: "left",
+          },
+          {
+            headerName: this.dates[0],
+            field: "day1",
+            width: 100,
+          },
+          {
+            headerName: this.dates[1],
+            field: "day2",
+            width: 100,
+          },
+          {
+            headerName: this.dates[2],
+            field: "day3",
+            width: 100,
+          },
+          {
+            headerName: this.dates[3],
+            field: "day4",
+            width: 100,
+          },
+          {
+            headerName: this.dates[4],
+            field: "day5",
+            width: 100,
+          },
+          {
+            headerName: this.dates[5],
+            field: "day6",
+            width: 100,
+          },
+          {
+            headerName: this.dates[6],
+            field: "day7",
+            width: 100,
+          },
+          {
+            headerName: this.dates[7],
+            field: "day8",
+            width: 100,
+          },
+          {
+            headerName: this.dates[8],
+            field: "day9",
+            width: 100,
+          },
+          {
+            headerName: this.dates[9],
+            field: "day10",
+            width: 100,
+          },
+          {
+            headerName: this.dates[10],
+            field: "day11",
+            width: 100,
+          },
+          {
+            headerName: this.dates[11],
+            field: "day12",
+            width: 100,
+          },
+          {
+            headerName: this.dates[12],
+            field: "day13",
+            width: 100,
+          },
+          {
+            headerName: this.dates[13],
+            field: "day14",
+            width: 100,
+          },
+          {
+            headerName: this.dates[14],
+            field: "day15",
+            width: 100,
+          },
+          {
+            headerName: this.dates[15],
+            field: "day16",
+            width: 100,
+          },
+          {
+            headerName: this.dates[16],
+            field: "day17",
+            width: 100,
+          },
+          {
+            headerName: this.dates[17],
+            field: "day18",
+            width: 100,
+          },
+          {
+            headerName: this.dates[18],
+            field: "day19",
+            width: 100,
+          },
+          {
+            headerName: this.dates[19],
+            field: "day20",
+            width: 100,
+          },
+          {
+            headerName: this.dates[20],
+            field: "day21",
+            width: 100,
+          },
+          {
+            headerName: this.dates[21],
+            field: "day22",
+            width: 100,
+          },
+          {
+            headerName: this.dates[22],
+            field: "day23",
+            width: 100,
+          },
+          {
+            headerName: this.dates[23],
+            field: "day24",
+            width: 100,
+          },
+          {
+            headerName: this.dates[24],
+            field: "day25",
+            width: 100,
+          },
+          {
+            headerName: this.dates[25],
+            field: "day26",
+            width: 100,
+          },
+          {
+            headerName: this.dates[26],
+            field: "day27",
+            width: 100,
+          },
+          {
+            headerName: this.dates[27],
+            field: "day28",
+            width: 100,
+          },
+          {
+            headerName: this.dates[28],
+            field: "day29",
+            width: 100,
+          },
+          {
+            headerName: this.dates[29],
+            field: "day30",
+            width: 100,
+          },
+          {
+            headerName: this.dates[30],
+            field: "day31",
+            width: 100,
+          },
+          {
+            headerName: this.dates[31],
+            field: "day32",
+            width: 100,
+          },
+          {
+            headerName: this.dates[32],
+            field: "day33",
+            width: 100,
+          },
+          {
+            headerName: this.dates[33],
+            field: "day34",
+            width: 100,
+          },
+          {
+            headerName: this.dates[34],
+            field: "day35",
+            width: 100,
+          },
+        ];
+
+      console.log('----------------------------------------------------------------------');
+
+      // params.api.setGridOption('columnDefs', this.columnDefs);
     },
     onCellValueChanged(event) {
-      const item = this.earnings.find(
-        (item) => item._id === event.data._id
-      );
       this.$store.dispatch("earningManagement/changeEaring", event.data)
     },
     async save() {
@@ -403,7 +401,9 @@ export default {
     },
   },
   mounted() {
+
     this.gridApi = this.gridOptions.api;
+
   },
   beforeCreate() {
     if (!moduleEarningManagement.isRegistered) {

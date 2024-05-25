@@ -1,4 +1,7 @@
-.display-company {
+  .display-header {
+    background-color: antiquewhite;
+  }
+  .display-company {
     background-color: #cc222244 !important;
   }
   
@@ -17,9 +20,8 @@
     line-height: 46px;
     font-family: "monica-ext-font_YIBBBFG";
     font-weight: 500;
-    border-left-width: 1px !important;
-    /* border-color: black !important; */
-    border-left-color: #9b9b9b !important;
+    /* border-left-width: 1px !important;
+    border-left-color: #9b9b9b !important; */
     overflow: visible !important;
     display: flex !important;
     justify-content: center !important;
@@ -41,6 +43,10 @@
     padding-right: 0px !important;
     /* display: flex !important;
       justify-content: center !important; */
+  }
+
+  .ag-header {
+    border-bottom: 0px !important
   }
   
   .ag-pinned-left-header {

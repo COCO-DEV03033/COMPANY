@@ -3,13 +3,14 @@ import { rearrangeData, updateArrays } from '@/utils/utils';
 export default {
   GET_EARNINGS(state, { earnings, dates }) {
     state.earnings = earnings
-    state.groupearnings = rearrangeData(earnings)
+    state.groupearnings = rearrangeData(earnings, dates)
     state.dates = dates
   },
   CHANGE_EARNING(state, { changedata }) {
+    console.log(changedata);
     let changedatas = updateArrays (state.earnings, changedata)
     state.earnings = changedatas
-    state.groupearnings = rearrangeData(changedatas)
+    state.groupearnings = rearrangeData(changedatas, state.dates)
   },
   
   GET_YEARMONTHS(state, { yearmonths }) {
