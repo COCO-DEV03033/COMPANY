@@ -147,6 +147,22 @@ const router = new Router({
           }
         },
         {
+          path: '/planing',
+          name: 'planing',
+          component: () => import('./views/main/planing/index.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/create-plan',
+          name: 'createplan',
+          component: () => import('./views/main/planing/CreatePlan.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
           path: '/technology/list',
           name: 'Technology List',
           component: () => import('./views/DashboardAnalytics.vue'),
