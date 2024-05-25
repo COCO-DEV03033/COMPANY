@@ -7,7 +7,7 @@
         >
       </vs-row>
     </div>
-    <vs-table :data="yearmonths" v-if="yearmonths">
+    <vs-table :data="yearmonths">
       <template slot="thead">
         <vs-th sort-key="_id">Nro</vs-th>
         <vs-th sort-key="yearmonth">Year/ Month</vs-th>
@@ -30,20 +30,18 @@
             {{ data[indextr].end_date }}
           </vs-td>
           <vs-td>
-
-          <div :style="{ direction: $vs.rtl ? 'rtl' : 'ltr' }">
-            <feather-icon
-              icon="EditIcon"
-              svgClasses="h-5 w-5 mr-4 text-primary cursor-pointer"
-              @click="editPrompt(data[indextr])"
-            />
-            <!-- <feather-icon
+            <div :style="{ direction: $vs.rtl ? 'rtl' : 'ltr' }">
+              <feather-icon
+                icon="EditIcon"
+                svgClasses="h-5 w-5 mr-4 text-primary cursor-pointer"
+                @click="editPrompt(data[indextr])"
+              />
+              <!-- <feather-icon
               icon="Trash2Icon"
               svgClasses="h-5 w-5 text-danger cursor-pointer"
               @click="confirmDeleteRecord(data[indextr])"
             /> -->
-          </div>
-
+            </div>
           </vs-td>
           <vs-prompt
             title="Edit Year&Month"
@@ -95,7 +93,7 @@
       accept-text="Add"
       cancel-text="Cancel"
       button-cancel="border"
-      @cancel="val=''"
+      @cancel="val = ''"
       @accept="addYearMonth"
       @close="close"
       :active.sync="activePrompt"
@@ -139,7 +137,7 @@
 import Datepicker from "vuejs-datepicker";
 import flatPickr from "vue-flatpickr-component";
 import "flatpickr/dist/flatpickr.css";
-import moduleEarningManagement from "@/store/earning-management/moduleEarningManagement.js";
+import moduleIncomeManagement from "@/store/income-management/moduleIncomeManagement.js";
 
 export default {
   data() {
@@ -158,7 +156,7 @@ export default {
 
       activePrompt: false,
       isEditPrompt: false,
-      
+
       delete_id: null,
     };
   },
@@ -190,6 +188,7 @@ export default {
       this.isEditPrompt = true;
     },
     async editYearMonth() {
+      console.log("editYearMonth");
       const payload = {
         _id: this.edit_id,
         year: new Date(this.edit_yearmonth).getFullYear(),
@@ -200,21 +199,19 @@ export default {
         end_date: `${this.edit_end_date.getMonth() + 1}-${this.edit_end_date.getDate()}`,
         notify: this.$vs.notify,
       };
-      await this.$store.dispatch("earningManagement/updateYearMonth", payload);
+      await this.$store
+        .dispatch("earningManagement/updateYearMonth", payload)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       this.$router.go(0);
     },
 
-    updateData(datas, inputData) {
-      return datas.map((item) => {
-        if (item._id === inputData._id) {
-          return { ...item, ...inputData };
-        }
-        return item;
-      });
-    },
-
     confirmDeleteRecord(data) {
-      this.delete_id = data._id
+      this.delete_id = data._id;
       this.$vs.dialog({
         type: "confirm",
         color: "danger",
@@ -242,9 +239,9 @@ export default {
   },
   mounted() {},
   beforeCreate() {
-    if (!moduleEarningManagement.isRegistered) {
-      this.$store.registerModule("earningManagement", moduleEarningManagement);
-      moduleEarningManagement.isRegistered = true;
+    if (!moduleIncomeManagement.isRegistered) {
+      this.$store.registerModule("earningManagement", moduleIncomeManagement);
+      moduleIncomeManagement.isRegistered = true;
     }
     const payload = {
       year: new Date().getFullYear(),

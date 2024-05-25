@@ -28,25 +28,25 @@ export default [
   },
   {
     url: null,
-    name: 'Earning',
+    name: 'Income',
     tag: '10',
     tagColor: 'success',
     icon: 'DollarSignIcon',
     submenu: [
       {
-        url: '/earning/overview',
+        url: '/income/overview',
         name: 'Overview',
-        slug: 'earning-overview'
+        slug: 'income-overview'
       },
       {
-        url: '/earning/register',
+        url: '/income/register',
         name: 'Register',
-        slug: 'earning-register'
+        slug: 'income-register'
       },
       {
-        url: '/earning/setting',
+        url: '/income/setting',
         name: 'Setting',
-        slug: 'earning-setting'
+        slug: 'income-setting'
       }
     ]
   },

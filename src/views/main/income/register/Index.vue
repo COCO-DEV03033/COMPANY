@@ -83,7 +83,7 @@ import Datepicker from "vuejs-datepicker";
 import "./styles.css";
 
 // Store Module
-import moduleEarningManagement from "@/store/earning-management/moduleEarningManagement.js";
+import moduleIncomeManagement from "@/store/income-management/moduleIncomeManagement.js";
 import "@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss";
 
 export default {
@@ -407,9 +407,9 @@ export default {
 
   },
   beforeCreate() {
-    if (!moduleEarningManagement.isRegistered) {
-      this.$store.registerModule("earningManagement", moduleEarningManagement);
-      moduleEarningManagement.isRegistered = true;
+    if (!moduleIncomeManagement.isRegistered) {
+      this.$store.registerModule("earningManagement", moduleIncomeManagement);
+      moduleIncomeManagement.isRegistered = true;
     }
     const payload = {
       yearmonth: new Date(),
