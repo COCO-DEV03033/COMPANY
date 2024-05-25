@@ -63,9 +63,9 @@ const router = new Router({
           }
         },
         {
-          path: '/earning/list',
-          name: 'Earning List',
-          component: () => import('./views/main/earning/list/Index.vue'),
+          path: '/earning/register',
+          name: 'Earning Register',
+          component: () => import('./views/main/earning/register/Index.vue'),
           meta: {
             rule: 'admin'
           }

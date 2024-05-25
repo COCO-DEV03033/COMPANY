@@ -34,19 +34,19 @@ export default [
     icon: 'DollarSignIcon',
     submenu: [
       {
-        url: '/earning/list',
-        name: 'Earning Lists',
-        slug: 'earning-list'
+        url: '/earning/overview',
+        name: 'Overview',
+        slug: 'earning-overview'
+      },
+      {
+        url: '/earning/register',
+        name: 'Register',
+        slug: 'earning-register'
       },
       {
         url: '/earning/setting',
-        name: 'Earning Setting',
+        name: 'Setting',
         slug: 'earning-setting'
-      },
-      {
-        url: '/earning/overview',
-        name: 'Earning Overview',
-        slug: 'earning-overview'
       }
     ]
   },
