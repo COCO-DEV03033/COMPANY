@@ -52,7 +52,7 @@
         </div>
       </div>
       <ag-grid-vue
-        v-if="dates.length"
+        v-if="groupearnings.length"
         ref="agGridTable"
         :gridOptions="gridOptions"
         :rowClassRules="rowClassRules"
@@ -71,7 +71,6 @@
         :enableRtl="$vs.rtl"
       >
       </ag-grid-vue>
-        <!-- :headerHeight="0" -->
     </vx-card>
   </div>
 </template>
@@ -95,6 +94,7 @@ export default {
   },
   data() {
     return {
+      isGrid:false,
       organFilter: { label: "All", value: "all" },
       organOptions: [
         { label: "All", value: "all" },
@@ -105,6 +105,7 @@ export default {
         { label: "A*", value: "A*" },
         { label: "Net*", value: "net*" },
       ],
+      rowData:[],
       yearmonth: "2024-05",
       format: "yyyy-MM",
       height: "600px",
@@ -160,7 +161,7 @@ export default {
     },
     
     onGridReady(params) {
-      console.log("params", params.api);
+      console.log('onGridReady');
       this.columnDefs =  
         [
           {
@@ -379,16 +380,12 @@ export default {
             width: 100,
           },
         ];
-
-      console.log('----------------------------------------------------------------------');
-
-      // params.api.setGridOption('columnDefs', this.columnDefs);
     },
     onCellValueChanged(event) {
       this.$store.dispatch("earningManagement/changeEaring", event.data)
     },
     async save() {
-      this.$store.dispatch("earningManagement/updateEarings", this.groupearnings);
+      this.$store.dispatch("earningManagement/updateEarings", this.earnings);
     },
     async confirmSearch() {
       const payload = {
@@ -396,12 +393,16 @@ export default {
         organization: this.organFilter,
         notify: this.$vs.notify,
       };
-      await this.$store.dispatch("earningManagement/fetchEarings", payload);
-
+      await this.$store.dispatch("earningManagement/fetchEarings", payload)
+        .then((res)=>{
+          this.onGridReady();
+        }).catch((err)=>{
+          console.log(err);
+        })
+      ;
     },
   },
   mounted() {
-
     this.gridApi = this.gridOptions.api;
 
   },
@@ -425,6 +426,7 @@ export default {
       });
   },
   beforeUnmount() {
+    console.log('before Unmount');
     // Remember to remove the event listener when the component is destroyed
     // this.$_agGrid.removeEventListener('cell-value-changed', this.onCellValueChanged);
   },

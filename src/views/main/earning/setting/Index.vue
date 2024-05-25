@@ -47,9 +47,9 @@
           </vs-td>
           <vs-prompt
             title="Edit Year&Month"
-            accept-text= "Save"
-            cancel-text = "Cancel"
-            button-cancel = "border"
+            accept-text="Save"
+            cancel-text="Cancel"
+            button-cancel="border"
             @cancel="val = ''"
             @accept="editYearMonth"
             @close="close"
@@ -92,10 +92,10 @@
     </vs-table>
     <vs-prompt
       title="Add Year&Month"
-      accept-text= "Add"
-      cancel-text = "Cancel"
-      button-cancel = "border"
-      @cancel="val = ''"
+      accept-text="Add"
+      cancel-text="Cancel"
+      button-cancel="border"
+      @cancel="val=''"
       @accept="addYearMonth"
       @close="close"
       :active.sync="activePrompt"

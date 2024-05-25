@@ -7,7 +7,6 @@ export default {
     state.dates = dates
   },
   CHANGE_EARNING(state, { changedata }) {
-    console.log(changedata);
     let changedatas = updateArrays (state.earnings, changedata)
     state.earnings = changedatas
     state.groupearnings = rearrangeData(changedatas, state.dates)
