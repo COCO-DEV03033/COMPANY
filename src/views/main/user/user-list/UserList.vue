@@ -62,49 +62,11 @@
         </div>
 
         <!-- TABLE ACTION COL-2: SEARCH & EXPORT AS CSV -->
-          <vs-input class="sm:mr-4 mr-0 sm:w-auto w-full sm:order-normal order-3 sm:mt-0 mt-4" v-model="searchQuery" @input="updateSearchQuery" placeholder="Search..." />
-          <!-- <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()">Export as CSV</vs-button> -->
-
-          <!-- ACTION - DROPDOWN -->
-          <vs-dropdown vs-trigger-click class="cursor-pointer">
-
-            <div class="p-3 shadow-drop rounded-lg d-theme-dark-light-bg cursor-pointer flex items-end justify-center text-lg font-medium w-32">
-              <span class="mr-2 leading-none">Actions</span>
-              <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />
-            </div>
-
-            <vs-dropdown-menu>
-
-              <vs-dropdown-item>
-                <span class="flex items-center">
-                  <feather-icon icon="TrashIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>Delete</span>
-                </span>
-              </vs-dropdown-item>
-
-              <vs-dropdown-item>
-                <span class="flex items-center" @click="importData">
-                  <feather-icon icon="ArchiveIcon"  svgClasses="h-4 w-4" class="mr-2" />
-                  <span>Import</span>
-                </span>
-              </vs-dropdown-item>
-
-              <vs-dropdown-item>
-                <span class="flex items-center" @click="exportData">
-                  <feather-icon icon="SaveIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>Export</span>
-                </span>
-              </vs-dropdown-item>
-
-              <vs-dropdown-item>
-                <span class="flex items-center">
-                  <feather-icon icon="FileIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>Print</span>
-                </span>
-              </vs-dropdown-item>
-
-            </vs-dropdown-menu>
-          </vs-dropdown>
+          <vs-input class="sm:mr-2 mr-0 sm:w-auto w-full sm:order-normal order-3 sm:mt-0 mt-4" v-model="searchQuery" @input="updateSearchQuery" placeholder="Search..." />
+          <vs-button class="mb-4 md:mb-0 mr-2" @click="exportData"><feather-icon icon="SaveIcon" svgClasses="h-4 w-4" class="mr-2" /> Export as CSV</vs-button>
+          <vs-button class="mb-4 md:mb-0 mr-2" @click="importData"><feather-icon icon="ArchiveIcon"  svgClasses="h-4 w-4" class="mr-2" /> Import CSV</vs-button>
+          <vs-button class="mb-4 md:mb-0 mr-2"><feather-icon icon="FileIcon" svgClasses="h-4 w-4" class="mr-2" /> Print</vs-button>
+          <vs-button class="mb-4 md:mb-0" color="danger"><feather-icon icon="TrashIcon" svgClasses="h-4 w-4" class="mr-2" /> Delete</vs-button>
       </div>
 
 
@@ -120,7 +82,6 @@
         rowSelection="multiple"
         colResizeDefault="shift"
         :animateRows="true"
-        :floatingFilter="true"
         :pagination="true"
         :paginationPageSize="paginationPageSize"
         :suppressPaginationPanel="true"
@@ -243,69 +204,67 @@ export default {
       },
       columnDefs: [
         {
-          headerName: 'userID',
-          field: 'userID',
-          filter: true,
-          width: 250,
-          // field: 'no',
+          headerName: 'Company',
+          field: 'organization',
+          editable: true,
+          width: 150,
           checkboxSelection: true,
           headerCheckboxSelectionFilteredOnly: true,
-          headerCheckboxSelection: true
+          headerCheckboxSelection: true,
         },
         {
-          headerName: 'UserName',
+          headerName: 'Team',
+          field: 'team',
+          editable: true,
+          width: 100
+        },
+        {
+          headerName: 'Role',
+          field: 'role',
+          editable: true,
+        },
+        {
+          headerName: 'Name',
           field: 'name',
-          filter: true,
-          width: 210,
-          cellRendererFramework: 'CellRendererLink'
+          width: 300,
+          cellRendererFramework: 'CellRendererLink',
         },
         {
           headerName: 'Age',
           field: 'age',
-          filter: true,
+          editable: true,
           width: 125
         },
         {
           headerName: 'Gender',
           field: 'gender',
-          filter: true,
+          editable: true,
           width: 125
         },
         {
-          headerName: 'Organ',
-          field: 'organization',
-          filter: true,
+          headerName: 'Tenure',
+          field: 'tenure',
           width: 125
         },
         {
-          headerName: 'Depart*',
-          field: 'department',
-          filter: true,
-          width: 125
+          headerName: 'Development Area',
+          field: 'devArea',
+          width: 200
         },
         {
-          headerName: 'Team',
-          field: 'team',
-          filter: true,
-          width: 125
-        },
-        {
-          headerName: 'Role',
-          field: 'role',
-          filter: true,
-          width: 125
+          headerName: 'Language Skill',
+          field: 'language',
+          width: 200
         },
         {
           headerName: 'Status',
           field: 'status',
-          filter: true,
-          width: 125,
-          cellRendererFramework: 'CellRendererStatus'
+          cellRendererFramework: 'CellRendererStatus',
+          width: 125
         },
         {
           headerName: 'Actions',
-          field: 'transactions',
-          width: 150,
+          field: 'actions',
           cellRendererFramework: 'CellRendererActions'
         }
       ],

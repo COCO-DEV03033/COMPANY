@@ -85,18 +85,18 @@
             <vs-button
               type="border"
               v-if="user_data.status == true"
-              :color="user_data.status == true ? 'warning' : 'success'"
+              color="warning"
               icon-pack="feather"
-              :icon="user_data.status == true ? 'icon-user-check' : 'icon-user-x'"
+              icon="icon-user-x"
               @click="confirmRejectRecord"
               >{{user_data.status == true ? 'Reject' : 'Approve'}}</vs-button
             >
             <vs-button
               type="border"
               v-else
-              :color="user_data.status == true ? 'warning' : 'success'"
+              color='success'
               icon-pack="feather"
-              :icon="user_data.status == true ? 'icon-user-check' : 'icon-user-x'"
+              icon="icon-user-check"
               @click="confirmApproveRecord"
               >{{user_data.status == true ? 'Reject' : 'Approve'}}</vs-button
             >
@@ -109,28 +109,49 @@
           <vx-card title="Information" class="mb-base">
             <table>
               <tr>
-                <td class="font-semibold">Birth Date</td>
-                <td>{{ user_data.dob }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Mobile</td>
-                <td>{{ user_data.mobile }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Website</td>
-                <td>{{ user_data.website }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Languages</td>
-                <td>{{ user_data.languages_known }}</td>
-              </tr>
-              <tr>
                 <td class="font-semibold">Gender</td>
-                <td>{{ user_data.gender }}</td>
+                <td>{{ user_data.gender === 'male' ? 'Male' : 'Female' }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Contact</td>
-                <td>{{ user_data.contact_options }}</td>
+                <td class="font-semibold">Birth Date</td>
+                  <td>{{ user_data.dob.split('-')[0] + '-' + user_data.dob.split('-')[1] + '-' + user_data.dob.split('-')[2][0] + user_data.dob.split('-')[2][1] }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Universty</td>
+                <td>{{ user_data.universty }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Dev Years</td>
+                <td>{{ user_data.devYears || 0 }} year</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Tec License</td>
+                <td>{{ user_data.tecLicense }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Dev Area</td>
+                <td>{{ user_data.devArea }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Major Subject</td>
+                <td>{{ user_data.majorSubject }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Language</td>
+                <td>{{ user_data.language }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Tec Level</td>
+                <td>{{ user_data.tecLevel }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Personalities</td>
+                <td>{{ user_data.Personalities }}</td>
+              </tr>
+              <tr>
+              <tr>
+                <td class="font-semibold">Dev Area</td>
+                <td>{{ user_data.devArea }}</td>
               </tr>
             </table>
           </vx-card>
@@ -140,28 +161,36 @@
           <vx-card title="Career & Evaluation:" class="mb-base">
             <table>
               <tr>
-                <td class="font-semibold">Twitter</td>
-                <td>{{ user_data.social_links }}</td>
+                <td class="font-semibold">Project Site Number</td>
+                <td>{{ user_data.projectSite }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Facebook</td>
-                <td>{{ user_data.social_links }}</td>
+                <td class="font-semibold">Real Account</td>
+                <td>{{ user_data.realAccount }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Instagram</td>
-                <td>{{ user_data.social_links }}</td>
+                <td class="font-semibold">Current Status </td>
+                <td>{{ user_data.currentStatus }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Github</td>
-                <td>{{ user_data.social_links }}</td>
+                <td class="font-semibold">Payment Usage</td>
+                <td>{{ user_data.paymentUsage }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">CodePen</td>
-                <td>{{ user_data.social_links }}</td>
+                <td class="font-semibold">Internet Usage</td>
+                <td>{{ user_data.internetUsage }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Slack</td>
-                <td>{{ user_data.social_links }}</td>
+                <td class="font-semibold">Others</td>
+                <td>{{ user_data.others }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">____________________________________________</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Others</td>
+                <td>{{ user_data.others }}</td>
               </tr>
             </table>
           </vx-card>
