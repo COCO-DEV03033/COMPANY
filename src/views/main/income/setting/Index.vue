@@ -11,8 +11,8 @@
       <template slot="thead">
         <vs-th sort-key="_id">Nro</vs-th>
         <vs-th sort-key="yearmonth">Year/ Month</vs-th>
-        <vs-th sort-key="start_date">Start Date</vs-th>
-        <vs-th sort-key="end_date">End Date</vs-th>
+        <vs-th sort-key="startDate">Start Date</vs-th>
+        <vs-th sort-key="endDate">End Date</vs-th>
         <vs-th>Action</vs-th>
       </template>
       <template slot-scope="{ data }">
@@ -23,11 +23,11 @@
           <vs-td :data="data[indextr].yearmonth">
             {{ data[indextr].yearmonth }}
           </vs-td>
-          <vs-td :data="data[indextr].start_date">
-            {{ data[indextr].start_date }}
+          <vs-td :data="data[indextr].startDate">
+            {{ data[indextr].startDate }}
           </vs-td>
-          <vs-td :data="data[indextr].end_date">
-            {{ data[indextr].end_date }}
+          <vs-td :data="data[indextr].endDate">
+            {{ data[indextr].endDate }}
           </vs-td>
           <vs-td>
             <div :style="{ direction: $vs.rtl ? 'rtl' : 'ltr' }">
@@ -68,19 +68,19 @@
               <div class="w-full bg-grid-color">
                 <label class="text-sm opacity-75">Start Date</label>
                 <datepicker
-                  :format="start_dateformat"
+                  :format="startDateformat"
                   class="w-full"
                   size="large"
-                  v-model="edit_start_date"
+                  v-model="edit_startDate"
                 />
               </div>
               <div class="w-full bg-grid-color">
                 <label class="text-sm opacity-75">End Date</label>
                 <datepicker
-                  :format="end_dateformat"
+                  :format="endDateformat"
                   class="w-full"
                   size="large"
-                  v-model="edit_end_date"
+                  v-model="edit_endDate"
                 />
               </div>
             </div>
@@ -113,19 +113,19 @@
         <div class="w-full bg-grid-color">
           <label class="text-sm opacity-75">Start Date</label>
           <datepicker
-            :format="start_dateformat"
+            :format="startDateformat"
             class="w-full"
             size="large"
-            v-model="start_date"
+            v-model="startDate"
           />
         </div>
         <div class="w-full bg-grid-color">
           <label class="text-sm opacity-75">End Date</label>
           <datepicker
-            :format="end_dateformat"
+            :format="endDateformat"
             class="w-full"
             size="large"
-            v-model="end_date"
+            v-model="endDate"
           />
         </div>
       </div>
@@ -143,15 +143,15 @@ export default {
   data() {
     return {
       yearmonthformat: "yyyy-MM",
-      start_dateformat: "MM-dd",
-      end_dateformat: "MM-dd",
-      start_date: new Date(),
-      end_date: new Date(),
+      startDateformat: "MM-dd",
+      endDateformat: "MM-dd",
+      startDate: new Date(),
+      endDate: new Date(),
       yearmonth: new Date(),
 
       edit_id: null,
-      edit_start_date: null,
-      edit_end_date: null,
+      edit_startDate: null,
+      edit_endDate: null,
       edit_yearmonth: null,
 
       activePrompt: false,
@@ -170,21 +170,21 @@ export default {
       const payload = {
         year: this.yearmonth.getFullYear(),
         month: this.yearmonth.getMonth() + 1,
-        start_date: `${this.start_date.getMonth() + 1}-${this.start_date.getDate()}`,
-        end_date: `${this.end_date.getMonth() + 1}-${this.end_date.getDate()}`,
+        startDate: `${String(this.startDate.getMonth() + 1).padStart(2, '0')}-${String(this.startDate.getDate()).padStart(2, '0')}`,
+        endDate: `${this.endDate.getMonth() + 1}-${this.endDate.getDate()}`,
         notify: this.$vs.notify,
       };
       this.$store.dispatch("earningManagement/addYearMonth", payload);
     },
     editPrompt(data) {
       const [year, month] = data.yearmonth.split("-");
-      const [start_month, start_day] = data.start_date.split("-");
-      const [end_month, end_day] = data.end_date.split("-");
+      const [start_month, startDay] = data.startDate.split("-");
+      const [end_month, endDay] = data.endDate.split("-");
 
       this.edit_id = data._id;
       this.edit_yearmonth = data.yearmonth;
-      this.edit_start_date = new Date(`${year}-${start_month}-${start_day}`);
-      this.edit_end_date = new Date(`${year}-${end_month}-${end_day}`);
+      this.edit_startDate = new Date(`${year}-${start_month}-${startDay}`);
+      this.edit_endDate = new Date(`${year}-${end_month}-${endDay}`);
       this.isEditPrompt = true;
     },
     async editYearMonth() {
@@ -193,10 +193,8 @@ export default {
         _id: this.edit_id,
         year: new Date(this.edit_yearmonth).getFullYear(),
         month: new Date(this.edit_yearmonth).getMonth() + 1,
-        start_date: `${
-          this.edit_start_date.getMonth() + 1
-        }-${this.edit_start_date.getDate()}`,
-        end_date: `${this.edit_end_date.getMonth() + 1}-${this.edit_end_date.getDate()}`,
+        startDate: `${String(this.edit_startDate.getMonth() + 1).padStart(2, '0')}-${String(this.edit_startDate.getDate()).padStart(2, '0')}`,
+        endDate: `${this.edit_endDate.getMonth() + 1}-${this.edit_endDate.getDate()}`,
         notify: this.$vs.notify,
       };
       await this.$store
@@ -237,7 +235,9 @@ export default {
       });
     },
   },
-  mounted() {},
+  mounted() {
+    console.log('yearmonth');
+  },
   beforeCreate() {
     if (!moduleIncomeManagement.isRegistered) {
       this.$store.registerModule("earningManagement", moduleIncomeManagement);
