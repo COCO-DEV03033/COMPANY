@@ -52,7 +52,7 @@
         </div>
       </div>
       <ag-grid-vue
-        v-if="groupearnings.length"
+        v-if="groupincomes.length"
         ref="agGridTable"
         :gridOptions="gridOptions"
         :rowClassRules="rowClassRules"
@@ -60,7 +60,7 @@
         :style="{ width, height }"
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
-        :rowData="groupearnings"
+        :rowData="groupincomes"
         rowSelection="multiple"
         colResizeDefault="shift"
         :animateRows="true"
@@ -94,7 +94,7 @@ export default {
   },
   data() {
     return {
-      isGrid:false,
+      isGrid: false,
       organFilter: { label: "All", value: "all" },
       organOptions: [
         { label: "All", value: "all" },
@@ -105,7 +105,7 @@ export default {
         { label: "A*", value: "A*" },
         { label: "Net*", value: "net*" },
       ],
-      rowData:[],
+      rowData: [],
       yearmonth: "2024-05",
       format: "yyyy-MM",
       height: "600px",
@@ -133,8 +133,7 @@ export default {
           );
         },
         // row style expression
-        "display-header":
-          "data.company == 'Company'",
+        "display-header": "data.company == 'Company'",
         "display-team":
           "data.teamshow == '1'||data.teamshow == '2'||data.teamshow == '3'||data.teamshow == '4'||data.teamshow == '5'||data.teamshow == '6'||data.teamshow == '7'||data.teamshow == '8'||data.teamshow == '9'",
       },
@@ -142,282 +141,113 @@ export default {
   },
   watch: {},
   computed: {
-    groupearnings() {
-      return this.$store.state.earningManagement.groupearnings;
+    groupincomes() {
+      return this.$store.state.incomeManagement.groupincomes;
     },
-    earnings() {
-      return this.$store.state.earningManagement.earnings;
+    incomes() {
+      return this.$store.state.incomeManagement.incomes;
     },
     dates() {
-      return this.$store.state.earningManagement.dates;
+      return this.$store.state.incomeManagement.dates;
     },
   },
-  created () {
-
-},  
+  created() {},
   methods: {
     updateSearchQuery(val) {
       this.gridApi.setQuickFilter(val);
     },
-    
+
     onGridReady(params) {
-      console.log('onGridReady');
-      this.columnDefs =  
-        [
-          {
-            headerName: "ID",
-            field: "id",
-            hide: "true",
-          },
-          {
-            headerName: "Company",
-            field: "company",
-            width: 100,
-            editable: false,
-            pinned: "left",
-          },
-          {
-            headerName: "Team",
-            field: "teamshow",
-            width: 100,
-            editable: false,
-            pinned: "left",
-          },
-          {
-            headerName: "Name",
-            field: "name",
-            width: 100,
-            editable: false,
-            pinned: "left",
-          },
-          {
-            headerName: "Plan",
-            field: "plan",
-            width: 100,
-            editable: false,
-            pinned: "left",
-          },
-          {
-            headerName: "Earning",
-            field: "earning",
-            width: 100,
-            editable: false,
-            pinned: "left",
-          },
-          {
-            headerName: this.dates[0],
-            field: "day1",
-            width: 100,
-          },
-          {
-            headerName: this.dates[1],
-            field: "day2",
-            width: 100,
-          },
-          {
-            headerName: this.dates[2],
-            field: "day3",
-            width: 100,
-          },
-          {
-            headerName: this.dates[3],
-            field: "day4",
-            width: 100,
-          },
-          {
-            headerName: this.dates[4],
-            field: "day5",
-            width: 100,
-          },
-          {
-            headerName: this.dates[5],
-            field: "day6",
-            width: 100,
-          },
-          {
-            headerName: this.dates[6],
-            field: "day7",
-            width: 100,
-          },
-          {
-            headerName: this.dates[7],
-            field: "day8",
-            width: 100,
-          },
-          {
-            headerName: this.dates[8],
-            field: "day9",
-            width: 100,
-          },
-          {
-            headerName: this.dates[9],
-            field: "day10",
-            width: 100,
-          },
-          {
-            headerName: this.dates[10],
-            field: "day11",
-            width: 100,
-          },
-          {
-            headerName: this.dates[11],
-            field: "day12",
-            width: 100,
-          },
-          {
-            headerName: this.dates[12],
-            field: "day13",
-            width: 100,
-          },
-          {
-            headerName: this.dates[13],
-            field: "day14",
-            width: 100,
-          },
-          {
-            headerName: this.dates[14],
-            field: "day15",
-            width: 100,
-          },
-          {
-            headerName: this.dates[15],
-            field: "day16",
-            width: 100,
-          },
-          {
-            headerName: this.dates[16],
-            field: "day17",
-            width: 100,
-          },
-          {
-            headerName: this.dates[17],
-            field: "day18",
-            width: 100,
-          },
-          {
-            headerName: this.dates[18],
-            field: "day19",
-            width: 100,
-          },
-          {
-            headerName: this.dates[19],
-            field: "day20",
-            width: 100,
-          },
-          {
-            headerName: this.dates[20],
-            field: "day21",
-            width: 100,
-          },
-          {
-            headerName: this.dates[21],
-            field: "day22",
-            width: 100,
-          },
-          {
-            headerName: this.dates[22],
-            field: "day23",
-            width: 100,
-          },
-          {
-            headerName: this.dates[23],
-            field: "day24",
-            width: 100,
-          },
-          {
-            headerName: this.dates[24],
-            field: "day25",
-            width: 100,
-          },
-          {
-            headerName: this.dates[25],
-            field: "day26",
-            width: 100,
-          },
-          {
-            headerName: this.dates[26],
-            field: "day27",
-            width: 100,
-          },
-          {
-            headerName: this.dates[27],
-            field: "day28",
-            width: 100,
-          },
-          {
-            headerName: this.dates[28],
-            field: "day29",
-            width: 100,
-          },
-          {
-            headerName: this.dates[29],
-            field: "day30",
-            width: 100,
-          },
-          {
-            headerName: this.dates[30],
-            field: "day31",
-            width: 100,
-          },
-          {
-            headerName: this.dates[31],
-            field: "day32",
-            width: 100,
-          },
-          {
-            headerName: this.dates[32],
-            field: "day33",
-            width: 100,
-          },
-          {
-            headerName: this.dates[33],
-            field: "day34",
-            width: 100,
-          },
-          {
-            headerName: this.dates[34],
-            field: "day35",
-            width: 100,
-          },
-        ];
+      this.columnDefs = [
+        {
+          headerName: "ID",
+          field: "id",
+          hide: "true",
+        },
+        {
+          headerName: "Company",
+          field: "company",
+          width: 100,
+          editable: false,
+          pinned: "left",
+        },
+        {
+          headerName: "Team",
+          field: "teamshow",
+          width: 100,
+          editable: false,
+          pinned: "left",
+        },
+        {
+          headerName: "Name",
+          field: "name",
+          width: 100,
+          editable: false,
+          pinned: "left",
+        },
+        {
+          headerName: "Plan",
+          field: "plan",
+          width: 100,
+          editable: false,
+          pinned: "left",
+        },
+        {
+          headerName: "income",
+          field: "income",
+          width: 100,
+          editable: false,
+          pinned: "left",
+        },
+      ];
+      for (let i = 0; i < this.dates.length; i++) {
+        this.columnDefs.push({
+          headerName: this.dates[i],
+          field: `day${i}`,
+          width: 100,
+        });
+      }
     },
     onCellValueChanged(event) {
-      this.$store.dispatch("earningManagement/changeEaring", event.data)
+      this.$store.dispatch("incomeManagement/changeIncome", event.data);
     },
     async save() {
-      this.$store.dispatch("earningManagement/updateEarings", this.earnings);
+      this.$store.dispatch("incomeManagement/updateIncomes", this.incomes);
     },
     async confirmSearch() {
       const payload = {
-        yearmonth: new Date(this.yearmonth),
-        organization: this.organFilter,
+        year: this.yearmonth.getFullYear(),
+        month: this.yearmonth.getMonth() + 1,
+        organization: this.organFilter.value,
         notify: this.$vs.notify,
       };
-      await this.$store.dispatch("earningManagement/fetchEarings", payload)
-        .then((res)=>{
+      await this.$store
+        .dispatch("incomeManagement/fetchIncomes", payload)
+        .then((res) => {
           this.onGridReady();
-        }).catch((err)=>{
-          console.log(err);
         })
-      ;
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   mounted() {
     this.gridApi = this.gridOptions.api;
-
   },
   beforeCreate() {
     if (!moduleIncomeManagement.isRegistered) {
-      this.$store.registerModule("earningManagement", moduleIncomeManagement);
+      this.$store.registerModule("incomeManagement", moduleIncomeManagement);
       moduleIncomeManagement.isRegistered = true;
     }
     const payload = {
-      yearmonth: new Date(),
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
       organization: "all",
       notify: this.$vs.notify,
     };
+
     this.$store
-      .dispatch("earningManagement/fetchEarings", payload)
+      .dispatch("incomeManagement/fetchIncomes", payload)
       .then((res) => {})
       .catch((err) => {
         this.user_not_found = true;
@@ -426,7 +256,7 @@ export default {
       });
   },
   beforeUnmount() {
-    console.log('before Unmount');
+    console.log("before Unmount");
     // Remember to remove the event listener when the component is destroyed
     // this.$_agGrid.removeEventListener('cell-value-changed', this.onCellValueChanged);
   },

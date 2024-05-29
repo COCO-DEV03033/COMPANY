@@ -4,18 +4,13 @@ import { resolve } from 'core-js/fn/promise'
 const API_URL = 'http://localhost:5050'
 
 export default {
-  fetchEarings({ commit }, payload) {
+  fetchIncomes({ commit }, payload) {
     return new Promise((resolve, reject) => {
       const { yearmonth, organization } = payload;
-      const formData = new FormData();
-      formData.append("year", yearmonth.getFullYear());
-      formData.append("month", yearmonth.getMonth()+1);
-      formData.append("organization", organization);
-      axios.post("/api/earning", formData)
+      axios.post(`${API_URL}/api/income/`, payload)
         .then((res) => {
           if(res.data.status_code==0){
-
-            commit('GET_EARNINGS', { earnings:res.data.data.earnings , dates: res.data.data.dates })
+            commit('GET_INCOMES', { incomes:res.data.data.incomes , dates: res.data.data.dates })
             this._vm.$vs.notify({
               color: "success",
               title: "Success",
@@ -28,7 +23,7 @@ export default {
               title: "Warning",
               text: res.data.message,
             });
-            commit('GET_EARNINGS', { earnings:[] , dates: [] })
+            commit('GET_INCOMES', { incomes:[] , dates: [] })
             resolve([])
           }
         })
@@ -39,12 +34,13 @@ export default {
     })
   },
   
-  changeEaring({ commit }, payload) {
-    commit('CHANGE_EARNING', { changedata:payload })
+  changeIncome({ commit }, payload) {
+    console.log(payload);
+    commit('CHANGE_INCOME', { changedata:payload })
   },
-  updateEarings({commit}, payload) {
+  updateIncomes({commit}, payload) {
     return new Promise((resolve, reject) => {
-      axios.post(`${API_URL}/api/earning/update`,payload)
+      axios.post(`${API_URL}/api/income/update`,payload)
         .then((response) => {
           this._vm.$vs.notify({
             color: "success",

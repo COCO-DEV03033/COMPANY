@@ -162,7 +162,7 @@ export default {
   },
   computed: {
     yearmonths() {
-      return this.$store.state.earningManagement.yearmonths;
+      return this.$store.state.incomeManagement.yearmonths;
     },
   },
   methods: {
@@ -174,7 +174,7 @@ export default {
         endDate: `${this.endDate.getMonth() + 1}-${this.endDate.getDate()}`,
         notify: this.$vs.notify,
       };
-      this.$store.dispatch("earningManagement/addYearMonth", payload);
+      this.$store.dispatch("incomeManagement/addYearMonth", payload);
     },
     editPrompt(data) {
       const [year, month] = data.yearmonth.split("-");
@@ -198,7 +198,7 @@ export default {
         notify: this.$vs.notify,
       };
       await this.$store
-        .dispatch("earningManagement/updateYearMonth", payload)
+        .dispatch("incomeManagement/updateYearMonth", payload)
         .then((res) => {
           console.log(res);
         })
@@ -223,7 +223,7 @@ export default {
       const payload = {
         _id: this.delete_id,
       };
-      await this.$store.dispatch("earningManagement/removeRecord", payload);
+      await this.$store.dispatch("incomeManagement/removeRecord", payload);
       this.$vs.$forceUpdate();
     },
 
@@ -236,11 +236,10 @@ export default {
     },
   },
   mounted() {
-    console.log('yearmonth');
   },
   beforeCreate() {
     if (!moduleIncomeManagement.isRegistered) {
-      this.$store.registerModule("earningManagement", moduleIncomeManagement);
+      this.$store.registerModule("incomeManagement", moduleIncomeManagement);
       moduleIncomeManagement.isRegistered = true;
     }
     const payload = {
@@ -248,7 +247,7 @@ export default {
       notify: this.$vs.notify,
     };
     this.$store
-      .dispatch("earningManagement/fetchYearMonths", payload)
+      .dispatch("incomeManagement/fetchYearMonths", payload)
       .then((res) => {})
       .catch((err) => {
         this.user_not_found = true;
