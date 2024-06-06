@@ -35,7 +35,6 @@ export default {
   },
   
   changeIncome({ commit }, payload) {
-    console.log(payload);
     commit('CHANGE_INCOME', { changedata:payload })
   },
   updateIncomes({commit}, payload) {

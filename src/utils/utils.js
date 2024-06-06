@@ -1,5 +1,5 @@
 export function rearrangeData(importdatas, dates) {
-    if(importdatas.length==0){
+    if (importdatas.length == 0) {
         return [];
     }
     // Company 
@@ -14,8 +14,8 @@ export function rearrangeData(importdatas, dates) {
         let incomeSum = 0;
 
         let sum = {};
-        for (let i=1;i<=dates.length; i++){
-            sum[`day${i}`] =0;
+        for (let i = 1; i <= dates.length; i++) {
+            sum[`day${i}`] = 0;
         }
         // Loop through the filtered items and calculate the sums
         filterdData.forEach((item) => {
@@ -33,8 +33,8 @@ export function rearrangeData(importdatas, dates) {
             plan: planSum,
             income: incomeSum,
         };
-        for (let i=1;i<=dates.length; i++){
-            result[`day${i}`] =sum[`day${i}`];
+        for (let i = 1; i <= dates.length; i++) {
+            result[`day${i}`] = sum[`day${i}`];
         }
 
         datas.push(result);
@@ -46,7 +46,7 @@ export function rearrangeData(importdatas, dates) {
                     income: 0,
                     items: [],
                 };
-                for (let i=1;i<=dates.length; i++){
+                for (let i = 1; i <= dates.length; i++) {
                     acc[obj.team][`day${i}`] = 0;
                 }
             }
@@ -63,15 +63,17 @@ export function rearrangeData(importdatas, dates) {
         }, {});
         let keyNames = Object.keys(groupedByTeam);
         keyNames.forEach((key) => {
-            datas.push({
+
+            let teamresult = {
                 teamshow: key,
                 plan: groupedByTeam[key]["plan"],
                 income: groupedByTeam[key]["income"],
-            });
+            };
 
-            for (let i=1;i<=dates.length; i++){
-                datas[`day${i}`] = groupedByTeam[key][`day${i}`];
+            for (let i = 1; i <= dates.length; i++) {
+                teamresult[`day${i}`] = groupedByTeam[key][`day${i}`];
             }
+            datas.push(teamresult);
 
             if (groupedByTeam[key].hasOwnProperty("items")) {
                 groupedByTeam[key].items.map((item) => {
@@ -89,7 +91,7 @@ export function rearrangeData(importdatas, dates) {
     return datas;
 }
 
-export function updateArrays (datas, changedata) {
+export function updateArrays(datas, changedata) {
     datas.forEach((item, index) => {
         if (item.userID === changedata.userID) {
             datas[index] = { ...item, ...changedata };

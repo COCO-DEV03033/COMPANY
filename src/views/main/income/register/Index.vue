@@ -106,7 +106,7 @@ export default {
         { label: "Net*", value: "net*" },
       ],
       rowData: [],
-      yearmonth: "2024-05",
+      yearmonth: new Date(),
       format: "yyyy-MM",
       height: "600px",
       width: "100%",
@@ -200,9 +200,9 @@ export default {
           pinned: "left",
         },
       ];
-      for (let i = 0; i < this.dates.length; i++) {
+      for (let i = 1; i <= this.dates.length; i++) {
         this.columnDefs.push({
-          headerName: this.dates[i],
+          headerName: this.dates[i-1],
           field: `day${i}`,
           width: 100,
         });
@@ -212,7 +212,12 @@ export default {
       this.$store.dispatch("incomeManagement/changeIncome", event.data);
     },
     async save() {
-      this.$store.dispatch("incomeManagement/updateIncomes", this.incomes);
+      const payload = {
+        incomes : this.incomes,
+        year: this.yearmonth.getFullYear(),
+        month: this.yearmonth.getMonth() + 1,
+      }
+      this.$store.dispatch("incomeManagement/updateIncomes", payload);
     },
     async confirmSearch() {
       const payload = {

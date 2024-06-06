@@ -3,7 +3,7 @@ import { rearrangeData, updateArrays } from '@/utils/utils';
 export default {
   GET_INCOMES(state, { incomes, dates }) {
     state.incomes = incomes
-    state.groupincomes = rearrangeData(state.incomes, state.dates)
+    state.groupincomes = rearrangeData(state.incomes, dates)
     state.dates = dates
   },
   CHANGE_INCOME(state, { changedata }) {
