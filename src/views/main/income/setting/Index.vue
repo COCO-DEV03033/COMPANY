@@ -43,48 +43,7 @@
             /> -->
             </div>
           </vs-td>
-          <vs-prompt
-            title="Edit Year&Month"
-            accept-text="Save"
-            cancel-text="Cancel"
-            button-cancel="border"
-            @cancel="val = ''"
-            @accept="editYearMonth"
-            @close="close"
-            :active.sync="isEditPrompt"
-          >
-            <div class="flex flex-wrap">
-              <div class="w-full bg-grid-color">
-                <label class="text-sm opacity-75">Year & Month</label>
-                <datepicker
-                  class="w-full"
-                  size="large"
-                  :minimumView="'month'"
-                  :maximumView="'year'"
-                  :format="yearmonthformat"
-                  v-model="edit_yearmonth"
-                ></datepicker>
-              </div>
-              <div class="w-full bg-grid-color">
-                <label class="text-sm opacity-75">Start Date</label>
-                <datepicker
-                  :format="startDateformat"
-                  class="w-full"
-                  size="large"
-                  v-model="edit_startDate"
-                />
-              </div>
-              <div class="w-full bg-grid-color">
-                <label class="text-sm opacity-75">End Date</label>
-                <datepicker
-                  :format="endDateformat"
-                  class="w-full"
-                  size="large"
-                  v-model="edit_endDate"
-                />
-              </div>
-            </div>
-          </vs-prompt>
+          
         </vs-tr>
       </template>
     </vs-table>
@@ -130,6 +89,50 @@
         </div>
       </div>
     </vs-prompt>
+
+    <vs-prompt
+      title="Edit Year&Month"
+      accept-text="Save"
+      cancel-text="Cancel"
+      button-cancel="border"
+      @cancel="val = ''"
+      @accept="editYearMonth"
+      @close="close"
+      :active.sync="isEditPrompt"
+    >
+      <div class="flex flex-wrap">
+        <div class="w-full bg-grid-color">
+          <label class="text-sm opacity-75">Year & Month</label>
+          <datepicker
+            class="w-full"
+            size="large"
+            :minimumView="'month'"
+            :maximumView="'year'"
+            :format="yearmonthformat"
+            v-model="edit_yearmonth"
+          ></datepicker>
+        </div>
+        <div class="w-full bg-grid-color">
+          <label class="text-sm opacity-75">Start Date</label>
+          <datepicker
+            :format="startDateformat"
+            class="w-full"
+            size="large"
+            v-model="edit_startDate"
+          />
+        </div>
+        <div class="w-full bg-grid-color">
+          <label class="text-sm opacity-75">End Date</label>
+          <datepicker
+            :format="endDateformat"
+            class="w-full"
+            size="large"
+            v-model="edit_endDate"
+          />
+        </div>
+      </div>
+    </vs-prompt>
+
   </vx-card>
 </template>
 
@@ -188,7 +191,6 @@ export default {
       this.isEditPrompt = true;
     },
     async editYearMonth() {
-      console.log("editYearMonth");
       const payload = {
         _id: this.edit_id,
         year: new Date(this.edit_yearmonth).getFullYear(),
