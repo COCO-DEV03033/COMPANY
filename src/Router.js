@@ -155,11 +155,17 @@ const router = new Router({
           }
         },
         {
-          path: '/create-plan',
+          path: '/create-plan/:companyId',
           name: 'createplan',
           component: () => import('./views/main/planing/CreatePlan.vue'),
           meta: {
-            rule: 'admin'
+            breadcrumb: [
+              { title: 'Home', url: '/planing' },
+              { title: 'Planing', url: '/planing' },
+              { title: 'Company', active: true }
+            ],
+            pageTitle: 'Plan By Company',
+            rule: 'editor'
           }
         },
         {
@@ -193,7 +199,7 @@ const router = new Router({
           meta: {
             rule: 'admin'
           }
-        },
+        }
 
 
         // {

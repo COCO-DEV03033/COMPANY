@@ -23,294 +23,21 @@
         </vx-card>
       </div>
       <div id="other_cards" class="vx-col w-full lg:w-full mb-base">
-        <div id = "Card_first" class="vx-row">
+        <div id="Card_first" class="vx-row">
           <div class="vx-col w-full md:w-1/2 mb-base rounded-10 ">
-            <vx-card class="rounded-10" >
-              <div>
-                <p class="text-warning  mb-6  text-3xl font-bold text-center font-sans ">
-                   5*4 company
-                </p>
-              </div>
-              <div
-                class="vx-row flex-col-reverse md:flex-col-reverse sm:flex-row lg:flex-row"
-              >
-                <!-- LEFT COL -->
-                <div
-                  class="plan_title vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col justify-between bg-cyan"
-                  v-if="salesBarSession.analyticsData"
-                >
-                  <div align="center">
-                    <h2 class="mb-1 font-bold">
-                      {{ salesBarSession.analyticsData.session[0] }}
-                    </h2>
-                    <p class="mt-2 text-xl font-medium">
-                      <span
-                        :class="
-                          salesBarSession.analyticsData.comparison.result >= 0
-                            ? 'text-success'
-                            : 'text-danger'
-                        "
-                      >
-                        <span v-if="salesBarSession.analyticsData.comparison.result > 0">+</span
-                        >
-                        <span>+{{ salesBarSession.analyticsData.comparison.result[0] }}</span>
-                      </span>
-                      <span> % vs </span>
-                      <span>{{ salesBarSession.analyticsData.comparison.str }}</span>
-                    </p>
-                  </div>
-                  <RouterLink to="/create-plan"><vs-button
-                    icon-pack="feather"
-                    icon="icon-chevrons-right"
-                    icon-after
-                    class="shadow-md w-full lg:mt-0 mt-4 p-2"
-                    >More</vs-button
-                  ></RouterLink>
-                </div>
-
-                <!-- RIGHT COL -->
-                <div
-                  class="vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col lg:mb-0 md:mb-base sm:mb-0 mb-base"
-                >
-                  <vue-apex-charts
-                    type="bar"
-                    height="150"
-                    :options="analyticsData.salesBar.chartOptions"
-                    :series="salesBarSession.series"
-                    v-if="salesBarSession.series"
-                  />
-                </div>
-              </div>
-              <vs-divider class="my-6"></vs-divider>
-              <div class="vx-row">
-                <div class="vx-col w-1/2 mb-3">
-                  <p>Goal: $100000</p>
-                  <vs-progress class="block mt-1" :percent="50" color="primary"></vs-progress>
-                </div>
-                <div class="vx-col w-1/2 mb-3">
-                  <p>Developers : 50/43</p>
-                  <vs-progress class="block mt-1" :percent="60" color="warning"></vs-progress>
-                </div>
-              </div>
-            </vx-card>
+            <CompanyCard  :analyticsData = "analyticsData" :planData = "planData" />
+            
           </div>
           <div class="vx-col w-full md:w-1/2 mb-base">
-            <vx-card class="rounded-4">
-              <div class="">
-                <p class="text-warning  mb-6  text-3xl font-bold text-center font-sans ">
-                  AI Company
-                </p>
-              </div>
-                
-              <div
-                class="vx-row flex-col-reverse md:flex-col-reverse sm:flex-row lg:flex-row"
-              >
-                <!-- LEFT COL -->
-                <div
-                  class="plan_title vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col justify-between"
-                  v-if="salesBarSession.analyticsData"
-                >
-                  <div align="center">
-                    <h2 class="mb-1 font-bold">
-                      {{ salesBarSession.analyticsData.session[1] }}
-                    </h2>
-                    <p class="mt-2 text-xl font-medium">
-                      <span
-                        :class="
-                          salesBarSession.analyticsData.comparison.result >= 0
-                            ? 'text-success'
-                            : 'text-danger'
-                        "
-                      >
-                        <span v-if="salesBarSession.analyticsData.comparison.result > 0"
-                          >+</span
-                        >
-                        <span>+{{ salesBarSession.analyticsData.comparison.result[1] }}</span>
-                      </span>
-                      <span> % vs </span>
-                      <span>{{ salesBarSession.analyticsData.comparison.str }}</span>
-                    </p>
-                  </div>
-                  <RouterLink to="/create-plan"><vs-button
-                    icon-pack="feather"
-                    icon="icon-chevrons-right"
-                    icon-after
-                    class="shadow-md w-full lg:mt-0 mt-4 p-2"
-                    >More</vs-button
-                  ></RouterLink>
-                </div>
-
-                <!-- RIGHT COL -->
-                <div
-                  class="vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col lg:mb-0 md:mb-base sm:mb-0 mb-base"
-                >
-                  <vue-apex-charts
-                    type="bar"
-                    height="150"
-                    :options="analyticsData.salesBar.chartOptions"
-                    :series="salesBarSession.series"
-                    v-if="salesBarSession.series"
-                  />
-                </div>
-              </div>
-              <vs-divider class="my-6"></vs-divider>
-              <div class="vx-row">
-                <div class="vx-col w-1/2 mb-3">
-                  <p>Goal: $100000</p>
-                  <vs-progress class="block mt-1" :percent="50" color="primary"></vs-progress>
-                </div>
-                <div class="vx-col w-1/2 mb-3">
-                  <p>Developers : 50/43</p>
-                  <vs-progress class="block mt-1" :percent="60" color="warning"></vs-progress>
-                </div>
-              </div>
-            </vx-card>
+            
           </div>
         </div>
-        <div id = "Card_two" class="vx-row" >
+        <div id="Card_two" class="vx-row" >
           <div class="vx-col w-full md:w-1/2 mb-base">
-        <vx-card class="rounded-4">
-          <div class="">
-            <p class="text-warning  mb-6  text-3xl font-bold text-center font-sans ">
-              3*9 Company
-            </p>
+        
           </div>
+          <div class="vx-col w-full md:w-1/2 mb-base">
             
-          <div
-            class="vx-row flex-col-reverse md:flex-col-reverse sm:flex-row lg:flex-row"
-          >
-            <!-- LEFT COL -->
-            <div
-              class="plan_title vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col justify-between"
-              v-if="salesBarSession.analyticsData"
-            >
-              <div align="center">
-                <h2 class="mb-1 font-bold">
-                  {{ salesBarSession.analyticsData.session[2] }}
-                </h2>
-                <p class="mt-2 text-xl font-medium">
-                  <span
-                    :class="
-                      salesBarSession.analyticsData.comparison.result >= 0
-                        ? 'text-success'
-                        : 'text-danger'
-                    "
-                  >
-                    <span v-if="salesBarSession.analyticsData.comparison.result > 0"
-                      >+</span
-                    >
-                    <span>+{{ salesBarSession.analyticsData.comparison.result[2] }}</span>
-                  </span>
-                  <span> % vs </span>
-                  <span>{{ salesBarSession.analyticsData.comparison.str }}</span>
-                </p>
-              </div>
-              <RouterLink to="/create-plan"><vs-button
-                    icon-pack="feather"
-                    icon="icon-chevrons-right"
-                    icon-after
-                    class="shadow-md w-full lg:mt-0 mt-4 p-2"
-                    >More</vs-button
-              ></RouterLink>
-            </div>
-
-            <!-- RIGHT COL -->
-            <div
-              class="vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col lg:mb-0 md:mb-base sm:mb-0 mb-base"
-            >
-              <vue-apex-charts
-                type="bar"
-                height="150"
-                :options="analyticsData.salesBar.chartOptions"
-                :series="salesBarSession.series"
-                v-if="salesBarSession.series"
-              />
-            </div>
-          </div>
-          <vs-divider class="my-6"></vs-divider>
-          <div class="vx-row">
-            <div class="vx-col w-1/2 mb-3">
-              <p>Goal: $100000</p>
-              <vs-progress class="block mt-1" :percent="50" color="primary"></vs-progress>
-            </div>
-            <div class="vx-col w-1/2 mb-3">
-              <p>Developers : 50/43</p>
-              <vs-progress class="block mt-1" :percent="60" color="warning"></vs-progress>
-            </div>
-          </div>
-        </vx-card>
-          </div>
-          <div class="vx-col w-full md:w-1/2 mb-base">
-            <vx-card class="rounded-4 ">
-              <div class="">
-                <p class="text-warning  mb-6  text-3xl font-bold text-center font-sans ">
-                  8*2 Company
-                </p>
-              </div>
-                
-              <div
-                class="vx-row flex-col-reverse md:flex-col-reverse sm:flex-row lg:flex-row"
-              >
-                <!-- LEFT COL -->
-                <div
-                  class="plan_title vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col justify-between"
-                  v-if="salesBarSession.analyticsData"
-                >
-                  <div align="center">
-                    <h2 class="mb-1 font-bold">
-                      {{ salesBarSession.analyticsData.session[3] }}
-                    </h2>
-                    <p class="mt-2 text-xl font-medium">
-                      <span
-                        :class="
-                          salesBarSession.analyticsData.comparison.result >= 0
-                            ? 'text-success'
-                            : 'text-danger'
-                        "
-                      >
-                        <span v-if="salesBarSession.analyticsData.comparison.result> 0"
-                          >+</span
-                        >
-                        <span>+{{ salesBarSession.analyticsData.comparison.result[3] }}</span>
-                      </span>
-                      <span> % vs </span>
-                      <span>{{ salesBarSession.analyticsData.comparison.str }}</span>
-                    </p>
-                  </div>
-                  <RouterLink to="/create-plan"><vs-button
-                    icon-pack="feather"
-                    icon="icon-chevrons-right"
-                    icon-after
-                    class="shadow-md w-full lg:mt-0 mt-4 p-2"
-                    >More</vs-button
-                  ></RouterLink>
-                </div>
-
-                <!-- RIGHT COL -->
-                <div
-                  class="vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col lg:mb-0 md:mb-base sm:mb-0 mb-base"
-                >
-                  <vue-apex-charts
-                    type="bar"
-                    height="150"
-                    :options="analyticsData.salesBar.chartOptions"
-                    :series="salesBarSession.series"
-                    v-if="salesBarSession.series"
-                  />
-                </div>
-              </div>
-              <vs-divider class="my-6"></vs-divider>
-              <div class="vx-row">
-                <div class="vx-col w-1/2 mb-3">
-                  <p>Goal: $100000</p>
-                  <vs-progress class="block mt-1" :percent="50" color="primary"></vs-progress>
-                </div>
-                <div class="vx-col w-1/2 mb-3">
-                  <p>Developers : 50/43</p>
-                  <vs-progress class="block mt-1" :percent="60" color="warning"></vs-progress>
-                </div>
-              </div>
-            </vx-card>
           </div>
         </div>
       </div>
@@ -325,6 +52,9 @@ import analyticsData from '../../ui-elements/card/analyticsData.js'
 import ChangeTimeDurationDropdown from '@/components/ChangeTimeDurationDropdown.vue'
 import VxTimeline from '@/components/timeline/VxTimeline'
 import apexChatData from '../../charts-and-maps/charts/apex-charts/apexChartData.js'
+import { companies } from './companies.js'
+import CompanyCard from './CompanyCard.vue'
+import planData from './planData.js'
 
 
 export default {
@@ -339,6 +69,8 @@ export default {
       supportTracker: {},
       productsOrder: {},
       salesRadar: {},
+      companies,
+      planData,
 
       timelineData: [
         {
@@ -405,13 +137,15 @@ export default {
     VueApexCharts,
     StatisticsCardLine,
     ChangeTimeDurationDropdown,
-    VxTimeline
+    VxTimeline,
+    CompanyCard
   },
   beforeCreate () {
     if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login')
     //  User Reward Card
   },
   created () {
+    console.log('salesBarSession.analyticsData', planData.salesBarSession.analyticsData)
     // if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push({ path: '/login' })
     //  User Reward Card
     this.$http
@@ -444,14 +178,15 @@ export default {
       })
 
     // Sales bar - Analytics
-    this.$http
-      .get('/api/card/card-analytics/sales/bar')
-      .then((response) => {
-        this.salesBarSession = response.data
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    // this.$http
+    //   .get('/api/plan/bar')
+    //   .then((response) => {
+    //     this.salesBarSession = response.data
+    //     console.log('success', response.data)
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
 
     // Support Tracker
     this.$http
