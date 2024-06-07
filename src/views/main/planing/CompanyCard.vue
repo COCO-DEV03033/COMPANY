@@ -5,9 +5,7 @@
           {{companyName}} company
       </p>
     </div>
-    <div
-      class="vx-row flex-col-reverse md:flex-col-reverse sm:flex-row lg:flex-row"
-    >
+    <div class="vx-row flex-col-reverse md:flex-col-reverse sm:flex-row lg:flex-row" >
       <div
         class="plan_title vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col justify-between bg-cyan"
         v-if="companyPlan.analyticsData" >
