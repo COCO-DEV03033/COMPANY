@@ -29,7 +29,7 @@
                 v-for="(listItem, index) in list2" 
                 :key="index" 
                 :title="listItem.user.name" 
-                >
+              >
                 <input type="text" placeholder="$" class="input_style" v-model="listItem.amount" />
                 <vs-avatar slot="avatar" :text="listItem.user.avatar" />
               </vs-list-item>

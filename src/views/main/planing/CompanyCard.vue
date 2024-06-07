@@ -28,9 +28,7 @@
           </RouterLink>
         </div>
       </div>
-      <div
-        class="vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col lg:mb-0 md:mb-base sm:mb-0 mb-base"
-      >
+      <div class="vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col lg:mb-0 md:mb-base sm:mb-0 mb-base" >
         <vue-apex-charts
           type="bar"
           height="150"
