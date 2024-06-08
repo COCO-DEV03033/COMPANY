@@ -17,8 +17,8 @@
       </template>
       <template slot-scope="{ data }">
         <vs-tr :key="indextr" v-for="(tr, indextr) in data">
-          <vs-td :data="data[indextr]._id">
-            {{ data[indextr]._id }}
+          <vs-td :data="index++">
+            {{ index }}
           </vs-td>
           <vs-td :data="data[indextr].yearmonth">
             {{ data[indextr].yearmonth }}
@@ -145,6 +145,7 @@ import moduleIncomeManagement from "@/store/income-management/moduleIncomeManage
 export default {
   data() {
     return {
+      index:0,
       yearmonthformat: "yyyy-MM",
       startDateformat: "MM-dd",
       endDateformat: "MM-dd",
