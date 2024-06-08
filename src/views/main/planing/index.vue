@@ -35,11 +35,13 @@
               :companyName = "'5*4'" 
               :analyticsData = "analyticsData"
               :companyPlan = "companyPlan"
-              :plan = "companyPlan.analyticsData.plan[0]"
+              :plan = "plan_514"
               :growthrate = "companyPlan.analyticsData.growthrate[0]"
               :link = "514"
               :TotalUserByCompany = "companyPlan.TotalUserByCompany[0]"
               :RealUserByCompany = "companyPlan.RealUserByCompany[0]"
+              :bardata = "companyPlan.bardata.bar_first"
+              :color = "'text-success'"
             />
           </div>
           <div class="vx-col w-full md:w-1/2 mb-base">
@@ -47,11 +49,13 @@
               :companyName = "'AI'" 
               :analyticsData = "analyticsData"
               :companyPlan = "companyPlan"
-              :plan = "companyPlan.analyticsData.plan[1]"
+              :plan = "plan_AI"
               :growthrate = "companyPlan.analyticsData.growthrate[1]"
               :link = "'AI'"
               :TotalUserByCompany = "companyPlan.TotalUserByCompany[1]"
               :RealUserByCompany = "companyPlan.RealUserByCompany[1]"
+              :bardata = "companyPlan.bardata.bar_second"
+              :color = "'text-warning'"
             />
           </div>
         </div>
@@ -61,11 +65,13 @@
               :companyName = "'3*9'" 
               :analyticsData = "analyticsData"
               :companyPlan = "companyPlan"
-              :plan = "companyPlan.analyticsData.plan[2]"
+              :plan = "plan_329"
               :growthrate = "companyPlan.analyticsData.growthrate[2]"
               :link = "329"
               :TotalUserByCompany = "companyPlan.TotalUserByCompany[2]"
               :RealUserByCompany = "companyPlan.RealUserByCompany[2]"
+              :bardata = "companyPlan.bardata.bar_third"
+              :color = "'text-primary'"
             />
           </div>
           <div class="vx-col w-full md:w-1/2 mb-base">
@@ -73,11 +79,13 @@
               :companyName = "'8*2'" 
               :analyticsData = "analyticsData"
               :companyPlan = "companyPlan"
-              :plan = "companyPlan.analyticsData.plan[3]"
+              :plan = "plan_812"
               :growthrate = "companyPlan.analyticsData.growthrate[3]"
               :link = "812"
               :TotalUserByCompany = "companyPlan.TotalUserByCompany[3]"
               :RealUserByCompany = "companyPlan.RealUserByCompany[3]"
+              :bardata = "companyPlan.bardata.bar_fourth"
+              :color = "'text-danger'"
             />
           </div>
         </div>
@@ -104,6 +112,20 @@ export default {
   beforeCreate () {
     if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login')
     //  User Reward Card
+  },
+  computed : {
+    plan_514 () {
+      return this.companyPlan.analyticsData.plan[0]
+    },
+    plan_AI () {
+      return this.companyPlan.analyticsData.plan[1]
+    },
+    plan_329 () {
+      return this.companyPlan.analyticsData.plan[2]
+    },
+    plan_812 () {
+      return this.companyPlan.analyticsData.plan[3]
+    }
   }
 }
 </script>

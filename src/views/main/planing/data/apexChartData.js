@@ -40,6 +40,7 @@ function generateDataHeatMap (count, yrange) {
 }
 
 const themeColors = ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+const donutChartColors = ['#5cb85c', '#f0ad4e', '#0275d8', '#d9534f']
 
 export default {
   lineChartSimple: {
@@ -1384,7 +1385,7 @@ export default {
         }
       },
       labels: ['5*4', 'AI', '3*9', '8*2'],
-      colors: themeColors,
+      colors: donutChartColors,
       responsive: [
         {
           breakpoint: 480,
