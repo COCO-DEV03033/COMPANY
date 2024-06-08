@@ -47,8 +47,8 @@
 </template>
 <script>
 import VueApexCharts from 'vue-apexcharts'
-import companyPlan from './data/companyPlan.js'
-import ChartjsBarChart from './data/ChartjsBarChart.vue'
+import companyPlan from '../data/companyPlan.js'
+import ChartjsBarChart from './chart/ChartjsBarChart.vue'
 export default {
   data () {
     return {

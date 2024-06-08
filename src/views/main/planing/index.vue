@@ -95,8 +95,8 @@
 </template>
 <script>
 import VueApexCharts from 'vue-apexcharts'
-import apexChatData from './data/apexChartData.js'
-import CompanyCard from './CompanyCard.vue'
+import apexChatData from './component/chart/apexChartData.js'
+import CompanyCard from './component/CompanyCard.vue'
 import companyPlan from './data/companyPlan.js'
 export default {
   data () {

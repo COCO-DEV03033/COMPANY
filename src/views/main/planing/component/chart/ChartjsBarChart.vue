@@ -8,7 +8,7 @@
 
 <script>
 import ChartjsComponentBarChart from './ChartjsComponentBarChart.vue'
-import companyPlan from './companyPlan.js'
+import companyPlan from '../../data/companyPlan.js'
 export default {
   props: {
     realdata: {
