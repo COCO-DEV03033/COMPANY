@@ -45,7 +45,7 @@ export default {
   lineChartSimple: {
     series: [
       {
-        name: 'Desktops',
+        name: 'Plan',
         data: [550000, 510000, 550000, 530000, 600000]
       }
     ],

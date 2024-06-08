@@ -2,8 +2,8 @@ export default {
   BarData: {
     series: [
       {
-        name: 'Sessions',
-        data: [75, 125, 225, 175, 125, 75, 25]
+        name: '',
+        data: [75, 125, 175, 105, 125, 95, 185]
       }
     ],
     chartOptions: {
@@ -24,7 +24,7 @@ export default {
           filter: 'none'
         }
       },
-      colors: ['rgba(115,103,240,0.15)', 'rgba(115,103,240,0.15)', '#7367f0', 'rgba(115,103,240,0.15)', 'rgba(115,103,240,0.15)', 'rgba(115,103,240,0.15)'],
+      colors: ['rgba(115,103,240,0.15)', 'rgba(115,103,240,0.15)',  'rgba(115,103,240,0.15)', 'rgba(115,103,240,0.15)', 'rgba(115,103,240,0.15)', 'rgba(115,103,240,0.15)', '#FF0000'],
       plotOptions: {
         bar: {
           columnWidth: '45%',
@@ -43,5 +43,7 @@ export default {
     // session: 2700,
     plan: [200000, 200000, 100000, 100000],
     growthrate: [5.2, 6.2, 7.2, 8.2]
-  }
+  },
+  TotalUserByCompany : [100, 100, 50, 50],
+  RealUserByCompany : [90, 93, 47, 48]
 }

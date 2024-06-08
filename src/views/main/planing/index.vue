@@ -38,6 +38,8 @@
               :plan = "companyPlan.analyticsData.plan[0]"
               :growthrate = "companyPlan.analyticsData.growthrate[0]"
               :link = "514"
+              :TotalUserByCompany = "companyPlan.TotalUserByCompany[0]"
+              :RealUserByCompany = "companyPlan.RealUserByCompany[0]"
             />
           </div>
           <div class="vx-col w-full md:w-1/2 mb-base">
@@ -48,6 +50,8 @@
               :plan = "companyPlan.analyticsData.plan[1]"
               :growthrate = "companyPlan.analyticsData.growthrate[1]"
               :link = "'AI'"
+              :TotalUserByCompany = "companyPlan.TotalUserByCompany[1]"
+              :RealUserByCompany = "companyPlan.RealUserByCompany[1]"
             />
           </div>
         </div>
@@ -60,6 +64,8 @@
               :plan = "companyPlan.analyticsData.plan[2]"
               :growthrate = "companyPlan.analyticsData.growthrate[2]"
               :link = "329"
+              :TotalUserByCompany = "companyPlan.TotalUserByCompany[2]"
+              :RealUserByCompany = "companyPlan.RealUserByCompany[2]"
             />
           </div>
           <div class="vx-col w-full md:w-1/2 mb-base">
@@ -70,6 +76,8 @@
               :plan = "companyPlan.analyticsData.plan[3]"
               :growthrate = "companyPlan.analyticsData.growthrate[3]"
               :link = "812"
+              :TotalUserByCompany = "companyPlan.TotalUserByCompany[3]"
+              :RealUserByCompany = "companyPlan.RealUserByCompany[3]"
             />
           </div>
         </div>

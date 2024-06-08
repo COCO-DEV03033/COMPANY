@@ -10,7 +10,7 @@
         class="plan_title vx-col w-full md:w-full sm:w-1/2 lg:w-1/2 xl:w-1/2 flex flex-col justify-between bg-cyan"
         v-if="companyPlan.analyticsData" >
         <div align="center">
-          <h2 class="mb-1 font-bold">{{plan}}</h2>
+          <h2 class="mb-1 font-bold">${{plan}}</h2>
           <p class="mt-2 text-xl font-medium">
             <span v-if="growthrate>0" class="text-danger font-bold">+</span>
             <span class="text-danger font-bold">{{growthrate}}</span>
@@ -41,11 +41,11 @@
     <vs-divider class="my-6"></vs-divider>
     <div class="vx-row">
       <div class="vx-col w-1/2 mb-3">
-        <p>Goal: ${{plan}}</p>
+        <p>Average:  ${{parseFloat(plan / RealUserByCompany).toFixed(1)}}</p>
         <vs-progress class="block mt-1" :percent="50" color="primary"></vs-progress>
       </div>
       <div class="vx-col w-1/2 mb-3">
-        <p>Developers : 50/43</p>
+        <p>Developers : {{TotalUserByCompany}} / {{RealUserByCompany}} </p>
         <vs-progress class="block mt-1" :percent="60" color="warning"></vs-progress>
       </div>
     </div>
@@ -73,11 +73,19 @@ export default {
       required: true
     },
     plan : {
-      type : String,
+      type : Number,
       required : true
     },
     growthrate : {
       type : Number,
+      required : true
+    },
+    TotalUserByCompany : {
+      type : Array,
+      required : true
+    },
+    RealUserByCompany : {
+      type : Array,
       required : true
     }
   },
