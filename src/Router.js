@@ -63,6 +63,14 @@ const router = new Router({
           }
         },
         {
+          path: '/income/overview',
+          name: 'Income Overview',
+          component: () => import('./views/main//income/dashboard/Index.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
           path: '/income/register',
           name: 'Income Register',
           component: () => import('./views/main/income/register/Index.vue'),
@@ -74,14 +82,6 @@ const router = new Router({
           path: '/income/setting',
           name: 'Income Setting',
           component: () => import('./views/main/income/setting/Index.vue'),
-          meta: {
-            rule: 'admin'
-          }
-        },
-        {
-          path: '/income/overview',
-          name: 'Income Overview',
-          component: () => import('./views/DashboardAnalytics.vue'),
           meta: {
             rule: 'admin'
           }
