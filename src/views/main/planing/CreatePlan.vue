@@ -1,21 +1,66 @@
 <template>
     <div id="create-plan">
       <div class="main_card"> 
-        <div class="vx-col w-full md:w-1/3">
-          <DragCard team="'team1'" :list_team1="list1" />
-        </div>
+        <vx-col
+          v-for="(card, index) in cards"
+          :key="card.id"
+          :class="['w-full', 'md:w-1/3']"
+        >
+          <DragCard :team="`Team ${card.id}`" :list_team1="card.list" @delete-card="removeCard(index)" />
+        </vx-col>
       </div>
     </div>
   </template>
 <script>
 import draggable from 'vuedraggable'
-import { list2} from './data/userPlan.js'
 import DragCard from './component/DragCard.vue'
 import modulePlanManagement from '@/store/plan-management/modulePlanManagement.js'
 export default {  
   data () {
     return {
-      list2
+      cards: [
+        {
+          id: 1,
+          list: [
+            {
+              amount: 1000,
+              month: 6,
+              year: 2024,
+              user: {
+                userID: 'asd0303',
+                name: 'JangG',
+                dob: '1997/03/03',
+                avatar: '@/assets/images/portrait/small/avatar-s-26.jpg',
+                company: '3*9',
+                team: 1
+              }
+            }
+          ]
+        },
+        // Add more card objects if needed
+        {
+          id: 2,
+          list: [
+            {
+              amount: 2000,
+              month: 6,
+              year: 2024,
+              user: {
+                userID: 'asd0303',
+                name: 'Pak',
+                dob: '1997/03/03',
+                avatar: '@/assets/images/portrait/small/avatar-s-26.jpg',
+                company: '3*9',
+                team: 2
+              }
+            }
+          ]
+        },
+        {
+          id: '_other',
+          list: []
+        }
+      ]
     }
   },
   components: {
@@ -25,6 +70,17 @@ export default {
   computed: { 
     list1 () {
       return this.$store.state.planManagement.plans
+    }
+  },
+  methods: {
+    removeCard (index) {
+      const othersIndex = this.cards.findIndex(card => card.id === '_other')
+      if (othersIndex !== -1) {
+        // Move the data to the "Others" card
+        this.cards[othersIndex].list.push(...this.cards[index].list)
+      }
+      // Remove the card
+      this.cards.splice(index, 1)
     }
   },
   mounted () {

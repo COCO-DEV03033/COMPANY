@@ -4,7 +4,7 @@
         <vs-list >
           <button @click="deleteCard" class="float-right">X</button>
           <div class="col text-center px-2 py-3 bg-light border rounded">
-            <p class="text-success font-bold text-3xl" >Team</p>
+            <p class="text-success font-bold text-3xl" >{{team}}</p>
           </div>
           <draggable :list="list_team1" group="people" class="p-2 cursor-move">
             <vs-list-item 
