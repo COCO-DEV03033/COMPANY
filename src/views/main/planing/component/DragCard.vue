@@ -1,11 +1,10 @@
 <template>
   <div>
-    <vx-card style="border-top: 4px solid red; background-color: #f6f8fc;" >
+    <vx-card class="card_style">
         <vs-list >
-          <button @click="deleteCard" style="float: right;">X</button>
+          <button @click="deleteCard" class="float-right">X</button>
           <div class="col text-center px-2 py-3 bg-light border rounded">
-            <p class="text-success font-bold text-3xl" >Team 1</p>
-            
+            <p class="text-success font-bold text-3xl" >Team</p>
           </div>
           <draggable :list="list_team1" group="people" class="p-2 cursor-move">
             <vs-list-item 
@@ -40,6 +39,10 @@ export default {
     list_team1 :{
       type: Object,
       required : true
+    },
+    team:{
+      type:String,
+      required: true
     }
   },
   methods: {
@@ -76,5 +79,9 @@ export default {
     border-radius: 6px;
     background-color: #ffffff;
     
+  }
+  .card_style{
+    border-top: 4px solid red;
+    background-color: #f6f8fc;
   }
 </style>

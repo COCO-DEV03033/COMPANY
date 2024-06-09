@@ -1,11 +1,8 @@
 <template>
     <div id="create-plan">
-      <div class="vx-row" style="background-color: #fff; height: 100vh;"> 
-        <div class="vx-col w-full md:w-1/3" v-if="showCard1">
-          <DragCard :list_team1="list1" @delete-card="toggleCard('card1')" />
-        </div>
-        <div class="vx-col w-full md:w-1/3" v-if="showCard2">
-          <DragCard :list_team1="list1" @delete-card="toggleCard('card2')" />
+      <div class="main_card"> 
+        <div class="vx-col w-full md:w-1/3">
+          <DragCard team="'team1'" :list_team1="list1" />
         </div>
       </div>
     </div>
@@ -18,9 +15,7 @@ import modulePlanManagement from '@/store/plan-management/modulePlanManagement.j
 export default {  
   data () {
     return {
-      list2,
-      showCard1: true,
-      showCard2: true
+      list2
     }
   },
   components: {
@@ -32,25 +27,6 @@ export default {
       return this.$store.state.planManagement.plans
     }
   },
-  methods: {
-    addCard () {
-      if (!this.showCard1) {
-        this.showCard1 = true
-      } else if (!this.showCard2) {
-        this.showCard2 = true
-      }
-      // If both cards are already shown, you can handle it as needed
-    },
-    toggleCard (card) {
-      if (card === 'card1') {
-        this.showCard1 = false
-      } else if (card === 'card2') {
-        this.showCard2 = false
-      }
-    }
-  },
-
- 
   mounted () {
     console.log('list1->', this.$store.state.planManagement.plans)
   },  
@@ -78,4 +54,14 @@ export default {
   }
 }
 </script>
+<style scoped>
+.main_card{
+  background-color: #fff;
+  height: 100vh;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+</style>
   
