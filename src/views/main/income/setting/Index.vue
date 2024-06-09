@@ -9,7 +9,7 @@
     </div>
     <vs-table :data="yearmonths">
       <template slot="thead">
-        <vs-th sort-key="_id">Nro</vs-th>
+        <vs-th sort-key="_id">No</vs-th>
         <vs-th sort-key="yearmonth">Year/ Month</vs-th>
         <vs-th sort-key="startDate">Start Date</vs-th>
         <vs-th sort-key="endDate">End Date</vs-th>
@@ -17,8 +17,8 @@
       </template>
       <template slot-scope="{ data }">
         <vs-tr :key="indextr" v-for="(tr, indextr) in data">
-          <vs-td :data="index++">
-            {{ index }}
+          <vs-td :data="data[indextr]._id">
+            {{ data[indextr].index }}
           </vs-td>
           <vs-td :data="data[indextr].yearmonth">
             {{ data[indextr].yearmonth }}
@@ -145,7 +145,7 @@ import moduleIncomeManagement from "@/store/income-management/moduleIncomeManage
 export default {
   data() {
     return {
-      index:0,
+      index:1,
       yearmonthformat: "yyyy-MM",
       startDateformat: "MM-dd",
       endDateformat: "MM-dd",
