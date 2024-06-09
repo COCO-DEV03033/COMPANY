@@ -55,6 +55,9 @@ export default {
         height: 350,
         zoom: {
           enabled: false
+        },
+        toolbar:{
+          show:false
         }
       },
       colors: themeColors,
