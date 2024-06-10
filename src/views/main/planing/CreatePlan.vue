@@ -1,6 +1,5 @@
 <template>
-    <div id="create-plan">
-        <p class="company text-center">Company Plan</p>
+    <div id="create-plan mt-6">
         <div class=" main_card vx-row">
           <vx-col
             v-for="(card, index) in cards"
@@ -177,10 +176,6 @@ export default {
 }
 </script>
 <style scoped>
-  #create-plan {
-    background-color: #fff;
-    padding: 10px;
-  }
   .company{
       color: red;
       font-weight: 800;
@@ -190,7 +185,7 @@ export default {
       transform: scale(0.8, 1.0);
   }
   .main_card{
-    /* background-color: #fff; */
+    background-color: #fff;
     height: 100vh;
     overflow-x: scroll;
     display: flex;
