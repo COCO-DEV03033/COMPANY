@@ -1,10 +1,10 @@
 <template>
     <div id="create-plan">
-      <div class="main_card vx-row"> 
+      <div class="main_card vx-row">
         <vx-col
           v-for="(card, index) in cards"
           :key="card.id"
-          :class="['w-full', 'md:w-1/3', 'xs:w-full', 'xl:w-1/3']"
+          :class="['w-full', 'md:w-1/3', 'sm:w-1/3', 'xs:w-full', 'xl:w-1/3']"
         >
           <DragCard  
             :team="`Team ${card.id}`" 
@@ -39,7 +39,7 @@ export default {
       colorValue : ['#db6a90', '#c875e8', '#8aa7fb', '#76d2b7', '#c974e3', '#00FFFF', '#78d2e2'],
       cards: [
         {
-          id: '_other',
+          id: '_free',
           list: []
         },
         {
@@ -139,7 +139,7 @@ export default {
       })
     },
     removeCard (index) {
-      const othersIndex = this.cards.findIndex(card => card.id === '_other')
+      const othersIndex = this.cards.findIndex(card => card.id === '_free')
       if (othersIndex !== -1) {
         // Move the data to the "Others" card
         this.cards[othersIndex].list.push(...this.cards[index].list)
