@@ -24,7 +24,6 @@ const data = {
     {
       'id':2,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-5.jpg'),
       'name':'test-2',
       'company':'539',
       'plan':5000,
@@ -42,7 +41,6 @@ const data = {
     {
       'id':3,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-7.jpg'),
       'name':'test',
       'company':'839',
       'plan':5000,
@@ -60,7 +58,6 @@ const data = {
     {
       'id':4,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-10.jpg'),
       'name':'test',
       'company':'AI',
       'plan':5000,
@@ -78,7 +75,6 @@ const data = {
     {
       'id':16,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-8.jpg'),
       'name':'test',
       'company':'Control',
       'plan':5000,
@@ -96,7 +92,6 @@ const data = {
     {
       'id':5,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-4.jpg'),
       'name':'test',
       'company':'839',
       'plan':5000,
@@ -114,7 +109,6 @@ const data = {
     {
       'id':6,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-1.jpg'),
       'name':'test',
       'company':'839',
       'plan':5000,
@@ -132,7 +126,6 @@ const data = {
     {
       'id':7,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-2.jpg'),
       'name':'test',
       'company':'539',
       'plan':5000,
@@ -150,7 +143,6 @@ const data = {
     {
       'id':8,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-3.jpg'),
       'name':'test',
       'company':'339',
       'plan':5000,
@@ -168,7 +160,6 @@ const data = {
     {
       'id':9,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-6.jpg'),
       'name':'test',
       'company':'AI',
       'plan':5000,
@@ -186,7 +177,6 @@ const data = {
     {
       'id':10,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-9.jpg'),
       'name':'test',
       'company':'Control',
       'plan':5000,
@@ -204,7 +194,6 @@ const data = {
     {
       'id':11,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-4.jpg'),
       'name':'test',
       'company':'Control',
       'plan':5000,
@@ -222,7 +211,6 @@ const data = {
     {
       'id':12,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-5.jpg'),
       'name':'test',
       'company':'539',
       'plan':5000,
@@ -240,7 +228,6 @@ const data = {
     {
       'id':13,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-6.jpg'),
       'name':'test',
       'company':'839',
       'plan':5000,
@@ -258,7 +245,6 @@ const data = {
     {
       'id':14,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-7.jpg'),
       'name':'test',
       'company':'339',
       'plan':5000,
@@ -285,7 +271,6 @@ const data = {
     {
       'id':15,
       'group':1,
-      'avatar': require('@/assets/images/portrait/small/avatar-s-8.jpg'),
       'name':'AI',
       'company':'339',
       'plan':5000,

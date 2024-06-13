@@ -1,29 +1,36 @@
+/*=========================================================================================
+  File Name: moduleCalendarMutations.js
+  Description: Calendar Module Mutations
+  ----------------------------------------------------------------------------------------
+  Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
+  Author: Pixinvent
+  Author URL: http://www.themeforest.net/user/pixinvent
+==========================================================================================*/
+
+
 export default {
   SET_USERS (state, users) {
     state.users = users
   },
+
+  SET_USER (state, user) {
+    state.user = user
+  },
+  
+  REMOVE_RECORD (state, itemId) {
+    const userIndex = state.users.findIndex((u) => u.id === itemId)
+    state.users.splice(userIndex, 1)
+  },
+
   SET_PROJECTS (state, {projects}) {
     state.projects = projects
   },
-  REMOVE_RECORD (state, itemId) {
-    const userIndex = state.users.findIndex((u) => u.userID === itemId)
-
-    state.users.splice(userIndex, 1)
+  
+  SET_PROJECT (state, {project}) {
+    console.log('project', project);
+    state.project = project
   },
-  UPDATE_USER (state, data) {
-    const userIndex = state.users.findIndex((u) => u.userID === data.user.userID)
-
-    if (data.path != '') state.users[userIndex].avatar = data.path
-    // if (data.user.userID == this.$store.state.AppActiveUser) localStorage.setItem('userInfo') = state.users[userIndex]
-  },
-  APPROVE_USER (state, data) { 
-    const userIndex = state.users.findIndex((u) => u.userID === data)
-
-    state.users[userIndex].statue = true
-  },
-  REJECT_USER (state, data) { 
-    const userIndex = state.users.findIndex((u) => u.userID === data)
-
-    state.users[userIndex].statue = false
+  ADD_PROJECT (state, project) {
+    state.projects.push(project)
   }
 }
