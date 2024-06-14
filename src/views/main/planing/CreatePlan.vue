@@ -2,7 +2,7 @@
   <div id="create-plan mt-6">
     <div>
       <div align="right"  class="save-button-container">
-        <vs-button v-if="showSaveButton" color="success" class="ml-4 mb-4 md:mb-0" >Save</vs-button>
+        <vs-button :disabled ="saveButtonDisabled" color="success" class="ml-4 mb-4 md:mb-0" >Save</vs-button>
       </div>
       <div class=" main_card vx-row">
         <vx-col 
@@ -36,7 +36,7 @@ import AddButton from './component/button/AddButton.vue'
 export default {
   data () {
     return {
-      showSaveButton: false,
+      saveButtonDisabled: true,
       colorValue: ['#db6a90', '#c875e8', '#8aa7fb', '#76d2b7', '#c974e3', '#00FFFF', '#78d2e2']
     }
   },
@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     handleDragEvent () {
-      this.showSaveButton = true
+      this.saveButtonDisabled = false
     },
     addCard () {
       const newId = this.list1.length ? this.list1.length : 0
@@ -84,7 +84,8 @@ export default {
     }
   },
   mounted () {
-    console.log('list1->', this.$store.state.planManagement.plans)
+    console.log('list1---', this.$store.state.planManagement.plans)
+    console.log('type of list1---', typeof this.$store.state.planManagement.plans)
   },
   beforeCreate () {
     if (!modulePlanManagement.isRegistered) {
