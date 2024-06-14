@@ -11,10 +11,11 @@
           :list_team="card" 
           @delete-card="removeCard(index)"
           :color="colorValue[index % colorValue.length]"
-          @update:modelValue="$event => (foo = $event)" />
+          @update:modelValue="$event => (foo = $event)" 
+        />
       </vx-col>
       <vx-col>
-        <addButton @click="addCard" />
+        <AddButton @click="addCard" />
       </vx-col>
     </div>
     <vs-button color="success" class="ml-4 mb-4 md:mb-0" @click="save">Save</vs-button>
@@ -23,7 +24,7 @@
 <script>
 import DragCard from './component/DragCard.vue'
 import modulePlanManagement from '@/store/plan-management/modulePlanManagement.js'
-import addButton from './component/button/addButton.vue'
+import AddButton from './component/button/AddButton.vue'
 export default {
   data () {
     return {
@@ -32,7 +33,7 @@ export default {
   },
   components: {
     DragCard,
-    addButton
+    AddButton
   },
   computed: {
     list1 () {

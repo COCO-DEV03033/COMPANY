@@ -2,7 +2,7 @@
   <div>
     <vx-card :style="borderStyle" class="card_style">
       <vs-list  >
-        <deleteButton @click="deleteCard" />
+        <DeleteButton @click="deleteCard" />
         <div class="col text-center px-2 py-3 bg-light border rounded">
           <p class="text-success font-bold text-2xl" >{{team}}</p>
         </div>
@@ -26,7 +26,7 @@
 <script>
 // import { list1, list2} from '../data/userPlan.js'
 import draggable from 'vuedraggable'
-import deleteButton from './button/deleteButton.vue'
+import DeleteButton from './button/DeleteButton.vue'
 export default {
   data () {
     return {
@@ -35,7 +35,7 @@ export default {
   },
   components: {
     draggable,
-    deleteButton
+    DeleteButton
   },
   props :{
     list_team :{
