@@ -18,7 +18,7 @@
           </p>
         </div>
         <div align="center">
-          <RouterLink :to="`/create-plan/${link}`">
+          <RouterLink :to="`/create-plan/${companyName}`">
             <vs-button
               icon-pack="feather"
               icon="icon-chevrons-right"
@@ -66,10 +66,6 @@ export default {
     },
     companyPlan : {
       type: Object,
-      required: true
-    },
-    link : {
-      type: String,
       required: true
     },
     companyName : {
