@@ -114,7 +114,7 @@
 import VueApexCharts from 'vue-apexcharts'
 import apexChatData from './component/chart/apexChartData.js'
 import CompanyCard from './component/CompanyCard.vue'
-import companyPlan from './data/companyPlan.js'
+import companyPlan from './component/data/companyPlan.js'
 import Datepicker from 'vuejs-datepicker'
 
 
