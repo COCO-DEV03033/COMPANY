@@ -6,9 +6,10 @@
         <div class="col text-center px-2 py-3 bg-light border rounded">
           <p class="text-success font-bold text-2xl" >{{team}}</p>
         </div>
-          <draggable :list="list_team" group="people" class="p-2 cursor-move">
+          <draggable :list="list_team" group="people" class="p-2 cursor-move"    @start="emitDragEvent" @end="emitDragEvent" @drop="emitDragEvent">
           <vs-list-item 
             @change="finish"
+            
             v-for="(listItem, index) in list_team" 
             :key="index" 
             :title="listItem.name" 
@@ -54,6 +55,9 @@ export default {
   methods: {
     deleteCard () {
       this.$emit('delete-card')
+    },
+    emitDragEvent () {
+      this.$emit('dragstart')
     }
   },
   created () {

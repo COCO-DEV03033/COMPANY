@@ -1,24 +1,32 @@
 <template>
   <div id="create-plan mt-6">
-    <div class=" main_card vx-row">
-      <vx-col 
-        v-for="(card, index) in list1" 
-        :key="index"
-        :class="['w-full', 'md:w-1/3', 'sm:w-1/3', 'xs:w-full', 'xl:w-1/3']"
-      >
-        <DragCard 
-          :team="`Team ${index}`" 
-          :list_team="card" 
-          @delete-card="removeCard(index)"
-          :color="colorValue[index % colorValue.length]"
-          @update:modelValue="$event => (foo = $event)" 
-        />
-      </vx-col>
-      <vx-col>
-        <AddButton @click="addCard" />
-      </vx-col>
+    <div>
+      <div align="right"  class="save-button-container">
+        <vs-button v-if="showSaveButton" color="success" class="ml-4 mb-4 md:mb-0" >Save</vs-button>
+      </div>
+      <div class=" main_card vx-row">
+        <vx-col 
+          v-for="(card, index) in list1" 
+          :key="index"
+          :class="['w-full', 'md:w-1/3', 'sm:w-1/3', 'xs:w-full', 'xl:w-1/3']"
+        >
+          <DragCard 
+            :team="`Team ${index}`" 
+            :list_team="card" 
+            @delete-card="removeCard(index)"
+            :color="colorValue[index % colorValue.length]"
+            @update:modelValue="$event => (foo = $event)" 
+            @dragstart="handleDragEvent"
+            @dragover="handleDragEvent"
+            @drop="handleDragEvent"
+          />
+        </vx-col>
+        <vx-col>
+          <AddButton @click="addCard" />
+        </vx-col>
+      </div>
     </div>
-    <vs-button color="success" class="ml-4 mb-4 md:mb-0" @click="save">Save</vs-button>
+    
   </div>
 </template>
 <script>
@@ -28,6 +36,7 @@ import AddButton from './component/button/AddButton.vue'
 export default {
   data () {
     return {
+      showSaveButton: false,
       colorValue: ['#db6a90', '#c875e8', '#8aa7fb', '#76d2b7', '#c974e3', '#00FFFF', '#78d2e2']
     }
   },
@@ -41,6 +50,9 @@ export default {
     }
   },
   methods: {
+    handleDragEvent () {
+      this.showSaveButton = true
+    },
     addCard () {
       const newId = this.list1.length ? this.list1.length : 0
       this.list1.push({
@@ -65,6 +77,10 @@ export default {
       // const payload = {
 
       // }
+    },
+    
+    handleInputChange () {
+      this.showSaveButton = true
     }
   },
   mounted () {
@@ -102,7 +118,6 @@ export default {
     letter-spacing: 3px;
     transform: scale(0.8, 1.0);
   }
-
   .main_card {
     background-color: #fff;
     height: 100vh;
@@ -123,5 +138,8 @@ export default {
   .icon-btn {
     padding: 1px 15px 3px 2px;
     border-radius: 50px;
+  }
+  .save-button-container{
+    height: 50px;
   }
 </style>
