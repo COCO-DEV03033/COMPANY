@@ -1,13 +1,14 @@
 <template>
   <div id="create-plan mt-6">
     <div class=" main_card vx-row">
-      <vx-col v-for="(card, index) in list1" :key="card.id"
+      <vx-col v-for="(card, index) in list1" :key="index"
         :class="['w-full', 'md:w-1/3', 'sm:w-1/3', 'xs:w-full', 'xl:w-1/3']">
         <DragCard 
-           :team="`Team ${parseFloat(index + 1)}`" 
-          :list_team1="list1" 
+          :team="`Team ${index}`" 
+          :list_team="card" 
           @delete-card="removeCard(index)"
-          :color="colorValue[index % colorValue.length]" />
+          :color="colorValue[index % colorValue.length]"
+          @update:modelValue="$event => (foo = $event)" />
       </vx-col>
       <vx-col>
         <div @click="addCard" class="svg-button">
@@ -139,12 +140,14 @@ export default {
   },
   methods: {
     addCard () {
-      const numericIds = this.cards.map(card => card.id).filter(id => !isNaN(id))
-      const newId = numericIds.length ? Math.max(...numericIds) + 1 : 1
-
-      this.cards.push({
-        id: newId,
-        list: []
+      const newId = this.list1.length ? this.list1.length : 0
+      this.list1.push({
+        index : newId
+        // amount : ''.
+        // user : {
+        //   name : '',
+        //   avatar : ''
+        // }
       })
     },
     removeCard (index) {
@@ -155,6 +158,11 @@ export default {
       }
       // Remove the card
       this.cards.splice(index, 1)
+    },
+    save () {
+      const payload = {
+
+      }
     }
   },
   mounted () {
@@ -165,12 +173,10 @@ export default {
       this.$store.registerModule('planManagement', modulePlanManagement)
       modulePlanManagement.isRegistered = true
     }
-
     const payload = {
-      year: 2024,
-      month: 5,
-      organization: 'all',
-      notify: this.$vs.notify
+      year: new Date().getFullYear(),
+      month: new Date().getMonth() + 1,
+      organization: this.$route.params.companyId
     }
     this.$store
       .dispatch('planManagement/fetchPlans', payload)

@@ -11,15 +11,16 @@
         <div class="col text-center px-2 py-3 bg-light border rounded">
           <p class="text-success font-bold text-2xl" >{{team}}</p>
         </div>
-        <draggable :list="list_team1" group="people" class="p-2 cursor-move">
+          <draggable :list="list_team" group="people" class="p-2 cursor-move">
           <vs-list-item 
-            v-for="(listItem, index) in list_team1" 
+            @change="finish"
+            v-for="(listItem, index) in list_team" 
             :key="index" 
-            :title="listItem.user.name" 
+            :title="listItem.name" 
             :class="['base_item', { 'first_item': index === 0 }]"
           >
             <input type="text" placeholder="$" class="input_style" v-model="listItem.amount" />
-            <vs-avatar slot="avatar" :text="listItem.user.avatar" />
+            <vs-avatar slot="avatar" :text="listItem.avatar" />
           </vs-list-item>
         </draggable>
       </vs-list>
@@ -40,7 +41,7 @@ export default {
     draggable
   },
   props :{
-    list_team1 :{
+    list_team :{
       type: Object,
       required : true
     },
@@ -58,6 +59,14 @@ export default {
       this.$emit('delete-card')
     }
   },
+  created () {
+    console.log('this.list_team1', this.list_team)
+  },  
+  watch : {
+    finish (item) {
+      console.log(item.moved.element) // { id: 1, name: 'Item 1' }
+    }
+  },  
   computed: {
     borderStyle () {
       return {
