@@ -39,6 +39,11 @@ export default [
         slug: 'earning-list'
       },
       {
+        url: '/earning/setting',
+        name: 'Earning Setting',
+        slug: 'earning-setting'
+      },
+      {
         url: '/earning/overview',
         name: 'Earning Overview',
         slug: 'earning-overview'
