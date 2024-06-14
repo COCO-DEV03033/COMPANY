@@ -3,13 +3,12 @@
     <div class="vx-row"> 
       <div id="Card_main" class="vx-col w-full lg:w-full mb-base ">
         <vx-card slot="no-body" class="text-center">  
-          <div class="vx-row" style="display: flex; align-items: center; justify-content: center;">
-              <div class="vx-col md:w-1/3 sm:w-1/2 w-full ">
+          <div class="vx-row title_st">
+              <div class="vx-col md:w-1/3 sm:w-1/2 w-full">
                 <h1 class=" mb-1 firm"> 7*9 Firm </h1>
               </div>
-              <!-- <VueDatePicker v-model="date" /> -->
-              <div class="vx-col md:w-1/3 sm:w-1/2 w-full " align="right">
-                <div class="datepicker-container md:w-1/3 sm:w-1/2 w-full ">
+              <div class="vx-col md:w-1/3 sm:w-1/2 w-full">
+                <div class="datepicker-container md:w-1/3 sm:w-1/2 w-full">
                   <datepicker
                     class="custom_datepicker"
                     :minimumView="'month'"
@@ -19,14 +18,14 @@
                   ></datepicker>
                 </div>
               </div>
-            
           </div>
           <div class="vx-row chartstyle">
             <div class="vx-col subchartstyle xs:w-full lg:w-1/3 xl:w-1/3">
               <vue-apex-charts 
                 type="donut"
                 height="350" 
-                :options="apexChatData.donutChart.chartOptions" :series="apexChatData.donutChart.series">
+                :options="apexChatData.donutChart.chartOptions" 
+                :series="apexChatData.donutChart.series">
               </vue-apex-charts>
               <template slot="codeContainer">
                 {{ apexChatData.donutChartCode }}
@@ -36,7 +35,8 @@
               <vue-apex-charts 
                 type="line" 
                 height="350" 
-                :options="apexChatData.lineChartSimple.chartOptions" :series="apexChatData.lineChartSimple.series">
+                :options="apexChatData.lineChartSimple.chartOptions" 
+                :series="apexChatData.lineChartSimple.series" >
               </vue-apex-charts>
               <template slot="codeContainer">
                 {{ apexChatData.lineChartSimpleCode }}
@@ -116,8 +116,6 @@ import apexChatData from './component/chart/apexChartData.js'
 import CompanyCard from './component/CompanyCard.vue'
 import companyPlan from './component/data/companyPlan.js'
 import Datepicker from 'vuejs-datepicker'
-
-
 export default {
   data () {
     return {
@@ -153,6 +151,11 @@ export default {
 }
 </script>
 <style scoped>
+  .title_st {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+  }
   .title{
     justify-content: space-between;
   }
