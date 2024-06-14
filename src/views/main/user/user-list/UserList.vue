@@ -36,7 +36,7 @@
       <div class="flex flex-wrap items-center">
 
         <!-- ITEMS PER PAGE -->
-        <div class="flex-grow">
+        <div class="flex-grow test">
           <vs-dropdown vs-trigger-click class="cursor-pointer">
             <div class="p-4 border border-solid d-theme-border-grey-light rounded-full d-theme-dark-bg cursor-pointer flex items-center justify-between font-medium">
               <span class="mr-2">{{ currentPage * paginationPageSize - (paginationPageSize - 1) }} - {{ usersData.length - currentPage * paginationPageSize > 0 ? currentPage * paginationPageSize : usersData.length }} of {{ usersData.length }}</span>
@@ -388,3 +388,4 @@ export default {
   }
 }
 </style>
+

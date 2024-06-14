@@ -73,7 +73,7 @@
       </div>
     </div>
 
-    <v-select
+    <!-- <v-select
       data-vv-validate-on="blur"
       v-validate="'required'"
       name="organization"
@@ -109,7 +109,7 @@
       v-on:change="selectValidate"
       :options="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']"
     />
-    <span v-if="organValidate == false" class="text-danger text-sm">Please pick your organization correctly.</span>
+    <span v-if="organValidate == false" class="text-danger text-sm">Please pick your organization correctly.</span> -->
 
     <vs-input
       ref="password"
@@ -239,13 +239,13 @@ export default {
     },
     async registerUserJWt() {
       // If form is not validated or user is already login return
-      console.log(this.organization == '' || this.department == '' || this.team == '', this.organValidate)
-      if (this.organization == '' || this.department == '' || this.team == '') {
-        this.organValidate = false
-        return
-      }
-      else this.organValidate = true
-      if (!this.validateForm || !this.checkLogin()) return;
+      // console.log(this.organization == '' || this.department == '' || this.team == '', this.organValidate)
+      // if (this.organization == '' || this.department == '' || this.team == '') {
+      //   this.organValidate = false
+      //   return
+      // }
+      // else this.organValidate = true
+      // if (!this.validateForm || !this.checkLogin()) return;
 
       const payload = {
         userDetails: {
