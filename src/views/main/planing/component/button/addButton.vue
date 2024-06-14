@@ -1,5 +1,6 @@
 <template>
-  <div class="svg-button">
+  <div class="svg-button" @click="$emit('click')">
+    <slot>
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="26"
             height="26" viewBox="0 0 256 256" xml:space="preserve">
       <defs>
@@ -20,11 +21,12 @@
           transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
       </g>
     </svg>
+  </slot>
   </div>
 </template>
 <script>
 export default {
-  
+
 }
 </script>
 <style scoped>
