@@ -3,7 +3,24 @@
     <div class="vx-row"> 
       <div id="Card_main" class="vx-col w-full lg:w-full mb-base ">
         <vx-card slot="no-body" class="text-center">  
-          <h1 class="mb-1 firm"> 7*9 Firm </h1>
+          <div class="vx-row" style="display: flex; align-items: center; justify-content: center;">
+              <div class="vx-col md:w-1/3 sm:w-1/2 w-full ">
+                <h1 class=" mb-1 firm"> 7*9 Firm </h1>
+              </div>
+              <!-- <VueDatePicker v-model="date" /> -->
+              <div class="vx-col md:w-1/3 sm:w-1/2 w-full " align="right">
+                <div class="datepicker-container md:w-1/3 sm:w-1/2 w-full ">
+                  <datepicker
+                    class="custom_datepicker"
+                    :minimumView="'month'"
+                    :maximumView="'year'"
+                    :format="format"
+                    v-model="yearmonth"
+                  ></datepicker>
+                </div>
+              </div>
+            
+          </div>
           <div class="vx-row chartstyle">
             <div class="vx-col subchartstyle xs:w-full lg:w-1/3 xl:w-1/3">
               <vue-apex-charts 
@@ -98,16 +115,22 @@ import VueApexCharts from 'vue-apexcharts'
 import apexChatData from './component/chart/apexChartData.js'
 import CompanyCard from './component/CompanyCard.vue'
 import companyPlan from './data/companyPlan.js'
+import Datepicker from 'vuejs-datepicker'
+
+
 export default {
   data () {
     return {
       apexChatData,
-      companyPlan
+      companyPlan,
+      yearmonth: '2024-05',
+      format: 'yyyy-MM'
     }
   },
   components: {
     VueApexCharts,
-    CompanyCard
+    CompanyCard,
+    Datepicker
   },
   beforeCreate () {
     if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login')
@@ -130,13 +153,22 @@ export default {
 }
 </script>
 <style scoped>
+  .title{
+    justify-content: space-between;
+  }
   .firm{
-    color: #2645ff;
-    font-weight: 900;
+    /* color: ; */
+    font-weight: bold;
     font-size: 45px;
-    font-family: Sans-Serif;
+    font-family: "Montserrat", Helvetica, Arial, sans-serif;
     letter-spacing: 3px;
+    padding-right: 0 !important;
     transform: scale(0.8, 1.0);
+  }
+  @media only screen and (min-width: 660px) {
+    .firm {
+      float: right
+    }
   }
   @media only screen and (max-width: 660px) {
     .chartstyle {
@@ -153,5 +185,18 @@ export default {
     span{
       font-size: 12px;
     }
+  }
+  .custom_datepicker{
+    width: 100%;
+  }
+  @media (max-width: 660px) {
+    .custom_datepicker{
+      width: 100%;
+    }
+  }
+  .datepicker-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>

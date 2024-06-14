@@ -34,12 +34,12 @@
     </div>
     <vs-divider class="my-6"></vs-divider>
     <div id="foo" class="vx-row">
-      <div class="vx-col w-2/5 mb-3">
+      <div class="vx-col w-1/2 mb-3">
         <p>Average:  ${{parseFloat(plan / RealUserByCompany).toFixed(1)}}</p>
         <vs-progress class="block mt-1" :percent="parseFloat(plan / RealUserByCompany).toFixed(1) / 3000 * 100" color="primary"></vs-progress>
       </div>
-      <div class="vx-col w-3/5 mb-3">
-        <p>Developers : {{RealUserByCompany}} / {{TotalUserByCompany}} </p>
+      <div class="vx-col w-1/2 mb-3">
+        <p>Users : {{RealUserByCompany}} / {{TotalUserByCompany}} </p>
         <vs-progress class="block mt-1" :percent="parseFloat(RealUserByCompany/ TotalUserByCompany).toFixed(1) * 100" color="warning"></vs-progress>
       </div>
     </div>
