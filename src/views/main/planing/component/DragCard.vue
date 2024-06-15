@@ -40,7 +40,7 @@ export default {
   },
   props :{
     list_team :{
-      type: Object,
+      type: Array,
       required : true
     },
     team:{

@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:5050'
 export default {
   fetchPlans ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      const { year, month, organization } = payload
+      
       axios.post(`${API_URL}/api/plan/getPlans/`, payload)
         .then((res) => {
           if (res.data.status_code === 0) {

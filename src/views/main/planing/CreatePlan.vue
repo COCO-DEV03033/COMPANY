@@ -35,7 +35,7 @@ import modulePlanManagement from '@/store/plan-management/modulePlanManagement.j
 import AddButton from './component/button/AddButton.vue'
 export default {
   data () {
-    return {
+    return {   
       saveButtonDisabled: true,
       colorValue: ['#db6a90', '#c875e8', '#8aa7fb', '#76d2b7', '#c974e3', '#00FFFF', '#78d2e2']
     }
@@ -46,7 +46,15 @@ export default {
   },
   computed: {
     list1 () {
-      return this.$store.state.planManagement.plans
+      const teamArray = this.$store.state.planManagement.plans
+      for (let i = 0; i < teamArray.length; i++) {
+        if (teamArray[i] === null) {
+          teamArray[i] = [] 
+        } else {
+          break
+        } 
+      }
+      return teamArray
     }
   },
   methods: {
@@ -54,15 +62,7 @@ export default {
       this.saveButtonDisabled = false
     },
     addCard () {
-      const newId = this.list1.length ? this.list1.length : 0
-      this.list1.push({
-        index : newId
-        // amount : ''.
-        // user : {
-        //   name : '',
-        //   avatar : ''
-        // }
-      })
+      this.list1.push([])
     },
     removeCard (index) {
       const othersIndex = this.cards.findIndex(card => card.id === '_free')
@@ -84,8 +84,6 @@ export default {
     }
   },
   mounted () {
-    console.log('list1---', this.$store.state.planManagement.plans)
-    console.log('type of list1---', typeof this.$store.state.planManagement.plans)
   },
   beforeCreate () {
     if (!modulePlanManagement.isRegistered) {
@@ -96,11 +94,11 @@ export default {
       year: new Date().getFullYear(),
       month: new Date().getMonth() + 1,
       organization: this.$route.params.companyId
-    }
+    }   
     this.$store
       .dispatch('planManagement/fetchPlans', payload)
       .then((res) => {
-        console.log('response data', res)
+        console.log('response data', res.plans.length)
       })
       .catch((err) => {
         console.log(err)
