@@ -1,6 +1,6 @@
 <template>
   <div id="create-plan mt-6">
-    <div>
+    <div class="header_st">
       <div align="right"  class="save-button-container">
         <vs-button :disabled ="saveButtonDisabled" color="success" class="ml-4 mb-4 md:mb-0" >Save</vs-button>
       </div>
@@ -112,6 +112,14 @@ export default {
 }
 </script>
 <style scoped>
+  .header_st {
+    background-color: #fff;
+    padding: 5px;
+  }
+  .save-button-container{
+    height: 50px;
+    margin: 15px 20px 0 0;
+  }
   .company {
     color: red;
     font-weight: 800;
@@ -121,28 +129,22 @@ export default {
     transform: scale(0.8, 1.0);
   }
   .main_card {
-    background-color: #fff;
     height: 100vh;
     overflow-x: scroll;
     display: flex;
     flex-direction: row;
     gap: 20px;
-    padding: 30px;
+    padding: 10px 30px;
     flex-wrap: nowrap !important;
     margin: 0 !important;
   }
-
   .btn-glyphicon {
     padding: 8px;
     background: #ffffff;
     margin-right: 4px;
   }
-
   .icon-btn {
     padding: 1px 15px 3px 2px;
     border-radius: 50px;
-  }
-  .save-button-container{
-    height: 50px;
   }
 </style>
