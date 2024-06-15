@@ -4,7 +4,7 @@
       <div align="right"  class="save-button-container">
         <vs-button :disabled ="saveButtonDisabled" color="success" class="ml-4 mb-4 md:mb-0" >Save</vs-button>
       </div>
-      <div class=" main_card vx-row">
+      <div class="main_card vx-row">
         <vx-col 
           v-for="(card, index) in list1" 
           :key="index"
@@ -26,7 +26,6 @@
         </vx-col>
       </div>
     </div>
-    
   </div>
 </template>
 <script>
@@ -130,6 +129,7 @@ export default {
     gap: 20px;
     padding: 30px;
     flex-wrap: nowrap !important;
+    margin: 0 !important;
   }
 
   .btn-glyphicon {
