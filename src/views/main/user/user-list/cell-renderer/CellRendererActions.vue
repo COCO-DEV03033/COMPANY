@@ -2,13 +2,11 @@
   <div :style="{ direction: $vs.rtl ? 'rtl' : 'ltr' }">
     <feather-icon
       icon="UserCheckIcon"
-      v-if="params.data.status == false"
       svgClasses="h-5 w-5 hover:h-7 hover:w-7 mr-4 text-success cursor-pointer"
       @click="confirmApproveRecord"
     />
     <feather-icon
       icon="UserXIcon"
-      v-else
       svgClasses="h-5 w-5 mr-4 text-warning cursor-pointer"
       @click="confirmRejectRecord"
     />

@@ -65,7 +65,7 @@
           <vs-input class="sm:mr-2 mr-0 sm:w-auto w-full sm:order-normal order-3 sm:mt-0 mt-4" v-model="searchQuery" @input="updateSearchQuery" placeholder="Search..." />
           <vs-button class="mb-4 md:mb-0 mr-2" @click="exportData"><feather-icon icon="SaveIcon" svgClasses="h-4 w-4" class="mr-2" /> Export as CSV</vs-button>
           <vs-button class="mb-4 md:mb-0 mr-2" @click="importData"><feather-icon icon="ArchiveIcon"  svgClasses="h-4 w-4" class="mr-2" /> Import CSV</vs-button>
-          <vs-button class="mb-4 md:mb-0 mr-2"><feather-icon icon="FileIcon" svgClasses="h-4 w-4" class="mr-2" /> Print</vs-button>
+          <vs-button class="mb-4 md:mb-0 mr-2"  @click="printFile"><feather-icon icon="FileIcon" svgClasses="h-4 w-4" class="mr-2"/> Print</vs-button>
           <vs-button class="mb-4 md:mb-0" color="danger"><feather-icon icon="TrashIcon" svgClasses="h-4 w-4" class="mr-2" /> Delete</vs-button>
       </div>
 
@@ -351,7 +351,14 @@ export default {
     },
     updateSearchQuery (val) {
       this.gridApi.setQuickFilter(val)
-    }
+    },
+
+    printFile() {
+      window.print()
+    },
+
+
+    
   },
   mounted () {
     this.gridApi = this.gridOptions.api
