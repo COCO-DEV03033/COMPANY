@@ -22,7 +22,7 @@
           />
         </vx-col>
         <vx-col>
-          <AddButton @click="addCard" />
+          <AddButton @click="bothFunction" />
         </vx-col>
       </div>
     </div>
@@ -63,6 +63,10 @@ export default {
     },
     addCard () {
       this.list1.push([])
+    },
+    bothFunction () {
+      this.handleDragEvent()
+      this.addCard()
     },
     removeCard (index) {
       const othersIndex = this.cards.findIndex(card => card.id === '_free')
