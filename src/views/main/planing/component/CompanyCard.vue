@@ -7,7 +7,7 @@
     </div>
     <div class="vx-row flex-col-reverse md:flex-col-reverse sm:flex-row lg:flex-row" >
       <div
-        class="plan_title vx-col w-full md:w-full sm:w-2/5 lg:w-2/5 xl:w-2/5 flex flex-col justify-around bg-cyan"
+        class="companyplan vx-col w-full md:w-full sm:w-2/5 lg:w-2/5 xl:w-2/5 flex flex-col justify-around bg-cyan"
         v-if="companyPlan.analyticsData" >
         <div align="center">
           <h2 :class="['mb-1','font-bold', color]">${{plan}}</h2>
@@ -52,7 +52,6 @@ import ChartjsBarChart from './chart/ChartjsBarChart.vue'
 export default {
   data () {
     return {
-     
     }
   },
   props: {
@@ -104,14 +103,14 @@ export default {
 }
 </script>
 <style lang="scss">
-  .plan_title {
+  .companyplan {
     h2 {
       margin-top: -25px;
     }
   }
 </style>
 <style scoped>
-  .plan_title {
+  .companyplan {
     span{
       font-size: 12px;
     }

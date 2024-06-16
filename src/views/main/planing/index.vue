@@ -1,11 +1,11 @@
 <template>
   <div id="planing">
     <div class="vx-row"> 
-      <div id="Card_main" class="vx-col w-full lg:w-full mb-base ">
+      <div class="vx-col w-full lg:w-full mb-base ">
         <vx-card slot="no-body" class="text-center">  
-          <div class="vx-row title_st">
+          <div class="vx-row title">
               <div class="vx-col md:w-1/3 sm:w-1/2 w-full">
-                <h1 class=" mb-1 firm"> 7*9 Firm </h1>
+                <h1 class="mb-1 firm">7*9 Firm</h1>
               </div>
               <div class="vx-col md:w-1/3 sm:w-1/2 w-full">
                 <div class="datepicker-container md:w-1/3 sm:w-1/2 w-full">
@@ -19,8 +19,8 @@
                 </div>
               </div>
           </div>
-          <div class="vx-row chartstyle">
-            <div class="vx-col subchartstyle xs:w-full lg:w-1/3 xl:w-1/3">
+          <div class="vx-row mainchart">
+            <div class="vx-col subchart xs:w-full lg:w-1/3 xl:w-1/3">
               <vue-apex-charts 
                 type="donut"
                 height="350" 
@@ -45,8 +45,8 @@
           </div> 
         </vx-card>
       </div>
-      <div id="other_cards" class="vx-col w-full lg:w-full mb-base">
-        <div id="Card_first" class="vx-row">
+      <div class="vx-col w-full lg:w-full mb-base">
+        <div class="vx-row">
           <div class="vx-col w-full md:w-1/2 mb-base rounded-10 ">
             <CompanyCard  
               :companyName = "'5*4'" 
@@ -128,7 +128,6 @@ export default {
   },
   beforeCreate () {
     if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login')
-    //  User Reward Card
   },
   computed : {
     plan_514 () {
@@ -147,16 +146,12 @@ export default {
 }
 </script>
 <style scoped>
-  .title_st {
+  .title {
     display: flex;
     align-items: center; 
     justify-content: center;
   }
-  .title{
-    justify-content: space-between;
-  }
   .firm{
-    /* color: ; */
     font-weight: bold;
     font-size: 45px;
     font-family: "Montserrat", Helvetica, Arial, sans-serif;
@@ -170,19 +165,13 @@ export default {
     }
   }
   @media only screen and (max-width: 660px) {
-    .chartstyle {
+    .mainchart {
       display: block;
       align-items: center;
-      
     }
-    .subchartstyle{
+    .subchart{
       width: max-content;
       margin: auto;
-    }
-  }
-  .plan_title {
-    span{
-      font-size: 12px;
     }
   }
   .custom_datepicker{

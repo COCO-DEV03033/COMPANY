@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vx-card :style="borderStyle" class="card_style">
+    <vx-card :style="borderStyle" class="card">
       <vs-list  >
         <DeleteButton @click="deleteCard" />
         <div class="col text-center px-2 py-3 bg-light border rounded">
@@ -21,7 +21,7 @@
             :title="listItem.name" 
             :class="['base_item',{'first_item': index===0}]"
           >
-            <input type="text" placeholder="$" class="input_style" v-model="listItem.amount" />
+            <input type="text" placeholder="$" class="input" v-model="listItem.amount" />
             <vs-avatar slot="avatar" :text="listItem.avatar" />
           </vs-list-item>
         </draggable>
@@ -81,7 +81,7 @@ export default {
 }
 </script>
 <style scoped>
-  .input_style{
+  .input {
       width: 60px;
       border: 1px solid rgb(187, 179, 179);
       border-radius:  3px;
@@ -108,14 +108,14 @@ export default {
   }
 </style>
 <style lang="scss">
-  .card_style{
+  .card {
     padding: 1px !important;
     .vx-card__body{
       padding: 5px !important
     }
   }
   @media ( max-width: 780px) {
-    .card_style {
+    .card {
       margin-bottom: 15px;
     }
   }

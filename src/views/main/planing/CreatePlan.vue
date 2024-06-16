@@ -97,6 +97,7 @@ export default {
   mounted () {
   },
   beforeCreate () {
+    if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login')
     if (!modulePlanManagement.isRegistered) {
       this.$store.registerModule('planManagement', modulePlanManagement)
       modulePlanManagement.isRegistered = true
