@@ -1,15 +1,14 @@
 <template>
   <div id="create-plan mt-6">
     <div class="header_st">
-      <div align="right"  class="save_st">
+      <div align="right"  class="btnsave">
         <vs-button :disabled ="saveButtonDisabled" color="success" class="ml-4 mb-4 md:mb-0" >Save</vs-button>
       </div>
       <div class="main_card vx-row">
         <div 
           v-for="(card, index) in list1" 
           :key="index"
-          :class="[
-            'team_st','sm:w-full', 'md:w-1/3', 'lg:w-1/4']"
+          :class="['team_st','sm:w-full', 'md:w-1/3', 'lg:w-1/4']"
         >
           <DragCard 
             :team="`Team ${index}`" 
@@ -114,7 +113,7 @@ export default {
     background-color: #fff;
     padding: 5px;
   }
-  .save_st{
+  .btnsave{
     height: 50px;
     margin: 15px 20px 0 0;
   }
@@ -138,7 +137,7 @@ export default {
   }
   .main_card {
     height: 100vh;
-    overflow-x: scroll;
+    overflow-x: auto;
     gap: 20px;
     padding: 15px;
     margin: 0 !important;
