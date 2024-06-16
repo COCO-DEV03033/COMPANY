@@ -1,29 +1,29 @@
 <template>
   <div id="create-plan mt-6">
     <div class="header_st">
-      <div align="right"  class="save-button-container">
+      <div align="right"  class="save_st">
         <vs-button :disabled ="saveButtonDisabled" color="success" class="ml-4 mb-4 md:mb-0" >Save</vs-button>
       </div>
       <div class="main_card vx-row">
-        <vx-col 
+        <div 
           v-for="(card, index) in list1" 
           :key="index"
-          :class="['w-full', 'md:w-1/3', 'sm:w-1/3', 'xs:w-full', 'xl:w-1/3']"
+          :class="[
+            'team_st','sm:w-full', 'md:w-1/3', 'lg:w-1/4']"
         >
           <DragCard 
             :team="`Team ${index}`" 
             :list_team="card" 
             @delete-card="removeCard(index)"
-            :color="colorValue[index % colorValue.length]"
-            @update:modelValue="$event => (foo = $event)" 
+            :color="colorValue[index % colorValue.length]" 
             @dragstart="handleDragEvent"
             @dragover="handleDragEvent"
             @drop="handleDragEvent"
           />
-        </vx-col>
-        <vx-col>
+        </div>
+        <div>
           <AddButton @click="bothFunction" />
-        </vx-col>
+        </div>
       </div>
     </div>
   </div>
@@ -81,7 +81,6 @@ export default {
 
       // }
     },
-    
     handleInputChange () {
       this.showSaveButton = true
     }
@@ -107,7 +106,6 @@ export default {
         console.log(err)
         this.user_not_found = true
       })
-
   }
 }
 </script>
@@ -116,35 +114,45 @@ export default {
     background-color: #fff;
     padding: 5px;
   }
-  .save-button-container{
+  .save_st{
     height: 50px;
     margin: 15px 20px 0 0;
   }
-  .company {
-    color: red;
-    font-weight: 800;
-    font-size: 35px;
-    font-family: Sans-Serif;
-    letter-spacing: 3px;
-    transform: scale(0.8, 1.0);
+  .team_st {
+    min-width: 25%;
+  }
+  @media (min-width: 768px) and (max-width: 992px) {
+    .team_st {
+      min-width: 30%;
+    }
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    .team_st {
+      min-width: 45%;
+    }
+  }
+  @media (max-width: 576px) {
+    .team_st {
+      width: 100%;
+    }
   }
   .main_card {
     height: 100vh;
     overflow-x: scroll;
-    display: flex;
-    flex-direction: row;
     gap: 20px;
-    padding: 10px 30px;
-    flex-wrap: nowrap !important;
+    padding: 15px;
     margin: 0 !important;
   }
-  .btn-glyphicon {
-    padding: 8px;
-    background: #ffffff;
-    margin-right: 4px;
+  @media (min-width: 780px) {
+    .main_card {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap !important;
+    }
   }
-  .icon-btn {
-    padding: 1px 15px 3px 2px;
-    border-radius: 50px;
+  @media (max-width: 780px) {
+    .main_card {
+      display:-webkit-box !important;
+    }
   }
 </style>

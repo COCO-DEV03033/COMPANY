@@ -9,7 +9,6 @@
           <draggable :list="list_team" group="people" class="p-2 cursor-move"    @start="emitDragEvent" @end="emitDragEvent" @drop="emitDragEvent">
           <vs-list-item 
             @change="finish"
-            
             v-for="(listItem, index) in list_team" 
             :key="index" 
             :title="listItem.name" 
@@ -21,17 +20,14 @@
         </draggable>
       </vs-list>
     </vx-card>
-    
   </div>
 </template>
 <script>
-// import { list1, list2} from '../data/userPlan.js'
 import draggable from 'vuedraggable'
 import DeleteButton from './button/DeleteButton.vue'
 export default {
   data () {
     return {
-      
     }
   },
   components: {
@@ -104,13 +100,17 @@ export default {
     border-radius: 6px;
     background-color: #ffffff;
   }
-  
 </style>
 <style lang="scss">
-.card_style{
+  .card_style{
     padding: 1px !important;
     .vx-card__body{
       padding: 5px !important
+    }
+  }
+  @media ( max-width: 780px) {
+    .card_style {
+      margin-bottom: 15px;
     }
   }
 </style>
