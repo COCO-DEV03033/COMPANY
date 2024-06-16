@@ -64,7 +64,6 @@ export default {
     }
   },
   created () {
-    console.log('this.list_team1', this.list_team)
   },  
   watch : {
     finish (item) {

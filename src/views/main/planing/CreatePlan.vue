@@ -13,7 +13,7 @@
           <DragCard 
             :team="`Team ${index}`" 
             :list_team="card" 
-            @delete-card="removeCard(index)"
+            @delete-card="confirmDelete(index)"
             :color="colorValue[index % colorValue.length]" 
             @dragstart="handleDragEvent"
             @dragover="handleDragEvent"
@@ -56,6 +56,16 @@ export default {
     }
   },
   methods: {
+    confirmDelete (index) {
+      this.$vs.dialog({
+        type: 'confirm',
+        color: 'danger',
+        title: 'Confirm Delete',
+        text: `You are about to delete Team ${index}`,
+        accept: () => this.removeCard(index),
+        acceptText: 'Delete'
+      })
+    },
     handleDragEvent () {
       this.saveButtonDisabled = false
     },
@@ -67,8 +77,13 @@ export default {
       this.addCard()
     },
     removeCard (index) {
-      console.log('removeCard called')
-      this.list1.splice(index, 1)
+      const firstIndex = 0
+      if (index !== firstIndex) {
+        const deletedItem = this.list1.splice(index, 1)[0]
+        if (this.list1.length > 0) {
+          this.list1[firstIndex].push(...deletedItem)
+        }
+      }
     },
     save () {
       // const payload = {
