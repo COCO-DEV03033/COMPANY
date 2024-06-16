@@ -1,14 +1,14 @@
 <template>
   <div id="create-plan mt-6">
-    <div class="header_st">
+    <div class="header">
       <div align="right"  class="btnsave">
         <vs-button :disabled ="saveButtonDisabled" color="success" class="ml-4 mb-4 md:mb-0" >Save</vs-button>
       </div>
-      <div class="main_card vx-row">
+      <div class="main vx-row">
         <div 
           v-for="(card, index) in list1" 
           :key="index"
-          :class="['team_st','sm:w-full', 'md:w-1/3', 'lg:w-1/4']"
+          :class="['team','sm:w-full', 'md:w-1/3', 'lg:w-1/4']"
         >
           <DragCard 
             :team="`Team ${index}`" 
@@ -119,7 +119,7 @@ export default {
 }
 </script>
 <style scoped>
-  .header_st {
+  .header {
     background-color: #fff;
     padding: 5px;
   }
@@ -127,25 +127,25 @@ export default {
     height: 50px;
     margin: 15px 20px 0 0;
   }
-  .team_st {
+  .team {
     min-width: 25%;
   }
   @media (min-width: 768px) and (max-width: 992px) {
-    .team_st {
+    .team {
       min-width: 30%;
     }
   }
   @media (min-width: 576px) and (max-width: 768px) {
-    .team_st {
+    .team {
       min-width: 45%;
     }
   }
   @media (max-width: 576px) {
-    .team_st {
+    .team {
       width: 100%;
     }
   }
-  .main_card {
+  .main {
     height: 100vh;
     overflow-x: auto;
     gap: 20px;
@@ -153,14 +153,14 @@ export default {
     margin: 0 !important;
   }
   @media (min-width: 780px) {
-    .main_card {
+    .main {
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap !important;
     }
   }
   @media (max-width: 780px) {
-    .main_card {
+    .main {
       display:-webkit-box !important;
     }
   }
