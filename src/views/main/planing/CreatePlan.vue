@@ -11,7 +11,7 @@
           :class="['team','sm:w-full', 'md:w-1/3', 'lg:w-1/4']"
         >
           <DragCard 
-            :team="`Team ${index}`" 
+            :team="index === 0 ? `Free Members` : `Team ${index}`"  
             :list_team="card" 
             @delete-card="confirmDelete(index)"
             :color="colorValue[index % colorValue.length]" 
