@@ -72,7 +72,7 @@ export default {
         curve: 'straight'
       },
       title: {
-        text: 'Product Trends by Month',
+        text: 'Top: 3*9, Min:5*4, average: 8*2, Total:23123',
         align: 'left'
       },
       grid: {

@@ -133,14 +133,14 @@ export default {
           );
         },
         // row style expression
-        "display-company-329": "data.company == '3*9'",
-        "display-company-514": "data.company == '5*4'",
-        "display-company-812": "data.company == '8*2'",
-        "display-company-AI": "data.company == 'AI'",
-        "display-company-NET": "data.company == 'Net Manager'",
+        "display-company-329": "data.company == '3*9 Company'",
+        "display-company-514": "data.company == '5*4 Company'",
+        "display-company-812": "data.company == '8*2 Company'",
+        "display-company-AI": "data.company == 'AI Company'",
+        "display-company-NET": "data.company == 'Net Manager Company'",
         "display-header": "data.company == 'Company'",
         "display-team":
-          "data.teamshow == '1'||data.teamshow == '2'||data.teamshow == '3'||data.teamshow == '4'||data.teamshow == '5'||data.teamshow == '6'||data.teamshow == '7'||data.teamshow == '8'||data.teamshow == '9'",
+          "data.teamshow == '1 Team'||data.teamshow == '2 Team'||data.teamshow == '3 Team'||data.teamshow == '4 Team'||data.teamshow == '5 Team'||data.teamshow == '6 Team'||data.teamshow == '7 Team'||data.teamshow == '8 Team'||data.teamshow == '9 Team'",
       },
     };
   },
@@ -210,6 +210,7 @@ export default {
           headerName: this.dates[i-1],
           field: `day${i}`,
           width: 100,
+          type: ['currency', 'shaded']
         });
       }
     },

@@ -31,12 +31,12 @@ export function rearrangeData(importdatas, dates) {
             });
     
             let result = {
-                company: companyname,
-                plan: planSum,
-                income: incomeSum,
+                company: companyname + ' Company',
+                plan: parseFloat(planSum.toFixed(2)),
+                income: parseFloat(incomeSum.toFixed(2))
             };
             for (let i = 1; i <= dates.length; i++) {
-                result[`day${i}`] = sum[`day${i}`];
+                result[`day${i}`] = parseFloat(sum[`day${i}`].toFixed(2))
             }
     
             datas.push(result);
@@ -67,13 +67,13 @@ export function rearrangeData(importdatas, dates) {
             keyNames.forEach((key) => {
     
                 let teamresult = {
-                    teamshow: key,
-                    plan: groupedByTeam[key]["plan"],
-                    income: groupedByTeam[key]["income"],
+                    teamshow: key+' Team',
+                    plan: parseFloat(groupedByTeam[key]["plan"].toFixed(2)),
+                    income: parseFloat(groupedByTeam[key]["income"].toFixed(2)),
                 };
     
                 for (let i = 1; i <= dates.length; i++) {
-                    teamresult[`day${i}`] = groupedByTeam[key][`day${i}`];
+                    teamresult[`day${i}`] = parseFloat(groupedByTeam[key][`day${i}`].toFixed(2));
                 }
                 datas.push(teamresult);
     

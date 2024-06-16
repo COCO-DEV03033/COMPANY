@@ -6,6 +6,11 @@ export default {
     state.groupincomes = rearrangeData(state.incomes, dates)
     state.dates = dates
   },
+  
+  GET_OVERVIEW(state, overView) {
+    console.log('udpate OverView->', overView);
+    state.overView = overView
+  },
   CHANGE_INCOME(state, { changedata }) {
     let changedatas = updateArrays (state.incomes, changedata)
     state.incomes = changedatas

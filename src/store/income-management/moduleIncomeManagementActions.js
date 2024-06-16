@@ -34,6 +34,35 @@ export default {
     })
   },
   
+  fetchOverView({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      axios.post(`${API_URL}/api/income/overView`, payload)
+        .then((res) => {
+          if(res.data.status_code==0){
+            commit('GET_OVERVIEW', res.data.data.overView)
+            // this._vm.$vs.notify({
+            //   color: "success",
+            //   title: "Success",
+            //   text: res.data.message,
+            // });
+            resolve(res.data.data)
+          } else if(res.data.status_code==1){
+            this._vm.$vs.notify({
+              color: "warning",
+              title: "Warning",
+              text: res.data.message,
+            });
+            commit('GET_INCOMES', { incomes:[] , dates: [] })
+            resolve([])
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err)
+        })
+    })
+  },
+  
   changeIncome({ commit }, payload) {
     commit('CHANGE_INCOME', { changedata:payload })
   },

@@ -3,4 +3,5 @@ export default {
   incomes: [],
   dates: [],
   yearmonths:[],
+  overView:{},
 }
