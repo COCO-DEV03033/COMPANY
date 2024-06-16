@@ -67,13 +67,8 @@ export default {
       this.addCard()
     },
     removeCard (index) {
-      const othersIndex = this.cards.findIndex(card => card.id === '_free')
-      if (othersIndex !== -1) {
-        // Move the data to the "Others" card
-        this.cards[othersIndex].list.push(...this.cards[index].list)
-      }
-      // Remove the card
-      this.cards.splice(index, 1)
+      console.log('removeCard called')
+      this.list1.splice(index, 1)
     },
     save () {
       // const payload = {

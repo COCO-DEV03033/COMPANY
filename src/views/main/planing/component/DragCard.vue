@@ -6,13 +6,20 @@
         <div class="col text-center px-2 py-3 bg-light border rounded">
           <p class="text-success font-bold text-2xl" >{{team}}</p>
         </div>
-          <draggable :list="list_team" group="people" class="p-2 cursor-move"    @start="emitDragEvent" @end="emitDragEvent" @drop="emitDragEvent">
+          <draggable 
+            :list="list_team" 
+            group="people" 
+            class="p-2 cursor-move"    
+            @start="emitDragEvent" 
+            @end="emitDragEvent" 
+            @drop="emitDragEvent"
+        >
           <vs-list-item 
             @change="finish"
             v-for="(listItem, index) in list_team" 
             :key="index" 
             :title="listItem.name" 
-            :class="['base_item', { 'first_item': index === 0 }]"
+            :class="['base_item',{'first_item': index===0}]"
           >
             <input type="text" placeholder="$" class="input_style" v-model="listItem.amount" />
             <vs-avatar slot="avatar" :text="listItem.avatar" />
