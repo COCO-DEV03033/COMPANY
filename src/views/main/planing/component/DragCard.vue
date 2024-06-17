@@ -2,7 +2,7 @@
   <div>
     <vx-card :style="borderStyle" class="card">
       <vs-list  >
-        <DeleteButton @click="deleteCard" />
+        <DeleteButton v-if="index_main !== 0" @click="deleteCard" />
         <div class="col text-center px-2 py-3 bg-light border rounded">
           <p class="text-success font-bold text-2xl" >{{team}}</p>
         </div>
@@ -42,18 +42,10 @@ export default {
     DeleteButton
   },
   props :{
-    list_team :{
-      type: Array,
-      required : true
-    },
-    team:{
-      type:String,
-      required: true
-    },
-    color : {
-      type: Array,
-      required: true
-    }
+    list_team: Array,
+    team: String,
+    color: Array,
+    index_main: Number
   },
   methods: {
     deleteCard () {

@@ -12,7 +12,8 @@
         >
           <DragCard 
             :team="index === 0 ? `Free Members` : `Team ${index}`"  
-            :list_team="card" 
+            :list_team="card"
+            :index_main = "index"
             @delete-card="confirmDelete(index)"
             :color="colorValue[index % colorValue.length]" 
             @dragstart="handleDragEvent"
@@ -57,6 +58,7 @@ export default {
   },
   methods: {
     confirmDelete (index) {
+      if (index === 0) return
       this.$vs.dialog({
         type: 'confirm',
         color: 'danger',

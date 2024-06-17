@@ -63,42 +63,15 @@ export default {
     }
   },
   props: {
-    analyticsData: {
-      type: Object,
-      required: true
-    },
-    bardata: {
-      type: Array,
-      required: true
-    },
-    companyPlan : {
-      type: Object,
-      required: true
-    },
-    companyName : {
-      type: String,
-      required: true
-    },
-    plan : {
-      type : String,
-      required : true
-    },
-    growthrate : {
-      type : Number,
-      required : true
-    },
-    TotalUserByCompany : {
-      type : Array,
-      required : true
-    },
-    RealUserByCompany : {
-      type : Array,
-      required : true
-    },
-    color : {
-      type : String,
-      required : true
-    }
+    analyticsData: Object,
+    bardata: Array,
+    companyPlan: Object,
+    companyName: String,
+    plan: String,
+    growthrate: Number,
+    TotalUserByCompany: Array,
+    RealUserByCompany: Array,
+    color: String
   },
   components: {
     VueApexCharts,
