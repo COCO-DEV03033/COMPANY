@@ -27,9 +27,6 @@
                 :options="apexChatData.donutChart.chartOptions" 
                 :series="apexChatData.donutChart.series">
               </vue-apex-charts>
-              <template slot="codeContainer">
-                {{ apexChatData.donutChartCode }}
-              </template>
             </div>
             <div class="vx-col  xs:w-full lg:w-2/3 xl:w-2/3">
               <vue-apex-charts 
@@ -38,9 +35,6 @@
                 :options="apexChatData.lineChartSimple.chartOptions" 
                 :series="apexChatData.lineChartSimple.series" >
               </vue-apex-charts>
-              <template slot="codeContainer">
-                {{ apexChatData.lineChartSimpleCode }}
-              </template>
             </div>
           </div> 
         </vx-card>
