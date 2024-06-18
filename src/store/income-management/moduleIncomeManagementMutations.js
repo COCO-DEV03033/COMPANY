@@ -1,15 +1,24 @@
 import { rearrangeData, updateArrays } from '@/utils/utils';
 
 export default {
-  GET_EARNINGS(state, { earnings, dates }) {
-    state.earnings = earnings
-    state.groupearnings = rearrangeData(earnings, dates)
+  GET_INCOMES(state, { incomes, dates }) {
+    state.incomes = incomes
+    state.groupincomes = rearrangeData(state.incomes, dates)
     state.dates = dates
   },
-  CHANGE_EARNING(state, { changedata }) {
-    let changedatas = updateArrays (state.earnings, changedata)
-    state.earnings = changedatas
-    state.groupearnings = rearrangeData(changedatas, state.dates)
+  
+  GET_OVERVIEW(state, overView) {
+    state.overView = overView
+  },
+  
+  GET_TOTALSUMS(state, {totalSums, months}) {
+    state.totalSums = totalSums
+    state.months = months
+  },
+  CHANGE_INCOME(state, { changedata }) {
+    let changedatas = updateArrays (state.incomes, changedata)
+    state.incomes = changedatas
+    state.groupincomes = rearrangeData(changedatas, state.dates)
   },
   
   GET_YEARMONTHS(state, { yearmonths }) {
@@ -26,5 +35,4 @@ export default {
     state.yearmonths.push(adddata)
     state.yearmonths = data
   },
-
 }

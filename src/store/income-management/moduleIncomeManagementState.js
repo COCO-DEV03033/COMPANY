@@ -1,6 +1,9 @@
 export default {
-  groupearnings: [],
-  earnings: [],
+  groupincomes: [],
+  incomes: [],
   dates: [],
   yearmonths:[],
+  overView:{},
+  totalSums:[],
+  months:[],
 }
