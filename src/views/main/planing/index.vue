@@ -101,9 +101,9 @@
               :analyticsData = "analyticsData"
               :companyPlan = "companyPlan"
               :plan = "plan_CT"
-              :growthrate = "companyPlan.analyticsData.growthrate[3]"
-              :TotalUserByCompany = "companyPlan.TotalUserByCompany[3]"
-              :RealUserByCompany = "companyPlan.RealUserByCompany[3]"
+              :growthrate = "companyPlan.analyticsData.growthrate[4]"
+              :TotalUserByCompany = "companyPlan.TotalUserByCompany[4]"
+              :RealUserByCompany = "companyPlan.RealUserByCompany[4]"
               :bardata = "companyPlan.bardata.bar_CT"
               :color = "'text-danger'"
             />
