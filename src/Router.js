@@ -47,13 +47,48 @@ const router = new Router({
           }
         },
         {
-          path: '/project/list',
-          name: 'Project Lists',
-          component: () => import('./views/DashboardAnalytics.vue'),
+          path: 'project/list',
+          name: 'Project List',
+          component: () => import('@/views/main/project2/project-list/ProjectList.vue'),
           meta: {
-            rule: 'admin'
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Project List' },
+              { title: 'List', active: true }
+            ],
+            pageTitle: 'Project List',
+            rule: 'editor'
           }
         },
+        {
+          path: '/project/project-view/:userId',
+          name: 'Project View',
+          component: () => import('@/views/main/project2/ProjectView.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'project' },
+              { title: 'View', active: true }
+            ],
+            pageTitle: 'Project View',
+            rule: 'editor'
+          }
+        },
+       
+        // {
+        //   path: '/project/project-edit/:userId',
+        //   name: 'EditProject',
+        //   component: () => import('./views/main/project/projectEdit/projectEdit.vue'),
+        //   meta: {
+        //     // breadcrumb: [
+        //     //   { title: 'Home', url: '/' },
+        //     //   { title: 'Engineer', url: '/engineer/list' },
+        //     //   { title: 'Edit', active: true }
+        //     // ],
+        //     // pageTitle: 'User Edit',
+        //     rule: 'editor'
+        //   }
+        // },
         {
           path: '/project/overview',
           name: 'Project Overview',
@@ -62,18 +97,18 @@ const router = new Router({
             rule: 'admin'
           }
         },
+        // {
+        //   path: '/project/edit/:id',          
+        //   name: 'EditProject',
+        //   component: () => import('./views/main/project/projectEdit/projectEdit.vue'),
+        //   meta: {
+        //     rule: 'admin'
+        //   }
+        // },
         {
           path: '/earning/list',
           name: 'Earning List',
-          component: () => import('./views/main/earning/list/Index.vue'),
-          meta: {
-            rule: 'admin'
-          }
-        },
-        {
-          path: '/earning/setting',
-          name: 'Earning Setting',
-          component: () => import('./views/main/earning/setting/Index.vue'),
+          component: () => import('./views/DashboardAnalytics.vue'),
           meta: {
             rule: 'admin'
           }
@@ -177,7 +212,7 @@ const router = new Router({
           meta: {
             rule: 'admin'
           }
-        },
+        }
 
 
         // {
