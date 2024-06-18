@@ -27,7 +27,6 @@ export default {
   },
   
   SET_PROJECT (state, {project}) {
-    console.log('project', project);
     state.project = project
   },
   ADD_PROJECT (state, project) {

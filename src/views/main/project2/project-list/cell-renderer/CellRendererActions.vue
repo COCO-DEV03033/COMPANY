@@ -1,12 +1,17 @@
 <template>
     <div :style="{'direction': $vs.rtl ? 'rtl' : 'ltr'}">
-      <feather-icon icon="Edit3Icon" svgClasses="h-5 w-5 mr-4 hover:text-primary cursor-pointer" @click="editRecord" />
-      <feather-icon icon="Trash2Icon" svgClasses="h-5 w-5 hover:text-danger cursor-pointer" @click="confirmDeleteRecord" />
+      <!-- <feather-icon icon="InfoIcon" svgClasses="h-5 w-5 mr-4 hover:text-primary cursor-pointer" @click="editRecord" /> -->
+      <eye-icon size="1.5x" svgClasses="h-5 w-5 mr-4 hover:text-primary cursor-pointer" @click="editRecord" /></eye-icon>
+      <!-- <feather-icon icon="Trash2Icon" svgClasses="h-5 w-5 hover:text-danger cursor-pointer" @click="confirmDeleteRecord" /> -->
     </div>
 </template>
 
 <script>
+import { EyeIcon } from 'vue-feather-icons'
 export default {
+  components: {
+    EyeIcon
+  },
   name: 'CellRendererActions',
   methods: {
     editRecord () {
@@ -16,8 +21,8 @@ export default {
       // Below line will be for actual product
       // Currently it's commented due to demo purpose - Above url is for demo purpose
 
-      this.$router.push(`/project/project-view/${this.params.data._id}`).catch(() => {})
-      console.log(' >>>>>>>>>>>>>>>>>>>>>>>>>>> ', this.params.data._id)
+      this.$router.push(`/project/project-view/${this.params.data.userID}`).catch(() => {})
+      console.log(' >>>>>>>>>>>>>>>>>>>>>>>>>>> ', this.params.data.userID)
             
     },
     confirmDeleteRecord () {

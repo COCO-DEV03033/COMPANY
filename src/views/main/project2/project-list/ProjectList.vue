@@ -14,10 +14,9 @@
         <div class="flex-grow">
           <vs-dropdown vs-trigger-click class="cursor-pointer">
             <div class="p-4 border border-solid d-theme-border-grey-light rounded-full d-theme-dark-bg cursor-pointer flex items-center justify-between font-medium">
-              <!-- <span class="mr-2">{{ currentPage * paginationPageSize - (paginationPageSize - 1) }} - {{ projectsData.length - currentPage * paginationPageSize > 0 ? currentPage * paginationPageSize : projectsData.length }} of {{ projectsData.length }}</span> -->
+              <span class="mr-2">{{ currentPage * paginationPageSize - (paginationPageSize - 1) }} - {{ projectsData.length - currentPage * paginationPageSize > 0 ? currentPage * paginationPageSize : projectsData.length }} of {{ projectsData.length }}</span>
               <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />
-            </div>
-            <!-- <vs-button class="btn-drop" type="line" color="primary" icon-pack="feather" icon="icon-chevron-down"></vs-button> -->
+            </div>            
             <vs-dropdown-menu>
 
               <vs-dropdown-item @click="gridApi.paginationSetPageSize(10)">
@@ -36,59 +35,20 @@
           </vs-dropdown>
         </div>
 
-        <!-- TABLE ACTION COL-2: SEARCH & EXPORT AS CSV -->
+        <!-- SEARCH & EXPORT AS CSV -->
           <vs-input class="sm:mr-4 mr-0 sm:w-auto w-full sm:order-normal order-3 sm:mt-0 mt-4" v-model="searchQuery" @input="updateSearchQuery" placeholder="Search..." />
-          <!-- <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()">Export as CSV</vs-button> -->
-
-          <!-- ACTION - DROPDOWN -->
-          <vs-dropdown vs-trigger-click class="cursor-pointer">
-
-            <div class="p-3 shadow-drop rounded-lg d-theme-dark-light-bg cursor-pointer flex items-end justify-center text-lg font-medium w-32">
-              <span class="mr-2 leading-none">Actions</span>
-              <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />
-            </div>
-
-            <vs-dropdown-menu>
-
-              <vs-dropdown-item>
-                <span class="flex items-center">
-                  <feather-icon icon="TrashIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>Delete</span>
-                </span>
-              </vs-dropdown-item>
-
-              <vs-dropdown-item>
-                <span class="flex items-center">
-                  <feather-icon icon="ArchiveIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>Archive</span>
-                </span>
-              </vs-dropdown-item>
-
-              <vs-dropdown-item>
-                <span class="flex items-center">
-                  <feather-icon icon="FileIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>Print</span>
-                </span>
-              </vs-dropdown-item>
-
-              <vs-dropdown-item>
-                <span class="flex items-center">
-                  <feather-icon icon="SaveIcon" svgClasses="h-4 w-4" class="mr-2" />
-                  <span>CSV</span>
-                </span>
-              </vs-dropdown-item>
-
-            </vs-dropdown-menu>
-          </vs-dropdown>
+          <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()">Export as CSV</vs-button>
+          
       </div>
 
 
       <!-- AgGrid Table -->
-      <ag-grid-vue
+      <ag-grid-vue style="width: 100%;"
         ref="agGridTable"
         :components="components"
         :gridOptions="gridOptions"
         class="ag-theme-material w-100 my-4 ag-grid-table"
+        gridOption.suppressCellSelection = "true,"
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
         :rowData="projectsData"
@@ -114,12 +74,9 @@
 <script>
 import { AgGridVue } from 'ag-grid-vue'
 import '@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss'
+import { EyeIcon } from 'vue-feather-icons'
 import vSelect from 'vue-select'
-
-// Store Module
 import moduleProjectManagement from '@/store/project-management/moduleProjectManagement.js'
-
-// Cell Renderer
 import CellRendererLink from './cell-renderer/CellRendererLink.vue'
 import CellRendererStatus from './cell-renderer/CellRendererStatus.vue'
 import CellRendererVerified from './cell-renderer/CellRendererVerified.vue'
@@ -130,6 +87,7 @@ export default {
   components: {
     AgGridVue,
     vSelect,
+    EyeIcon,
 
     // Cell Renderer
     CellRendererLink,
@@ -144,35 +102,35 @@ export default {
 
       // AgGrid
       gridApi: null,
-      gridOptions: {},
+      gridOptions: {
+        suppressCellSelection: true  
+      },
+      
       defaultColDef: {
         sortable: true,
         resizable: true,
         suppressMenu: true
+        
       },
+
+      
       columnDefs: [
         {
-          headerName: 'ID',
-          field: 'id',
+          headerName: 'No',
+          field: 'no',
           width: 80,
           filter: true,
           checkboxSelection: false,
-          
-          headerCheckboxSelection: false
+          headerCheckboxSelection: false,
+          valueGetter: 'node.rowIndex + 1'
         },
         {
           headerName: 'Name',
-          field: 'username',
+          field: 'name',
           filter: true,
-          width: 210,
+          width: 200,
           cellRendererFramework: 'CellRendererLink'
         },
-        // {
-        //   headerName: 'Name',
-        //   field: 'name',
-        //   filter: true,
-        //   width: 180
-        // },
         {
           headerName: 'Group',
           field: 'team',
@@ -184,20 +142,29 @@ export default {
           headerName: 'Company',
           field: 'company',
           filter: true,
-          width: 120
+          width: 150
         },
         {
           headerName: 'Plan',
           field: 'plan',
           filter: true,
-          width: 120
+          width: 100
         },
         {
-          headerName: 'Income',
+          headerName: 'Current Income',
           field: 'income',
           filter: true,
-          width: 120
+          width: 180
         },
+        
+        // {
+        //   headerName: 'Project Status',
+        //   children: [
+        //     { headerName: 'Dev Field', field: 'devField', filter: true, flex: 1, minWidth: 250, maxWidth: 300 },
+        //     { headerName: 'Earnings', field: 'earnings', filter: true, minWidth: 250, maxWidth: 300, flex:2 }
+        //   ]
+        // },        
+        
         {
           headerName: 'Dev Field',
           field: 'devField',
@@ -205,48 +172,21 @@ export default {
           width: 150
         },
         {
-          headerName: 'Cost and Date',
-          field: 'cost',
+          headerName: 'Payment Dates and Income ',
+          field: 'earnings',
+          filter: true,
+          width: 200
+        },
+        {
+          headerName: 'Expected Incom',
+          field: 'expectedIncome',
           filter: true,
           width: 180
         },
         {
-          headerName: 'Price',
-          field: 'totalCost',
-          filter: true,
-          width: 120
-        },
-        {
-          headerName: 'Note',
-          field: 'note',
-          filter: true,
-          width: 150
-        },
-        // {
-        //   headerName: 'Status',
-        //   field: 'status',
-        //   filter: true,
-        //   width: 150,
-        //   cellRendererFramework: 'CellRendererStatus'
-        // },
-        // {
-        //   headerName: 'Verified',
-        //   field: 'is_verified',
-        //   filter: true,
-        //   width: 125,
-        //   cellRendererFramework: 'CellRendererVerified',
-        //   cellClass: 'text-center'
-        // },
-        // {
-        //   headerName: 'Department',
-        //   field: 'department',
-        //   filter: true,
-        //   width: 150
-        // },
-        {
           headerName: 'Actions',
           field: 'transactions',
-          width: 150,
+          width: 130,
           cellRendererFramework: 'CellRendererActions'
         }
       ],
@@ -314,11 +254,6 @@ export default {
   mounted () {
     this.gridApi = this.gridOptions.api
 
-    /* =================================================================
-      NOTE:
-      Header is not aligned properly in RTL version of agGrid table.
-      However, we given fix to this issue. If you want more robust solution please contact them at gitHub
-    ================================================================= */
     if (this.$vs.rtl) {
       const header = this.$refs.agGridTable.$el.querySelector('.ag-header-container')
       header.style.left = `-${  String(Number(header.style.transform.slice(11, -3)) + 9)  }px`
@@ -335,7 +270,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #page-user-list {
   .user-list-filters {
     .vs__actions {
@@ -346,4 +281,18 @@ export default {
     }
   }
 }
+
+.ag-header-cell {
+  border: 1px solid #d3d3d3;
+}
+
+.ag-cell-focus, .ag-cell-no-focus {
+  border: none !important;
+}
+
+.no-border.ag-cell:focus {
+  border: none !important;
+  outline: none;
+}
+
 </style>

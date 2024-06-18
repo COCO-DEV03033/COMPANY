@@ -11,5 +11,5 @@ export default {
   users: [],
   user:null,
   projects:[],
-  project:{}
+  project:[]
 }
