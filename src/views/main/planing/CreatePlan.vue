@@ -11,9 +11,9 @@
           :class="['team','sm:w-full', 'md:w-1/3', 'lg:w-1/4']"
         >
           <DragCard 
-            :team="index === '0' ? `Free Members` : `Team ${index}`"  
+            :team="Number(index) === 0 ? `Free Members` : `Team ${Number(index)}`"  
             :list_team="card"
-            :index_main = "index"
+            :index_main = "Number(index)"
             @delete-card="confirmDelete(index)"
             :color="colorValue[index % colorValue.length]" 
             @dragstart="handleDragEvent"
@@ -77,20 +77,26 @@ export default {
     handleDragEvent () {
       this.saveButtonDisabled = false
     },
-    addCard () {
-      this.list1.push([])
+    addCard() {
+      const newTeamIndex = Object.keys(this.list1).length; // Calculate the new team index
+      this.$set(this.list1, newTeamIndex, []); // Add a new team with an empty array of members
     },
     bothFunction () {
       this.handleDragEvent()
       this.addCard()
     },
-    removeCard (index) {
-      const firstIndex = 0
-      if (index !== firstIndex) {
-        const deletedItem = this.list1.splice(index, 1)[0]
-        console.log('deletedItem', deletedItem)
-        if (this.list1.length > 0) {
-          this.list1[firstIndex].push(...deletedItem)
+    removeCard(index) {
+      const firstIndex = '0';
+      const index_ = index.toString();
+      if (index_ !== firstIndex) {
+        const deletedItem = this.list1[index_];
+        if (deletedItem) {
+          if (Array.isArray(deletedItem) && Array.isArray(this.list1[firstIndex])) {
+            this.list1[firstIndex].push(...deletedItem);
+          } else {
+            console.error('Deleted item or first index is not an array:', deletedItem, this.list1[firstIndex]);
+          }
+          this.$delete(this.list1, index_);
         }
       }
     },
