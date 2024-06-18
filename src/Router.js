@@ -41,19 +41,54 @@ const router = new Router({
         {
           path: '/dashboard',
           name: 'dashboard',
-          component: () => import('./views/DashboardAnalytics.vue'),
+          component: () => import('./views/main/dashboard/DashboardStatistics.vue'),
           meta: {
             rule: 'admin'
           }
         },
         {
-          path: '/project/list',
-          name: 'Project Lists',
-          component: () => import('./views/DashboardAnalytics.vue'),
+          path: 'project/list',
+          name: 'Project List',
+          component: () => import('@/views/main/project2/project-list/ProjectList.vue'),
           meta: {
-            rule: 'admin'
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'Project List' },
+              { title: 'List', active: true }
+            ],
+            pageTitle: 'Project List',
+            rule: 'editor'
           }
         },
+        {
+          path: '/project/project-view/:userId',
+          name: 'Project View',
+          component: () => import('@/views/main/project2/ProjectView.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'project' },
+              { title: 'View', active: true }
+            ],
+            pageTitle: 'Project View',
+            rule: 'editor'
+          }
+        },
+       
+        // {
+        //   path: '/project/project-edit/:userId',
+        //   name: 'EditProject',
+        //   component: () => import('./views/main/project/projectEdit/projectEdit.vue'),
+        //   meta: {
+        //     // breadcrumb: [
+        //     //   { title: 'Home', url: '/' },
+        //     //   { title: 'Engineer', url: '/engineer/list' },
+        //     //   { title: 'Edit', active: true }
+        //     // ],
+        //     // pageTitle: 'User Edit',
+        //     rule: 'editor'
+        //   }
+        // },
         {
           path: '/project/overview',
           name: 'Project Overview',
@@ -62,6 +97,14 @@ const router = new Router({
             rule: 'admin'
           }
         },
+        // {
+        //   path: '/project/edit/:id',          
+        //   name: 'EditProject',
+        //   component: () => import('./views/main/project/projectEdit/projectEdit.vue'),
+        //   meta: {
+        //     rule: 'admin'
+        //   }
+        // },
         {
           path: '/income/overview',
           name: 'Income Overview',
@@ -177,7 +220,7 @@ const router = new Router({
           meta: {
             rule: 'admin'
           }
-        },
+        }
 
 
         // {

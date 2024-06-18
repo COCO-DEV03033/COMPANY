@@ -110,7 +110,7 @@
             <table>
               <tr>
                 <td class="font-semibold">Gender</td>
-                <td>{{ user_data.gender === 'male' ? 'Male' : 'Female' }}</td>
+                <td>{{ user_data.gender }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Birth Date</td>
@@ -118,23 +118,24 @@
               </tr>
               <tr>
                 <td class="font-semibold">Universty</td>
-                <td>{{ user_data.universty }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Dev Years</td>
-                <td>{{ user_data.devYears || 0 }} year</td>
+                <td>{{ user_data.university }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Tec License</td>
-                <td>{{ user_data.tecLicense }}</td>
+                <td>{{ user_data.tech_field }}</td>
               </tr>
               <tr>
+                <td class="font-semibold">Dev Years</td>
+                <td>{{ user_data.dev_year}} year</td>
+              </tr>
+              
+              <tr>
                 <td class="font-semibold">Dev Area</td>
-                <td>{{ user_data.devArea }}</td>
+                <td>{{ user_data.dev_area }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Major Subject</td>
-                <td>{{ user_data.majorSubject }}</td>
+                <td>{{ user_data.major_subject }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Language</td>
@@ -142,17 +143,12 @@
               </tr>
               <tr>
                 <td class="font-semibold">Tec Level</td>
-                <td>{{ user_data.tecLevel }}</td>
+                <td>{{ user_data.tech_level }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Personalities</td>
-                <td>{{ user_data.Personalities }}</td>
-              </tr>
-              <tr>
-              <tr>
-                <td class="font-semibold">Dev Area</td>
-                <td>{{ user_data.devArea }}</td>
-              </tr>
+                <td>{{ user_data.personality }}</td>
+              </tr>           
             </table>
           </vx-card>
         </div>
@@ -210,6 +206,7 @@ export default {
       user_not_found: false,
     };
   },
+  
   computed: {
     userAddress() {
       let str = "";
@@ -280,10 +277,12 @@ export default {
     }
 
     const userId = this.$route.params.userId;
+
     this.$store
       .dispatch("userManagement/fetchUser", userId)
       .then((res) => {
         this.user_data = res.data.existUser;
+        console.log(this.user_data)
       })
       .catch((err) => {
         if (err.response.status > 400) {

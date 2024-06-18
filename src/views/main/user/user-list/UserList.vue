@@ -1,42 +1,45 @@
 <template>
 
   <div id="page-user-list">
-
     <vx-card ref="filterCard" title="Filters" class="user-list-filters mb-8" actionButtons @refresh="resetColFilters" @remove="resetColFilters">
-      <div class="vx-row">
-        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Organization</label>
-          <v-select :options="organOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="organFilter" class="mb-4 md:mb-0" />
-        </div>
-        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Depart*</label>
-          <v-select :options="departOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="departFilter" class="mb-4 md:mb-0" />
-        </div>
-        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Team</label>
-          <v-select :options="teamOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="teamFilter" class="mb-4 sm:mb-0" />
-        </div>
-        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Universty</label>
-          <v-select :options="universtyOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="universtyFilter" />
-        </div>
-        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Status</label>
-          <v-select :options="statusOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="statusFilter" />
-        </div>
-        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
-          <label class="text-sm opacity-75">Role</label>
-          <v-select :options="roleOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="roleFilter" />
-        </div>
-      </div>
-    </vx-card>
+          <div class="vx-row">
+            <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+              <label class="text-sm opacity-75">Organization</label>
+              <v-select :options="organOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="organFilter" class="mb-4 md:mb-0" />
+            </div>
+            <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+              <label class="text-sm opacity-75">Depart*</label>
+              <v-select :options="departOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="departFilter" class="mb-4 md:mb-0" />
+            </div>
+            <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+              <label class="text-sm opacity-75">Team</label>
+              <v-select :options="teamOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="teamFilter" class="mb-4 sm:mb-0" />
+            </div>
+            <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+              <label class="text-sm opacity-75">Universty</label>
+              <v-select :options="universtyOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="universtyFilter" />
+            </div>
+            <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+              <label class="text-sm opacity-75">Status</label>
+              <v-select :options="statusOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="statusFilter" />
+            </div>
+            <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+              <label class="text-sm opacity-75">Role</label>
+              <v-select :options="roleOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="roleFilter" />
+            </div>
+          </div>
+      </vx-card>
+
+    
 
     <div class="vx-card p-6">
+      
 
       <div class="flex flex-wrap items-center">
+        
 
         <!-- ITEMS PER PAGE -->
-        <div class="flex-grow">
+        <div class="flex-grow test">
           <vs-dropdown vs-trigger-click class="cursor-pointer">
             <div class="p-4 border border-solid d-theme-border-grey-light rounded-full d-theme-dark-bg cursor-pointer flex items-center justify-between font-medium">
               <span class="mr-2">{{ currentPage * paginationPageSize - (paginationPageSize - 1) }} - {{ usersData.length - currentPage * paginationPageSize > 0 ? currentPage * paginationPageSize : usersData.length }} of {{ usersData.length }}</span>
@@ -65,7 +68,7 @@
           <vs-input class="sm:mr-2 mr-0 sm:w-auto w-full sm:order-normal order-3 sm:mt-0 mt-4" v-model="searchQuery" @input="updateSearchQuery" placeholder="Search..." />
           <vs-button class="mb-4 md:mb-0 mr-2" @click="exportData"><feather-icon icon="SaveIcon" svgClasses="h-4 w-4" class="mr-2" /> Export as CSV</vs-button>
           <vs-button class="mb-4 md:mb-0 mr-2" @click="importData"><feather-icon icon="ArchiveIcon"  svgClasses="h-4 w-4" class="mr-2" /> Import CSV</vs-button>
-          <vs-button class="mb-4 md:mb-0 mr-2"><feather-icon icon="FileIcon" svgClasses="h-4 w-4" class="mr-2" /> Print</vs-button>
+          <vs-button class="mb-4 md:mb-0 mr-2"  @click="printFile"><feather-icon icon="FileIcon" svgClasses="h-4 w-4" class="mr-2"/> Print</vs-button>
           <vs-button class="mb-4 md:mb-0" color="danger"><feather-icon icon="TrashIcon" svgClasses="h-4 w-4" class="mr-2" /> Delete</vs-button>
       </div>
 
@@ -351,7 +354,14 @@ export default {
     },
     updateSearchQuery (val) {
       this.gridApi.setQuickFilter(val)
-    }
+    },
+
+    printFile() {
+      window.print()
+    },
+
+
+    
   },
   mounted () {
     this.gridApi = this.gridOptions.api
@@ -367,6 +377,7 @@ export default {
       moduleUserManagement.isRegistered = true
     }
     this.$store.dispatch('userManagement/fetchUsers').catch(err => { console.error(err) })
+  
   },
   beforeCreate() {
     if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login');
@@ -388,3 +399,4 @@ export default {
   }
 }
 </style>
+
