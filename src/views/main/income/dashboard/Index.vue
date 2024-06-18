@@ -1,12 +1,12 @@
 <template>
   <div id="dashboard-analytics">
-    <vx-card ref="filterCard" title="Filters" class="user-list-filters mb-8">
+    <vx-card ref="filterCard" title="Incomes By Company" class="user-list-filters mb-8">
       <div class="vx-row">
         <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
           <label class="text-sm opacity-75">Organization</label>
           <v-select :options="organizationOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="organizationFilter" class="mb-4 md:mb-0" />
         </div>
-        <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
+        <!-- <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
           <label class="text-sm opacity-75">User Type</label>
           <v-select :options="roleOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="roleFilter" />
         </div>
@@ -21,7 +21,7 @@
         <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
           <label class="text-sm opacity-75">Job Site</label>
           <v-select :options="jobSiteOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="jobSiteFilter" />
-        </div>
+        </div> -->
         <!-- <div class="vx-col md:w-1/6 sm:w-1/2 w-full">
           <label class="text-sm opacity-75">Universty</label>
           <v-select :options="universtyOptions" :clearable="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" v-model="universtyFilter" />
@@ -37,81 +37,11 @@
       </div>
     </div>
     </vx-card>
-    <div class="vx-row">
+    
       <!-- CARD 4: SESSION -->
-    </div>
-    <div class="vx-row">
-      <!-- CARD 9: DISPATCHED ORDERS -->
-      <div class="vx-col w-full">
-        <vx-card title="OverView Details">
-          <div slot="no-body" class="mt-4">
-            <vs-table :data="overView.details" class="table-dark-inverted">
-              <template slot="thead">
-                <vs-th>Organization</vs-th>
-                <vs-th>Avarage</vs-th>
-                <vs-th>Total</vs-th>
-                <!-- <vs-th>LOCATION</vs-th>
-                <vs-th>DISTANCE</vs-th>
-                <vs-th>START DATE</vs-th>
-                <vs-th>EST DELIVERY DATE</vs-th> -->
-              </template>
-
-              <template slot-scope="{ data }">
-                <vs-tr :key="indextr" v-for="(tr, indextr) in data">
-                  <vs-td :data="data[indextr].orderNo">
-                    <span>{{ data[indextr].group }}</span>
-                  </vs-td>
-                  <!-- <vs-td :data="data[indextr].status">
-                    <span class="flex items-center px-2 py-1 rounded"
-                      ><div
-                        class="h-3 w-3 rounded-full mr-2"
-                        :class="'bg-' + data[indextr].statusColor"
-                      ></div>
-                      {{ data[indextr].status }}</span
-                    >
-                  </vs-td> -->
-                  <!-- <vs-td :data="data[indextr].orderNo">
-                    <ul class="users-liked user-list">
-                      <li
-                        v-for="(user, userIndex) in data[indextr].usersLiked"
-                        :key="userIndex"
-                      >
-                        <vx-tooltip :text="user.name" position="bottom">
-                          <vs-avatar
-                            :src="user.img"
-                            size="30px"
-                            class="border-2 border-white border-solid -m-1"
-                          ></vs-avatar>
-                        </vx-tooltip>
-                      </li>
-                    </ul>
-                  </vs-td> -->
-                  <vs-td :data="data[indextr].average">
-                    <span>{{ data[indextr].average }}</span>
-                  </vs-td>
-                  <vs-td :data="data[indextr].total">
-                    <span>{{ data[indextr].total }}</span>
-                    <vs-progress
-                      :percent="data[indextr].distPercent"
-                    ></vs-progress>
-                      <!-- :color="data[indextr].statusColor" -->
-                  </vs-td>
-                  <!-- <vs-td :data="data[indextr].orderNo">
-                    <span>{{ data[indextr].startDate }}</span>
-                  </vs-td>
-                  <vs-td :data="data[indextr].orderNo">
-                    <span>{{ data[indextr].estDelDate }}</span>
-                  </vs-td> -->
-                </vs-tr>
-              </template>
-            </vs-table>
-          </div>
-        </vx-card>
-      </div>
-    </div>
-    <vx-card>
+      <vx-card>
       <!-- TABLE ACTION ROW -->
-
+<div class="vx-row">
       <div class="flex flex-wrap justify-between items-center">
         <!-- TABLE ACTION COL-2: SEARCH & EXPORT AS CSV -->
         <div
@@ -141,8 +71,8 @@
         :enableRtl="$vs.rtl"
       >
       </ag-grid-vue>
+       </div>
     </vx-card>
-
   </div>
 </template>
 
@@ -177,7 +107,7 @@ export default {
       gridApi: null,
       defaultColDef: {
         sortable: false,
-        editable: true,
+        editable: false,
         resizable: true,
         lockPinned: true,
       },
@@ -337,35 +267,30 @@ export default {
           headerName: "Company",
           field: "company",
           width: 100,
-          editable: false,
           pinned: "left",
         },
         {
           headerName: "Team",
           field: "teamshow",
           width: 100,
-          editable: false,
           pinned: "left",
         },
         {
           headerName: "Name",
           field: "name",
           width: 100,
-          editable: false,
           pinned: "left",
         },
         {
           headerName: "Plan",
           field: "plan",
           width: 100,
-          editable: false,
           pinned: "left",
         },
         {
           headerName: "Income",
           field: "income",
           width: 100,
-          editable: false,
           pinned: "left",
         },
       ];
