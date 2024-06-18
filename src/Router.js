@@ -41,7 +41,7 @@ const router = new Router({
         {
           path: '/dashboard',
           name: 'dashboard',
-          component: () => import('./views/DashboardAnalytics.vue'),
+          component: () => import('./views/main/dashboard/DashboardStatistics.vue'),
           meta: {
             rule: 'admin'
           }
