@@ -4,25 +4,15 @@ export default {
   GET_PLANS (state, { plans }) {
     state.plans = plans
   },
-  CHANGE_PLAN (state, { changedata }) {
-    let changedatas = updateArrays(state.plans, changedata)
+  UPDATE_PLANS (state, { updatedata }) {
+    let changedatas = updateArrays(state.plans, updatedata)
     state.plans = changedatas
-    state.groupplans = rearrangeData(changedatas, state.dates)
   },
   
-  GET_YEARMONTHS (state, { yearmonths }) {
-    state.yearmonths = yearmonths
-  },
-
-  UPDATE_YEARMONTH (state, { updatedata }) {
-    let changedatas = updateArrays(state.yearmonths, updatedata)
-    state.yearmonths = changedatas
-  },
-  
-  ADD_YEARMONTH (state, { adddata }) {
-    let data = state.yearmonths
-    state.yearmonths.push(adddata)
-    state.yearmonths = data
+  ADD_PLANS (state, { adddata }) {
+    let data = state.plans
+    state.plans.push(adddata)
+    state.plans = data
   }
 
 }

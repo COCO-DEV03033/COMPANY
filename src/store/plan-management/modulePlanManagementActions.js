@@ -7,11 +7,13 @@ export default {
   fetchPlans ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       
-      axios.post(`${API_URL}/api/plan/getPlans/`, payload)
-        .then((res) => {
+      // axios.get(`${API_URL}/api/plan/getPlans/`, payload)
+      axios.get(`${API_URL}/api/plan/getPlans?year=${payload.year}&month=${payload.month}&organization=${payload.organization}`)
+      .then((res) => {
           if (res.data.status_code === 0) {
             commit('GET_PLANS', { plans:res.data.data.plans })
             console.log('plans', res.data.data.plans)
+            console.log('res.data.data', res.data.data, typeof res.data.data)
             resolve(res.data.data)
           } else if (res.data.status_code === 1) {
             this._vm.$vs.notify({
@@ -19,7 +21,6 @@ export default {
               title: 'Warning',
               text: res.data.message
             })
-            commit('GET_INCOMES', { incomes:[], dates: [] })
             resolve([])
           }
         })
@@ -29,18 +30,14 @@ export default {
         })
     })
   },
-  
-  changePlan ({ commit }, payload) {
-    commit('CHANGE_PLAN', { changedata:payload })
-  },
   updatePlans ({commit}, payload) {
     return new Promise((resolve, reject) => {
-      axios.post(`${API_URL}/api/plan/update`, payload)
+      axios.post(`${API_URL}/api/plan/updatePlan`, payload)
         .then((response) => {
           this._vm.$vs.notify({
             color: 'success',
             title: 'Success',
-            text: 'Update Data Successfully!!!'
+            text: 'Update Plan Successfully!!!'
           })
           resolve(response)
         })
@@ -48,42 +45,14 @@ export default {
     })
   },
 
-  fetchYearMonths ({ commit }, payload) {
+  
+  addPlans ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.post('/api/plan/getYearMonths', payload)
-        .then((res) => {
-          if (res.data.status_code === 0) {
-            commit('GET_YEARMONTHS', { yearmonths:res.data.data.yearmonths })
-            this._vm.$vs.notify({
-              color: 'success',
-              title: 'Success',
-              text: res.data.message
-            })
-            resolve(res.data.data)
-          } else if (res.data.status_code === 1) {
-            this._vm.$vs.notify({
-              color: 'warning',
-              title: 'Warning',
-              text: res.data.message
-            })
-            commit('SET_PLAN', { plans:[], dates: [] })
-            resolve([])
-          }
-        })
-        .catch((err) => {
-          console.log(err)
-          reject(err)
-        })
-    })
-  },
-
-  addYearMonth ({ commit }, payload) {
-    return new Promise((resolve, reject) => {
-      axios.post(`${API_URL}/api/plan/addYearMonth`, payload)
+      axios.post(`${API_URL}/api/plan/addPlan`, payload)
         .then((res) => {
           console.log(res)
           if (res.data.status_code === 0) {
-            commit('ADD_YEARMONTH', { adddata:res.data.data.yearmonth })
+            commit('ADD_PLAN', { adddata:res.data.data.plans })
             this._vm.$vs.notify({
               color: 'success',
               title: 'Success',
@@ -106,32 +75,32 @@ export default {
     })
   },
   
-  updateYearMonth ({ commit }, payload) {
-    return new Promise((resolve, reject) => {
-      axios.post(`${API_URL}/api/plan/updateYearMonth`, payload)
-        .then((res) => {
-          commit('UPDATE_YEARMONTH', { updatedata:payload })
-          if (res.data.status_code === 0) {
-            this._vm.$vs.notify({
-              color: 'success',
-              title: 'Success',
-              text: res.data.message
-            })
-          } else if (res.data.status_code === 1) {
-            this._vm.$vs.notify({
-              color: 'warning',
-              title: 'Warning',
-              text: res.data.message
-            })
-          } else {
-            console.log('error')
-          }
-        })
-        .catch((error) => { 
-          console.log(error)
-          reject(error) })
-    })
-  },
+  // updateYearMonth ({ commit }, payload) {
+  //   return new Promise((resolve, reject) => {
+  //     axios.post(`${API_URL}/api/plan/updateYearMonth`, payload)
+  //       .then((res) => {
+  //         commit('UPDATE_YEARMONTH', { updatedata:payload })
+  //         if (res.data.status_code === 0) {
+  //           this._vm.$vs.notify({
+  //             color: 'success',
+  //             title: 'Success',
+  //             text: res.data.message
+  //           })
+  //         } else if (res.data.status_code === 1) {
+  //           this._vm.$vs.notify({
+  //             color: 'warning',
+  //             title: 'Warning',
+  //             text: res.data.message
+  //           })
+  //         } else {
+  //           console.log('error')
+  //         }
+  //       })
+  //       .catch((error) => { 
+  //         console.log(error)
+  //         reject(error) })
+  //   })
+  // },
   
   removeRecord ({ commit }, payload) {
     return new Promise((resolve, reject) => {

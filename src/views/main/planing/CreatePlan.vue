@@ -45,20 +45,26 @@ export default {
   },
   computed: {
     list1 () {
-      const teamArray = this.$store.state.planManagement.plans
-      for (let i = 0; i < teamArray.length; i++) {
-        if (teamArray[i] === null) {
-          teamArray[i] = [] 
-        } else {
-          break
-        } 
-      }
-      return teamArray
-    }
+      
+      return this.$store.state.planManagement.plans
+      
+      // const teamArray = this.$store.state.planManagement.plans
+      // console.log('teamArray', teamArray)
+      // for (let i = 0; i < teamArray.length; i++) {
+      //   if (teamArray[i] === null) {
+      //     teamArray[i] = [] 
+      //   } else {
+      //     break
+      //   } 
+      // }
+      // return teamArray
+    },
+    
   },
   methods: {
     confirmDelete (index) {
-      if (index === 0) return
+      console.log("index", index)
+      // if (index === 0) return
       this.$vs.dialog({
         type: 'confirm',
         color: 'danger',
@@ -82,6 +88,7 @@ export default {
       const firstIndex = 0
       if (index !== firstIndex) {
         const deletedItem = this.list1.splice(index, 1)[0]
+        console.log('deletedItem', deletedItem)
         if (this.list1.length > 0) {
           this.list1[firstIndex].push(...deletedItem)
         }
@@ -97,6 +104,8 @@ export default {
     }
   },
   mounted () {
+    console.log("response", this.$store.state.planManagement.plans)
+    console.log("list1", list1)
   },
   beforeCreate () {
     if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login')
