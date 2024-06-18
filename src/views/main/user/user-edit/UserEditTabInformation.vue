@@ -20,15 +20,31 @@
 
         <!-- Col Content -->
         <div>
-
-          <!-- DOB -->
+           <!-- Gender -->
+           <div class="mt-4">
+            <label class="text-sm">Gender</label>
+            <div class="mt-2">
+              <vs-radio v-model="data_local.gender" vs-value="male" class="mr-4">Male</vs-radio>
+              <vs-radio v-model="data_local.gender" vs-value="female" class="mr-4">Female</vs-radio>
+            </div>
+          </div>
+          <!-- Birthday -->
           <div class="mt-4">
             <label class="text-sm">Birth Date</label>
             <flat-pickr v-model="data_local.dob" :config="{ dateFormat: 'd F Y', maxDate: new Date() }" class="w-full" v-validate="'required'" name="dob" />
             <span class="text-danger text-sm"  v-show="errors.has('dob')">{{ errors.first('dob') }}</span>
           </div>
+          <!--University-->
+          <vs-input
+          class="w-full mt-4"
+          label="University"
+          v-model="data_local.userID"
+          v-validate="'required'"
+          name="University"/>
+          
+          
 
-          <vs-input class="w-full mt-4" label="Mobile" v-model="data_local.mobile" v-validate="{regex: '^\\+?([0-9]+)$' }" name="mobile" />
+          
           <span class="text-danger text-sm"  v-show="errors.has('mobile')">{{ errors.first('mobile') }}</span>
 
           <vs-input class="w-full mt-4" label="Website" v-model="data_local.website" v-validate="'url:require_protocol'" name="website" data-vv-as="field" />
@@ -40,14 +56,7 @@
             <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
           </div>
 
-          <!-- Gender -->
-          <div class="mt-4">
-            <label class="text-sm">Gender</label>
-            <div class="mt-2">
-              <vs-radio v-model="data_local.gender" vs-value="male" class="mr-4">Male</vs-radio>
-              <vs-radio v-model="data_local.gender" vs-value="female" class="mr-4">Female</vs-radio>
-            </div>
-          </div>
+         
 
           <div class="mt-6">
             <label>Contact Options</label>
@@ -123,7 +132,7 @@ export default {
   },
   data () {
     return {
-
+      name: "",
       data_local: JSON.parse(JSON.stringify(this.data)),
 
       langOptions: [
@@ -140,6 +149,9 @@ export default {
   computed: {
     validateForm () {
       return !this.errors.any()
+    },
+    nameValid() {
+      return /^[1-30]+$/.test(this.name);
     }
   },
   methods: {

@@ -22,7 +22,7 @@
             svgClasses="h-8 w-8"
           ></feather-icon>
           <h1 class="mb-6 text-white">
-            Congratulations {{ checkpointReward.userName }},
+            SHUCongratulations {{ checkpointReward.userName }},
           </h1>
           <p class="xl:w-3/4 lg:w-4/5 md:w-2/3 w-4/5 mx-auto text-white">
             You have done <strong>{{ checkpointReward.progress }}</strong> more sales
