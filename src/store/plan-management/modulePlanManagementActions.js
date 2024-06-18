@@ -11,6 +11,7 @@ export default {
         .then((res) => {
           if (res.data.status_code === 0) {
             commit('GET_PLANS', { plans:res.data.data.plans })
+            console.log('plans', res.data.data.plans)
             resolve(res.data.data)
           } else if (res.data.status_code === 1) {
             this._vm.$vs.notify({
@@ -29,12 +30,12 @@ export default {
     })
   },
   
-  changeEaring ({ commit }, payload) {
-    commit('CHANGE_EARNING', { changedata:payload })
+  changePlan ({ commit }, payload) {
+    commit('CHANGE_PLAN', { changedata:payload })
   },
-  updateEarings ({commit}, payload) {
+  updatePlans ({commit}, payload) {
     return new Promise((resolve, reject) => {
-      axios.post(`${API_URL}/api/earning/update`, payload)
+      axios.post(`${API_URL}/api/plan/update`, payload)
         .then((response) => {
           this._vm.$vs.notify({
             color: 'success',
@@ -49,7 +50,7 @@ export default {
 
   fetchYearMonths ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.post('/api/earning/getYearMonths', payload)
+      axios.post('/api/plan/getYearMonths', payload)
         .then((res) => {
           if (res.data.status_code === 0) {
             commit('GET_YEARMONTHS', { yearmonths:res.data.data.yearmonths })
@@ -65,7 +66,7 @@ export default {
               title: 'Warning',
               text: res.data.message
             })
-            commit('SET_EARNING', { earnings:[], dates: [] })
+            commit('SET_PLAN', { plans:[], dates: [] })
             resolve([])
           }
         })
@@ -78,7 +79,7 @@ export default {
 
   addYearMonth ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.post(`${API_URL}/api/earning/addYearMonth`, payload)
+      axios.post(`${API_URL}/api/plan/addYearMonth`, payload)
         .then((res) => {
           console.log(res)
           if (res.data.status_code === 0) {
@@ -107,7 +108,7 @@ export default {
   
   updateYearMonth ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.post(`${API_URL}/api/earning/updateYearMonth`, payload)
+      axios.post(`${API_URL}/api/plan/updateYearMonth`, payload)
         .then((res) => {
           commit('UPDATE_YEARMONTH', { updatedata:payload })
           if (res.data.status_code === 0) {
@@ -134,7 +135,7 @@ export default {
   
   removeRecord ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.post(`${API_URL}/api/earning/deleteYearMonth`, payload)
+      axios.post(`${API_URL}/api/plan/deleteYearMonth`, payload)
         .then((res) => {
           if (res.data.status_code === 0) {
             this._vm.$vs.notify({

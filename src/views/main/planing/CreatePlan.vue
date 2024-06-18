@@ -2,7 +2,7 @@
   <div id="create-plan mt-6">
     <div class="header">
       <div align="right"  class="btnsave">
-        <vs-button :disabled ="saveButtonDisabled" color="success" class="ml-4 mb-4 md:mb-0" >Save</vs-button>
+        <vs-button @click="Save" :disabled ="saveButtonDisabled" color="success" class="ml-4 mb-4 md:mb-0" >Save</vs-button>
       </div>
       <div class="main vx-row">
         <div 
@@ -87,10 +87,10 @@ export default {
         }
       }
     },
-    save () {
-      // const payload = {
-
-      // }
+    Save () {
+      const payload = {
+        
+      }
     },
     handleInputChange () {
       this.showSaveButton = true

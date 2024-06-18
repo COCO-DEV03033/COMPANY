@@ -4,10 +4,10 @@ export default {
   GET_PLANS (state, { plans }) {
     state.plans = plans
   },
-  CHANGE_EARNING (state, { changedata }) {
-    let changedatas = updateArrays(state.earnings, changedata)
-    state.earnings = changedatas
-    state.groupearnings = rearrangeData(changedatas, state.dates)
+  CHANGE_PLAN (state, { changedata }) {
+    let changedatas = updateArrays(state.plans, changedata)
+    state.plans = changedatas
+    state.groupplans = rearrangeData(changedatas, state.dates)
   },
   
   GET_YEARMONTHS (state, { yearmonths }) {
