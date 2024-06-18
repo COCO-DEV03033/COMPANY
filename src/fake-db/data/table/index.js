@@ -118,6 +118,6 @@ const data = {
 }
 
 
-mock.onGet('/api/data-list/products').reply(() => {
+mock.onGet('/api/table/dispatched-orders').reply(() => {
   return [200, data.dispatchedOrders]
 })

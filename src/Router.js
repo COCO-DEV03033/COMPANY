@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import auth from '@/auth/authService'
+// import auth from '@/auth/authService'
 
-import firebase from 'firebase/app'
+// import firebase from 'firebase/app'
 import 'firebase/auth'
 
 Vue.use(Router)
@@ -49,7 +49,7 @@ const router = new Router({
         {
           path: '/project/list',
           name: 'Project Lists',
-          component: () => import('./views/main/project/projectList/index.vue'),
+          component: () => import('./views/DashboardAnalytics.vue'),
           meta: {
             rule: 'admin'
           }
@@ -63,17 +63,25 @@ const router = new Router({
           }
         },
         {
-          path: '/earning/list',
-          name: 'Earning List',
-          component: () => import('./views/DashboardAnalytics.vue'),
+          path: '/income/overview',
+          name: 'Income Overview',
+          component: () => import('./views/main//income/dashboard/Index.vue'),
           meta: {
             rule: 'admin'
           }
         },
         {
-          path: '/earning/overview',
-          name: 'Earning Overview',
-          component: () => import('./views/DashboardAnalytics.vue'),
+          path: '/income/register',
+          name: 'Income Register',
+          component: () => import('./views/main/income/register/Index.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/income/setting',
+          name: 'Income Setting',
+          component: () => import('./views/main/income/setting/Index.vue'),
           meta: {
             rule: 'admin'
           }
@@ -139,6 +147,28 @@ const router = new Router({
           }
         },
         {
+          path: '/planing',
+          name: 'planing',
+          component: () => import('./views/main/planing/index.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/create-plan/:companyId',
+          name: 'createplan',
+          component: () => import('./views/main/planing/CreatePlan.vue'),
+          meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/planing' },
+              { title: 'Planing', url: '/planing' },
+              { title: 'Company', active: true }
+            ],
+            pageTitle: 'Plan By Company',
+            rule: 'editor'
+          }
+        },
+        {
           path: '/technology/list',
           name: 'Technology List',
           component: () => import('./views/DashboardAnalytics.vue'),
@@ -169,7 +199,7 @@ const router = new Router({
           meta: {
             rule: 'admin'
           }
-        },
+        }
 
 
         // {
