@@ -109,6 +109,40 @@
         </vx-card>
       </div>
     </div>
+    <vx-card>
+      <!-- TABLE ACTION ROW -->
+
+      <div class="flex flex-wrap justify-between items-center">
+        <!-- TABLE ACTION COL-2: SEARCH & EXPORT AS CSV -->
+        <div
+          class="flex flex-wrap items-center justify-between ag-grid-table-actions-right"
+        >
+          <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()"
+            >Export as CSV</vs-button
+          >
+        </div>
+      </div>
+      <ag-grid-vue
+        v-if="totalSums.length"
+        ref="agGridTable"
+        :gridOptions="gridOptions"
+        :rowClassRules="rowClassRules"
+        class="ag-theme-material w-100 my-4 ag-grid-table"
+        :style="{ width, height }"
+        :columnDefs="columnDefs"
+        :defaultColDef="defaultColDef"
+        :rowData="totalSums"
+        rowSelection="multiple"
+        colResizeDefault="shift"
+        :animateRows="true"
+        :floatingFilter="false"
+        :suppressPaginationPanel="true"
+        @grid-ready="onGridReady"
+        :enableRtl="$vs.rtl"
+      >
+      </ag-grid-vue>
+    </vx-card>
+
   </div>
 </template>
 
@@ -118,6 +152,10 @@ import VueApexCharts from 'vue-apexcharts'
 import vSelect from 'vue-select'
 import moduleIncomeManagement from "@/store/income-management/moduleIncomeManagement.js";
 const themeColors = ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+
+import { AgGridVue } from "ag-grid-vue";
+import "../register/styles.css";
+import "@/assets/scss/vuexy/extraComponents/agGridStyleOverride.scss";
 export default {
   
   data () {
@@ -132,6 +170,40 @@ export default {
       jobSite: "all",
       role: "all",
       dateformat: "day",
+
+      height: "600px",
+      width: "100%",
+      gridOptions: {},
+      gridApi: null,
+      defaultColDef: {
+        sortable: false,
+        editable: true,
+        resizable: true,
+        lockPinned: true,
+      },
+      columnDefs: [],
+      rowClassRules: {
+        // row style function
+        "display-company": (params) => {
+          var company = params.data.company;
+          return (
+            company == "3*9" ||
+            company == "5*4" ||
+            company == "8*2" ||
+            company == "AI" ||
+            company == "Net Manager"
+          );
+        },
+        // row style expression
+        "display-company-329": "data.company == '3*9 Company'",
+        "display-company-514": "data.company == '5*4 Company'",
+        "display-company-812": "data.company == '8*2 Company'",
+        "display-company-AI": "data.company == 'AI Company'",
+        "display-company-NET": "data.company == 'Net Manager Company'",
+        "display-header": "data.company == 'Company'",
+        "display-team":
+          "data.teamshow == '1 Team'||data.teamshow == '2 Team'||data.teamshow == '3 Team'||data.teamshow == '4 Team'||data.teamshow == '5 Team'||data.teamshow == '6 Team'||data.teamshow == '7 Team'||data.teamshow == '8 Team'||data.teamshow == '9 Team'",
+      },
 
       organizationFilter: { label: 'All', value: 'all' },
       organizationOptions: [
@@ -198,6 +270,7 @@ export default {
     VueApexCharts,
     VxTimeline,
     vSelect,
+    AgGridVue
   },
   beforeCreate() {
     if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login')
@@ -207,6 +280,12 @@ export default {
   computed: {
     overView() {
       return this.$store.state.incomeManagement.overView;
+    },
+    totalSums() {
+      return this.$store.state.incomeManagement.totalSums;
+    },
+    months() {
+      return this.$store.state.incomeManagement.months;
     },
   },
   methods: {
@@ -230,6 +309,73 @@ export default {
         return;
         console.error(err);
       });
+    },
+
+    fetchTotalSums () {
+      const payload = {
+      year: this.year,
+      organization: this.organization,
+    };
+
+    this.$store
+      .dispatch("incomeManagement/fetchTotalSums", payload)
+      .then((res) => {})
+      .catch((err) => {
+        return;
+        console.error(err);
+      });
+    },
+
+    onGridReady(params) {
+      this.columnDefs = [
+        {
+          headerName: "ID",
+          field: "id",
+          hide: "true",
+        },
+        {
+          headerName: "Company",
+          field: "company",
+          width: 100,
+          editable: false,
+          pinned: "left",
+        },
+        {
+          headerName: "Team",
+          field: "teamshow",
+          width: 100,
+          editable: false,
+          pinned: "left",
+        },
+        {
+          headerName: "Name",
+          field: "name",
+          width: 100,
+          editable: false,
+          pinned: "left",
+        },
+        {
+          headerName: "Plan",
+          field: "plan",
+          width: 100,
+          editable: false,
+          pinned: "left",
+        },
+        {
+          headerName: "Income",
+          field: "income",
+          width: 100,
+          editable: false,
+          pinned: "left",
+        },
+      ];
+      for (let i = 1; i <= this.months.length; i++) {
+        this.columnDefs.push({
+          headerName: this.months[i-1],
+          field: `month${i}`,
+          width: 100,
+        });
+      }
     },
   },
   watch: {
@@ -268,6 +414,7 @@ export default {
       moduleIncomeManagement.isRegistered = true;
     }
     this.fetchOverView();
+    this.fetchTotalSums();
     // Dispatched Orders
     // this.$http
     //   .get('/api/table/dispatched-orders')

@@ -63,6 +63,35 @@ export default {
     })
   },
   
+  fetchTotalSums({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      axios.post(`${API_URL}/api/income/totalSums`, payload)
+        .then((res) => {
+          if(res.data.status_code==0){
+            console.log('total SUms--->', res.data.data);
+            commit('GET_TOTALSUMS', {totalSums:res.data.data.totalsums,months:res.data.data.months })
+            // this._vm.$vs.notify({
+            //   color: "success",
+            //   title: "Success",
+            //   text: res.data.message,
+            // });
+            resolve(res.data.data)
+          } else if(res.data.status_code==1){
+            this._vm.$vs.notify({
+              color: "warning",
+              title: "Warning",
+              text: res.data.message,
+            });
+            resolve([])
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err)
+        })
+    })
+  },
+  
   changeIncome({ commit }, payload) {
     commit('CHANGE_INCOME', { changedata:payload })
   },

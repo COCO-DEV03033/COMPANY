@@ -4,4 +4,6 @@ export default {
   dates: [],
   yearmonths:[],
   overView:{},
+  totalSums:[],
+  months:[],
 }

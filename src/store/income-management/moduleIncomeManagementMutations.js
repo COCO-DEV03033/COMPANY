@@ -8,8 +8,12 @@ export default {
   },
   
   GET_OVERVIEW(state, overView) {
-    console.log('udpate OverView->', overView);
     state.overView = overView
+  },
+  
+  GET_TOTALSUMS(state, {totalSums, months}) {
+    state.totalSums = totalSums
+    state.months = months
   },
   CHANGE_INCOME(state, { changedata }) {
     let changedatas = updateArrays (state.incomes, changedata)
@@ -31,5 +35,4 @@ export default {
     state.yearmonths.push(adddata)
     state.yearmonths = data
   },
-
 }
