@@ -103,7 +103,9 @@ export default {
 
       height: "600px",
       width: "100%",
-      gridOptions: {},
+      gridOptions: {
+        suppressCellSelection: true
+      },
       gridApi: null,
       defaultColDef: {
         sortable: false,

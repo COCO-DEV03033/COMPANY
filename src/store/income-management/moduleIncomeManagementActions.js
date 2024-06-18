@@ -7,7 +7,7 @@ export default {
   fetchIncomes({ commit }, payload) {
     return new Promise((resolve, reject) => {
       const { yearmonth, organization } = payload;
-      axios.post(`${API_URL}/api/income/`, payload)
+      axios.get(`${API_URL}/api/income?year=${payload.year}&month=${payload.month}&organization=${payload.organization}`, payload)
         .then((res) => {
           if(res.data.status_code==0){
             commit('GET_INCOMES', { incomes:res.data.data.incomes , dates: res.data.data.dates })
@@ -65,10 +65,9 @@ export default {
   
   fetchTotalSums({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.post(`${API_URL}/api/income/totalSums`, payload)
+      axios.get(`${API_URL}/api/income/totalSums?year=${payload.year}&organization=${payload.organization}`, payload)
         .then((res) => {
           if(res.data.status_code==0){
-            console.log('total SUms--->', res.data.data);
             commit('GET_TOTALSUMS', {totalSums:res.data.data.totalsums,months:res.data.data.months })
             // this._vm.$vs.notify({
             //   color: "success",
@@ -112,7 +111,7 @@ export default {
 
   fetchYearMonths({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.post("/api/income/getYearMonths", payload)
+      axios.get(`/api/income/yearMonths?year=${payload.year}`)
         .then((res) => {
           if(res.data.status_code==0){
             commit('GET_YEARMONTHS', { yearmonths:res.data.data.yearmonths })
