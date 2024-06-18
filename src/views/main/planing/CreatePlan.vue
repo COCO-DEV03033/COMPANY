@@ -11,7 +11,7 @@
           :class="['team','sm:w-full', 'md:w-1/3', 'lg:w-1/4']"
         >
           <DragCard 
-            :team="index === 0 ? `Free Members` : `Team ${index}`"  
+            :team="index === '0' ? `Free Members` : `Team ${index}`"  
             :list_team="card"
             :index_main = "index"
             @delete-card="confirmDelete(index)"
@@ -22,7 +22,7 @@
           />
         </div>
         <div>
-          <AddButton @click="bothFunction" />
+          <addButton @click="bothFunction" />
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
 <script>
 import DragCard from './component/DragCard.vue'
 import modulePlanManagement from '@/store/plan-management/modulePlanManagement.js'
-import AddButton from './component/button/AddButton.vue'
+import addButton from './component/button/addButton.vue'
 export default {
   data () {
     return {   
@@ -41,7 +41,7 @@ export default {
   },
   components: {
     DragCard,
-    AddButton
+    addButton
   },
   computed: {
     list1 () {

@@ -79,7 +79,7 @@ export default {
     ChartjsBarChart
   },
   created () {
-    console.log('bardata', companyPlan.bardata)
+    // console.log('bardata', companyPlan.bardata)
   }
 }
 </script>
