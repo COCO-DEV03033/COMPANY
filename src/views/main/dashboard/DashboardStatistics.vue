@@ -256,7 +256,7 @@
 			</div>			
 			<div class="vx-col w-full xl:w-1/3 md:w-1/3 mb-base">				
 				<vx-card title="Personal Income Order">	
-					<div class="con-tablex vs-table--content scroll_hidden" style="height:480px;">			
+					<div class="con-tablex vs-table--content scroll_hidden " style="height:480px;">			
 						<vs-table search :data="personalIncomeOrder.users" >
 							<template slot="thead">
 								<vs-th>Nro</vs-th>
@@ -473,11 +473,15 @@ export default {
 .vs-table--content {
     height: 389px;
 }
-.scroll_hidden{
-	overflow-y:hidden;
+.scroll_hidden {
+	overflow-y: scroll;
 }
-.scroll_hidden:hover{
-	overflow-y:scroll;
+.scroll_hidden::-webkit-scrollbar {
+    display: none;
+}
+.scroll_hidden {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 

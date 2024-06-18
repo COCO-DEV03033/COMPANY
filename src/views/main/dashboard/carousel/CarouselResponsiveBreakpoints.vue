@@ -13,14 +13,14 @@
           <!-- swiper -->
           <swiper :options="swiperOption" :dir="$vs.rtl ? 'rtl' : 'ltr'" :key="$vs.rtl">
             <swiper-slide>
-              <vx-card class="border-color-514" >
+              <vx-card>
                 <template slot="no-body" >
                   <div class="p-8 clearfix" v-if="weekIncomeData_Company.todayIncome_Company">                      
                       <div class="vx-row" style="height: 52px;">
                         <div class="vx-col w-full xl:w-1/2 md:w-full mb-base">
                           <h3>
                           514
-                          </h3>
+                          </h3>+++
                           <small>                            
                             <span class="text-xl font-bold">$&nbsp;{{ weekIncomeData_Company.todayIncome_Company.todayIncome_514}}</span>
                           </small>	
@@ -55,7 +55,7 @@
               </vx-card>
             </swiper-slide>
             <swiper-slide>
-              <vx-card class="border-color-329">
+              <vx-card>
                 <template slot="no-body" >
                   <div class="p-8 clearfix" v-if="weekIncomeData_Company.todayIncome_Company">
                       <div class="vx-row" style="height: 52px;">
@@ -97,7 +97,7 @@
               </vx-card>
             </swiper-slide>
             <swiper-slide> 
-              <vx-card class="border-color-812">
+              <vx-card>
                 <template slot="no-body" >
                   <div class="p-8 clearfix" v-if="weekIncomeData_Company.todayIncome_Company">
                       <div class="vx-row" style="height: 52px;">
@@ -139,7 +139,7 @@
               </vx-card>          
             </swiper-slide>
             <swiper-slide>
-              <vx-card class="border-color-AI">
+              <vx-card>
                 <template slot="no-body" >
                   <div class="p-8 clearfix" v-if="weekIncomeData_Company.todayIncome_Company">
                     <div class="vx-row" style="height: 52px;">
@@ -182,7 +182,7 @@
               
             </swiper-slide>
             <swiper-slide> 
-              <vx-card class="border-color-CT">
+              <vx-card>
                 <template slot="no-body" >
                   <div class="p-8 clearfix" v-if="weekIncomeData_Company.todayIncome_Company">
                       <div class="vx-row" style="height: 52px;">
