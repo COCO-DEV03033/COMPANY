@@ -50,7 +50,7 @@
               :growthrate = "companyPlan.analyticsData.growthrate[0]"
               :TotalUserByCompany = "companyPlan.TotalUserByCompany[0]"
               :RealUserByCompany = "companyPlan.RealUserByCompany[0]"
-              :bardata = "companyPlan.bardata.bar_first"
+              :bardata = "companyPlan.bardata.bar_514"
               :color = "'text-success'"
             />
           </div>
@@ -63,12 +63,12 @@
               :growthrate = "companyPlan.analyticsData.growthrate[1]"
               :TotalUserByCompany = "companyPlan.TotalUserByCompany[1]"
               :RealUserByCompany = "companyPlan.RealUserByCompany[1]"
-              :bardata = "companyPlan.bardata.bar_second"
+              :bardata = "companyPlan.bardata.bar_AI"
               :color = "'text-warning'"
             />
           </div>
         </div>
-        <div id="Card_two" class="vx-row" >
+        <div class="vx-row" >
           <div class="vx-col w-full md:w-1/2 mb-base">
             <CompanyCard  
               :companyName = "'3*9'" 
@@ -78,7 +78,7 @@
               :growthrate = "companyPlan.analyticsData.growthrate[2]"
               :TotalUserByCompany = "companyPlan.TotalUserByCompany[2]"
               :RealUserByCompany = "companyPlan.RealUserByCompany[2]"
-              :bardata = "companyPlan.bardata.bar_third"
+              :bardata = "companyPlan.bardata.bar_329"
               :color = "'text-primary'"
             />
           </div>
@@ -91,7 +91,20 @@
               :growthrate = "companyPlan.analyticsData.growthrate[3]"
               :TotalUserByCompany = "companyPlan.TotalUserByCompany[3]"
               :RealUserByCompany = "companyPlan.RealUserByCompany[3]"
-              :bardata = "companyPlan.bardata.bar_fourth"
+              :bardata = "companyPlan.bardata.bar_812"
+              :color = "'text-danger'"
+            />
+          </div>
+          <div class="vx-col w-full md:w-1/2 mb-base">
+            <CompanyCard 
+              :companyName = "'CT'" 
+              :analyticsData = "analyticsData"
+              :companyPlan = "companyPlan"
+              :plan = "plan_CT"
+              :growthrate = "companyPlan.analyticsData.growthrate[3]"
+              :TotalUserByCompany = "companyPlan.TotalUserByCompany[3]"
+              :RealUserByCompany = "companyPlan.RealUserByCompany[3]"
+              :bardata = "companyPlan.bardata.bar_CT"
               :color = "'text-danger'"
             />
           </div>
@@ -135,6 +148,9 @@ export default {
     },
     plan_812 () {
       return this.companyPlan.analyticsData.plan[3]
+    },
+    plan_CT () {
+      return this.companyPlan.analyticsData.plan[4]
     }
   }
 }
