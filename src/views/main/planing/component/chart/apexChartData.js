@@ -40,13 +40,14 @@ function generateDataHeatMap (count, yrange) {
 }
 
 const themeColors = ['#7367F0', '#28C76F', '#EA5455', '#FF9F43', '#1E1E1E']
+const donutChartColors = ['#5cb85c', '#f0ad4e', '#0275d8', '#d9534f']
 
 export default {
   lineChartSimple: {
     series: [
       {
-        name: 'Desktops',
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+        name: 'Plan',
+        data: [550000, 510000, 550000, 530000, 600000]
       }
     ],
     chartOptions: {
@@ -54,6 +55,9 @@ export default {
         height: 350,
         zoom: {
           enabled: false
+        },
+        toolbar:{
+          show:false
         }
       },
       colors: themeColors,
@@ -64,8 +68,9 @@ export default {
         curve: 'straight'
       },
       title: {
-        text: 'Product Trends by Month',
-        align: 'left'
+        text: 'Plan Trends by Month',
+        align: 'center',
+        fontSize : '28px'
       },
       grid: {
         row: {
@@ -74,7 +79,7 @@ export default {
         }
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep']
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
       }
     }
   },
@@ -201,12 +206,16 @@ export default {
   columnChart: {
     series: [
       {
-        name: 'Plan',
-        data: [76, 85, 101, 98, 87]
+        name: 'Net Profit',
+        data: [44, 55, 57, 56, 61, 58, 63, 60, 66]
       },
       {
         name: 'Revenue',
-        data: [44, 55, 57, 56, 61]
+        data: [76, 85, 101, 98, 87, 105, 91, 114, 94]
+      },
+      {
+        name: 'Free Cash Flow',
+        data: [35, 41, 36, 26, 45, 48, 52, 53, 41]
       }
     ],
     chartOptions: {
@@ -228,7 +237,7 @@ export default {
       },
 
       xaxis: {
-        categories: ['514', '329', '812', 'AI', 'Control']
+        categories: ['Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
       },
       yaxis: {
         title: {
@@ -313,7 +322,7 @@ export default {
   barChart: {
     series: [
       {
-        data: [400, 430, 448, 470, 540]
+        data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380]
       }
     ],
     chartOptions: {
@@ -327,7 +336,7 @@ export default {
         enabled: false
       },
       xaxis: {
-        categories: ['514', '329', '812', 'AI', 'Control']
+        categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan', 'United States', 'China', 'Germany']
       }
     }
   },
@@ -1359,10 +1368,27 @@ export default {
   }
 </script>`,
   donutChart: {
-    series: [100000, 55000, 41000, 17000, 20000],
+    series: [200000, 200000, 100000, 100000],
     chartOptions: {
-      colors: themeColors,
-      labels: ['514', '329', '812', 'AI', 'Control'],
+      plotOptions: {
+        pie: {
+          donut: {
+            labels: {
+              show: true,
+              total: {
+                style : {
+                  fontSize : '25px'
+                },
+                show: true,
+                label : 'Total Plan',
+                formatter: () => '$600,000'
+              }
+            }
+          }
+        }
+      },
+      labels: ['5*4', 'AI', '3*9', '8*2'],
+      colors: donutChartColors,
       responsive: [
         {
           breakpoint: 480,
@@ -1373,9 +1399,27 @@ export default {
             legend: {
               position: 'bottom'
             }
+            
           }
         }
-      ]
+      ],
+      legend: {
+        position: 'bottom',
+        horizontalAlign: 'center',
+        verticalAlign: 'middle',
+        floating: false,
+        itemMargin: {
+          horizontal: 10
+        },
+        fontSize: '20px',
+        offsetX: -30,
+        offsetY: 10
+      },
+      
+      datalabels: {
+        colors: 'black',
+        useSeriesColors: true
+      }
     }
   },
   donutChartCode:

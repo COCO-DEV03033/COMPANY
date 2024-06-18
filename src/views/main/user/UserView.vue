@@ -85,18 +85,18 @@
             <vs-button
               type="border"
               v-if="user_data.status == true"
-              color="warning"
+              :color="user_data.status == true ? 'warning' : 'success'"
               icon-pack="feather"
-              icon="icon-user-x"
+              :icon="user_data.status == true ? 'icon-user-check' : 'icon-user-x'"
               @click="confirmRejectRecord"
               >{{user_data.status == true ? 'Reject' : 'Approve'}}</vs-button
             >
             <vs-button
               type="border"
               v-else
-              color='success'
+              :color="user_data.status == true ? 'warning' : 'success'"
               icon-pack="feather"
-              icon="icon-user-check"
+              :icon="user_data.status == true ? 'icon-user-check' : 'icon-user-x'"
               @click="confirmApproveRecord"
               >{{user_data.status == true ? 'Reject' : 'Approve'}}</vs-button
             >
@@ -109,46 +109,29 @@
           <vx-card title="Information" class="mb-base">
             <table>
               <tr>
+                <td class="font-semibold">Birth Date</td>
+                <td>{{ user_data.dob }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Mobile</td>
+                <td>{{ user_data.mobile }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Website</td>
+                <td>{{ user_data.website }}</td>
+              </tr>
+              <tr>
+                <td class="font-semibold">Languages</td>
+                <td>{{ user_data.languages_known }}</td>
+              </tr>
+              <tr>
                 <td class="font-semibold">Gender</td>
                 <td>{{ user_data.gender }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Birth Date</td>
-                  <td>{{ user_data.dob.split('-')[0] + '-' + user_data.dob.split('-')[1] + '-' + user_data.dob.split('-')[2][0] + user_data.dob.split('-')[2][1] }}</td>
+                <td class="font-semibold">Contact</td>
+                <td>{{ user_data.contact_options }}</td>
               </tr>
-              <tr>
-                <td class="font-semibold">Universty</td>
-                <td>{{ user_data.university }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Tec License</td>
-                <td>{{ user_data.tech_field }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Dev Years</td>
-                <td>{{ user_data.dev_year}} year</td>
-              </tr>
-              
-              <tr>
-                <td class="font-semibold">Dev Area</td>
-                <td>{{ user_data.dev_area }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Major Subject</td>
-                <td>{{ user_data.major_subject }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Language</td>
-                <td>{{ user_data.language }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Tec Level</td>
-                <td>{{ user_data.tech_level }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Personalities</td>
-                <td>{{ user_data.personality }}</td>
-              </tr>           
             </table>
           </vx-card>
         </div>
@@ -157,36 +140,28 @@
           <vx-card title="Career & Evaluation:" class="mb-base">
             <table>
               <tr>
-                <td class="font-semibold">Project Site Number</td>
-                <td>{{ user_data.projectSite }}</td>
+                <td class="font-semibold">Twitter</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Real Account</td>
-                <td>{{ user_data.realAccount }}</td>
+                <td class="font-semibold">Facebook</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Current Status </td>
-                <td>{{ user_data.currentStatus }}</td>
+                <td class="font-semibold">Instagram</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Payment Usage</td>
-                <td>{{ user_data.paymentUsage }}</td>
+                <td class="font-semibold">Github</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Internet Usage</td>
-                <td>{{ user_data.internetUsage }}</td>
+                <td class="font-semibold">CodePen</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Others</td>
-                <td>{{ user_data.others }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">____________________________________________</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Others</td>
-                <td>{{ user_data.others }}</td>
+                <td class="font-semibold">Slack</td>
+                <td>{{ user_data.social_links }}</td>
               </tr>
             </table>
           </vx-card>
@@ -206,7 +181,6 @@ export default {
       user_not_found: false,
     };
   },
-  
   computed: {
     userAddress() {
       let str = "";
@@ -277,12 +251,10 @@ export default {
     }
 
     const userId = this.$route.params.userId;
-
     this.$store
       .dispatch("userManagement/fetchUser", userId)
       .then((res) => {
         this.user_data = res.data.existUser;
-        console.log(this.user_data)
       })
       .catch((err) => {
         if (err.response.status > 400) {

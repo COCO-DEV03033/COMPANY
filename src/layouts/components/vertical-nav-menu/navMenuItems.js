@@ -84,6 +84,14 @@ export default [
     ]
   },
   {
+    url: '/planing',
+    name: 'Planing',
+    tag: '',
+    tagColor: 'warning',
+    icon: 'HomeIcon',
+    slug: 'Today\'s analyse'
+  },
+  {
     url: null,
     name: 'Technology',
     tag: '10',
