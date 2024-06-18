@@ -1,9 +1,23 @@
-.display-company {
-    background-color: #cc222244 !important;
+  .display-header {
+    background-color: rgba(23, 201, 100,1);
   }
-  
+  .display-company-329 {
+    background-color: rgba(91, 60, 196, 0.5);
+  }
+  .display-company-514 {
+    background-color: rgba(23, 201, 100, 0.5);
+  }
+  .display-company-812 {
+    background-color: rgba(242, 19, 93, 0.5);
+  }
+  .display-company-AI {
+    background-color: rgba(255, 130, 0, 0.5);
+  }
+  .display-company-NET {
+    background-color: rgba(36, 33, 69, 0.5);
+  }
   .display-team {
-    background-color: #2244cc44;
+    background-color: #99999944;
   }
   
   .display-member {
@@ -17,9 +31,8 @@
     line-height: 46px;
     font-family: "monica-ext-font_YIBBBFG";
     font-weight: 500;
-    border-left-width: 1px !important;
-    /* border-color: black !important; */
-    border-left-color: #9b9b9b !important;
+    /* border-left-width: 1px !important;
+    border-left-color: #9b9b9b !important; */
     overflow: visible !important;
     display: flex !important;
     justify-content: center !important;
@@ -43,11 +56,15 @@
     /* display: flex !important;
       justify-content: center !important; */
   }
+
+  .ag-header {
+    border-bottom: 0px !important
+  }
   
   .ag-pinned-left-header {
-    background-color: antiquewhite;
+    /* background-color: antiquewhite; */
   }
   
   .ag-header-viewport {
-    background-color: beige;
+    /* background-color: beige; */
   }
