@@ -35,6 +35,8 @@ export default {
     }
   },
   methods: {
+
+
     generateData ({ header, results, meta }) {
       this.excelData.header = header
       this.excelData.results = results
@@ -117,7 +119,9 @@ export default {
     uploadFile (file) {
       this.$refs['fileInput'].value = null // fix can't select the same excel
       this.readerData(file)
-    }
+    },
+
+    
 
   }
 }

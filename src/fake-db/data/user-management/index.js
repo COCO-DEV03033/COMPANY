@@ -11,6 +11,10 @@ const data = {
       'dob': '28 January 1998',
       'gender': 'male',
       'country': 'Bolivia',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234',
       'role': 'admin',
       'status': 'active',
       'is_verified': true,
@@ -68,7 +72,13 @@ const data = {
       'role': 'user',
       'status': 'blocked',
       'is_verified': false,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 270,
@@ -92,7 +102,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': false,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 272,
@@ -104,7 +120,13 @@ const data = {
       'role': 'user',
       'status': 'blocked',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 273,
@@ -116,7 +138,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 274,
@@ -128,7 +156,13 @@ const data = {
       'role': 'staff',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 275,
@@ -140,7 +174,13 @@ const data = {
       'role': 'staff',
       'status': 'active',
       'is_verified': true,
-      'department': 'management'
+      'department': 'management',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 276,
@@ -152,7 +192,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 277,
@@ -164,7 +210,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 278,
@@ -176,7 +228,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 279,
@@ -188,7 +246,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 280,
@@ -200,7 +264,13 @@ const data = {
       'role': 'admin',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 281,
@@ -212,7 +282,13 @@ const data = {
       'role': 'user',
       'status': 'blocked',
       'is_verified': true,
-      'department': 'management'
+      'department': 'management',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 282,
@@ -224,7 +300,13 @@ const data = {
       'role': 'staff',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 283,
@@ -236,7 +318,13 @@ const data = {
       'role': 'admin',
       'status': 'deactivated',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 284,
@@ -248,7 +336,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 285,
@@ -260,7 +354,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 286,
@@ -272,7 +372,13 @@ const data = {
       'role': 'admin',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 287,
@@ -284,7 +390,13 @@ const data = {
       'role': 'staff',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 288,
@@ -296,7 +408,13 @@ const data = {
       'role': 'admin',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 289,
@@ -308,7 +426,13 @@ const data = {
       'role': 'admin',
       'status': 'deactivated',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 290,
@@ -320,7 +444,13 @@ const data = {
       'role': 'staff',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 291,
@@ -332,7 +462,13 @@ const data = {
       'role': 'user',
       'status': 'blocked',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 292,
@@ -344,7 +480,13 @@ const data = {
       'role': 'admin',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 293,
@@ -356,7 +498,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'management'
+      'department': 'management',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 294,
@@ -368,7 +516,13 @@ const data = {
       'role': 'staff',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 295,
@@ -380,7 +534,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 296,
@@ -392,7 +552,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 297,
@@ -404,7 +570,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 298,
@@ -416,7 +588,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 299,
@@ -428,7 +606,13 @@ const data = {
       'role': 'staff',
       'status': 'deactivated',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 300,
@@ -440,7 +624,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 301,
@@ -452,7 +642,13 @@ const data = {
       'role': 'staff',
       'status': 'active',
       'is_verified': true,
-      'department': 'management'
+      'department': 'management',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 302,
@@ -464,7 +660,13 @@ const data = {
       'role': 'user',
       'status': 'blocked',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 303,
@@ -476,7 +678,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 304,
@@ -488,7 +696,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'management'
+      'department': 'management',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 305,
@@ -500,7 +714,13 @@ const data = {
       'role': 'user',
       'status': 'deactivated',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 306,
@@ -512,7 +732,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 307,
@@ -524,7 +750,13 @@ const data = {
       'role': 'staff',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 308,
@@ -536,7 +768,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 309,
@@ -548,7 +786,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 310,
@@ -560,7 +804,13 @@ const data = {
       'role': 'staff',
       'status': 'deactivated',
       'is_verified': false,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 311,
@@ -572,7 +822,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 312,
@@ -584,7 +840,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 313,
@@ -596,7 +858,13 @@ const data = {
       'role': 'user',
       'status': 'deactivated',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 314,
@@ -608,7 +876,13 @@ const data = {
       'role': 'user',
       'status': 'blocked',
       'is_verified': true,
-      'department': 'management'
+      'department': 'management',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 315,
@@ -620,7 +894,13 @@ const data = {
       'role': 'user',
       'status': 'active',
       'is_verified': false,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 316,
@@ -632,7 +912,13 @@ const data = {
       'role': 'staff',
       'status': 'active',
       'is_verified': true,
-      'department': 'development'
+      'department': 'development',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     },
     {
       'id': 317,
@@ -644,7 +930,13 @@ const data = {
       'role': 'staff',
       'status': 'deactivated',
       'is_verified': true,
-      'department': 'sales'
+      'department': 'sales',
+      'dob': '28 January 1998',
+      'company': 'WinDon Technologies Pvt Ltd',
+      'group' : 23,
+      'major': 'web',
+      'plan':'$1000',
+      'income':'$1234'
     }
 
   ]
