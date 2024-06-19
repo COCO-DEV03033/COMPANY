@@ -21,7 +21,7 @@ export default {
       // Below line will be for actual product
       // Currently it's commented due to demo purpose - Above url is for demo purpose
 
-      this.$router.push(`/project/project-view/${this.params.data.userID}`).catch(() => {})
+      this.$router.push(`/project/view/${this.params.data.userID}`).catch(() => {})
       console.log(' >>>>>>>>>>>>>>>>>>>>>>>>>>> ', this.params.data.userID)
             
     },

@@ -2,6 +2,7 @@
   <div class="flex items-center">
     <vs-avatar :src="params.data.avatar" class="flex-shrink-0 mr-2" size="30px" @click="$router.push(url)" />
     <router-link :to="url" @click.stop.prevent class="text-inherit hover:text-primary">{{ params.value }}</router-link>
+    <!-- <div>{{params.value}}</div> -->
   </div>
 </template>
 
@@ -14,8 +15,11 @@ export default {
 
       // Below line will be for actual product
       // Currently it's commented due to demo purpose - Above url is for demo purpose
-      return `/project/project-view/${this.params.data.id}`
+      return `/project/view/${this.params.userId}`
     }
-  }
+  },
+  mounted () {
+    console.log(this.params.userId);
+  },
 }
 </script>

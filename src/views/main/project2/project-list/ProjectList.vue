@@ -142,13 +142,13 @@ export default {
           headerName: 'Company',
           field: 'company',
           filter: true,
-          width: 150
+          width: 130
         },
         {
           headerName: 'Plan',
           field: 'plan',
           filter: true,
-          width: 100
+          width: 90
         },
         {
           headerName: 'Current Income',
@@ -169,16 +169,16 @@ export default {
           headerName: 'Dev Field',
           field: 'devField',
           filter: true,
-          width: 150
+          width: 120
         },
         {
           headerName: 'Payment Dates and Income ',
           field: 'earnings',
           filter: true,
-          width: 200
+          width: 260
         },
         {
-          headerName: 'Expected Incom',
+          headerName: 'Expected Income',
           field: 'expectedIncome',
           filter: true,
           width: 180
