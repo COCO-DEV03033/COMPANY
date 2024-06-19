@@ -49,7 +49,7 @@ const router = new Router({
         {
           path: '/project/list',
           name: 'Project Lists',
-          component: () => import('./views/project2/project-list/ProjectList.vue'),
+          component: () => import('./views/main/project2/project-list/ProjectList.vue'),
           meta: {
             rule: 'admin'
           }
