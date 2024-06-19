@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div class="mb-8">
+    <div class="mt-2">
+      <vs-button color="success" type="filled" @click="importData">Back</vs-button>
+    </div>
+    <div class="mb-8 mt-6">
       <import-excel :onSuccess="loadDataInTable" />
     </div>
     <vs-row class="mb-3" vs-type="flex" vs-justify="flex-end">
@@ -45,6 +48,11 @@ export default {
     }
   },
   methods: {
+    importData() {
+      this.$router.push('/engineer/list')
+    },
+
+
     loadDataInTable ({ results, header, meta }) {
       this.header = header
       this.tableData = results
