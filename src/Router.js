@@ -55,13 +55,22 @@ const router = new Router({
           }
         },
         {
-          path: '/project/overview',
+          path: '/project/view/:userId',
+          name: 'Project View',
+          component: () => import('./views/main/project2/ProjectView.vue'),
+          meta: {
+            rule: 'admin'
+          }
+        },
+        {
+          path: '/project/overview/',
           name: 'Project Overview',
           component: () => import('./views/DashboardAnalytics.vue'),
           meta: {
             rule: 'admin'
           }
         },
+        
         {
           path: '/income/overview',
           name: 'Income Overview',
