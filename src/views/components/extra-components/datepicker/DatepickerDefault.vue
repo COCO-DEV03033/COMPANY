@@ -46,7 +46,7 @@ import Datepicker from 'vuejs-datepicker'
 export default {
   data () {
     return {
-      date: null
+      yearmonth: null
     }
   },
   components: {

@@ -118,13 +118,14 @@ const data = {
       {
         name: 'Sessions',
         data: [75, 125, 225, 175, 125, 75, 25]
+
       }
     ],
     analyticsData: {
       session: 2700,
       comparison : {
         str: 'Last 7 Days',
-        result: +5.2
+        result: +5.2,
       }
     }
   },
