@@ -15,11 +15,11 @@ export default {
 
       // Below line will be for actual product
       // Currently it's commented due to demo purpose - Above url is for demo purpose
-      return `/project/view/${this.params.userId}`
+      return `/project/view/${this.params.data.id}`
     }
   },
   mounted () {
-    console.log(this.params.userId);
+    console.log(this.params.data.id);
   },
 }
 </script>

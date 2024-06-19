@@ -142,7 +142,7 @@
             <vs-td class="whitespace-no-wrap mt-4 mb-base" style="padding-top: 20px;">           
               <div class="vx-col w-full flex" id="account-manage-buttons">
                 <vs-button icon-pack="feather" icon="icon-edit" class="mr-4" @click="editProject(project)">Edit</vs-button>
-                <vs-button type="border" color="danger" icon-pack="feather" icon="icon-trash" @click="deleteProject">Delete</vs-button>
+                <vs-button type="border" color="danger" icon-pack="feather" icon="icon-trash" @click="confirmDeleteRecord(project)">Delete</vs-button>
               </div>                        
             </vs-td>
           </vx-card>
@@ -308,13 +308,14 @@ export default {
     'v-select': vSelect
   },
   methods: {
-    confirmDeleteRecord () {
+    confirmDeleteRecord (project) {
+      console.log("==============>", project)
       this.$vs.dialog({
         type: 'confirm',
         color: 'danger',
         title: 'Confirm Delete',
-        text: `You are about to delete "${this.projectData.title}"`,
-        accept: this.deleteRecord,
+        text: `You are about to delete "${project.title}"`,
+        accept: this.deleteProject,
         acceptText: 'Delete'
       })
     },
@@ -349,7 +350,8 @@ export default {
       this.popupActive = true
     },
 
-    deleteProject () {      
+    deleteProject (project) {
+      console.log('project==================>', project)      
       this.$store.dispatch('projectManagement/deleteProject', )
         .then(()   => { this.$router.push({name:'Project View'}); this.showDeleteSuccess() })
         .catch(err => { console.error(err)       })
