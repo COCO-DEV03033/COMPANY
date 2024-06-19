@@ -20,7 +20,7 @@
                         <div class="vx-col w-full xl:w-1/2 md:w-full mb-base">
                           <h3>
                           514
-                          </h3>+++
+                          </h3>
                           <small>                            
                             <span class="text-xl font-bold">$&nbsp;{{ weekIncomeData_Company.todayIncome_Company.todayIncome_514}}</span>
                           </small>	
