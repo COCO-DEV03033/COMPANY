@@ -14,7 +14,7 @@
 
         <!-- Col Header -->
         <div class="flex items-end">
-          <feather-icon icon="UserIcon" class="mr-2" svgClasses="w-5 h-5" />
+          <feather-icon icon="FileTextIcon" class="mr-2" svgClasses="w-5 h-5" />
           <span class="leading-none font-medium">Personal Information</span>
         </div>
 
@@ -28,14 +28,20 @@
             <span class="text-danger text-sm"  v-show="errors.has('dob')">{{ errors.first('dob') }}</span>
           </div>
 
-          <vs-input class="w-full mt-4" label="Mobile" v-model="data_local.mobile" v-validate="{regex: '^\\+?([0-9]+)$' }" name="mobile" />
+          <vs-input class="w-full mt-4" label="Address" v-model="data_local.mobile" v-validate="{regex: '^\\+?([0-9]+)$' }" name="mobile" />
           <span class="text-danger text-sm"  v-show="errors.has('mobile')">{{ errors.first('mobile') }}</span>
 
-          <vs-input class="w-full mt-4" label="Website" v-model="data_local.website" v-validate="'url:require_protocol'" name="website" data-vv-as="field" />
+          <vs-input class="w-full mt-4" label="Old Job" v-model="data_local.website" v-validate="'url:require_protocol'" name="website" data-vv-as="field" />
           <span class="text-danger text-sm"  v-show="errors.has('website')">{{ errors.first('website') }}</span>
 
           <div class="mt-4">
-            <label class="text-sm">Languages</label>
+            <label class="text-sm">University</label>
+            <v-select v-model="data_local.languages_known" multiple :closeOnSelect="false" :options="langOptions" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+            <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
+          </div>
+
+          <div class="mt-4">
+            <label class="text-sm">Enter Date</label>
             <v-select v-model="data_local.languages_known" multiple :closeOnSelect="false" :options="langOptions" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
             <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
           </div>
@@ -49,14 +55,14 @@
             </div>
           </div>
 
-          <div class="mt-6">
+          <!-- <div class="mt-6">
             <label>Contact Options</label>
             <div class="flex flex-wrap mt-1">
             <vs-checkbox v-model="data_local.contact_options" vs-value="email" class="mr-4 mb-2">Email</vs-checkbox>
             <vs-checkbox v-model="data_local.contact_options" vs-value="message" class="mr-4 mb-2">Message</vs-checkbox>
             <vs-checkbox v-model="data_local.contact_options" vs-value="Phone" class=" mb-2">Phone</vs-checkbox>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -66,8 +72,8 @@
 
           <!-- Col Header -->
           <div class="flex items-end md:mt-0 mt-base">
-            <feather-icon icon="MapPinIcon" class="mr-2" svgClasses="w-5 h-5" />
-            <span class="leading-none font-medium">Address</span>
+            <feather-icon icon="BriefcaseIcon" class="mr-2" svgClasses="w-5 h-5" />
+            <span class="leading-none font-medium">Ability</span>
           </div>
 
           <!-- Col Content -->
