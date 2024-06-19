@@ -36,14 +36,14 @@
 
           <div class="mt-4">
             <label class="text-sm">University</label>
-            <v-select v-model="data_local.languages_known" multiple :closeOnSelect="false" :options="langOptions" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+            <v-select v-model="data_local.languages_known" multiple :closeOnSelect="false" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
             <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
           </div>
 
           <div class="mt-4">
             <label class="text-sm">Enter Date</label>
-            <v-select v-model="data_local.languages_known" multiple :closeOnSelect="false" :options="langOptions" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-            <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
+            <flat-pickr v-model="data_local.dob" :config="{ dateFormat: 'd F Y', maxDate: new Date() }" class="w-full" v-validate="'required'" name="dob" />
+            <span class="text-danger text-sm"  v-show="errors.has('dob')">{{ errors.first('dob') }}</span>
           </div>
 
           <!-- Gender -->
@@ -78,23 +78,24 @@
 
           <!-- Col Content -->
           <div>
-            <vs-input class="w-full mt-4" label="Address Line 1" v-model="data_local.location" v-validate="'required'" name="addd_line_1" />
-            <span class="text-danger text-sm"  v-show="errors.has('addd_line_1')">{{ errors.first('addd_line_1') }}</span>
+            <div class="mt-4">
+              <label class="text-sm">Main Skill</label>
+              <v-select v-model="data_local.languages_known" :options="langOptions" multiple :closeOnSelect="false" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+              <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
+            </div>
 
-            <vs-input class="w-full mt-4" label="Address Line 2" v-model="data_local.location" />
+            <vs-input class="w-full mt-4" label="Technology License" v-model="data_local.location" />
 
-            <vs-input class="w-full mt-4" label="Post Code" v-model="data_local.location" v-validate="'required|numeric'" name="post_code" />
-            <span class="text-danger text-sm"  v-show="errors.has('post_code')">{{ errors.first('post_code') }}</span>
+            <div class="mt-4">
+              <label class="text-sm">Language</label>
+              <v-select v-model="data_local.languages_known" :options="langOptions" multiple :closeOnSelect="false" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+              <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
+            </div>
 
-            <vs-input class="w-full mt-4" label="City" v-model="data_local.location" v-validate="'required|alpha'" name="city" />
+            <vs-input class="w-full mt-4" label="Special" v-model="data_local.location" v-validate="'required|alpha'" name="city" />
             <span class="text-danger text-sm"  v-show="errors.has('city')">{{ errors.first('city') }}</span>
 
-            <vs-input class="w-full mt-4" label="State" v-model="data_local.location" v-validate="'required|alpha'" name="state" />
-            <span class="text-danger text-sm"  v-show="errors.has('state')">{{ errors.first('state') }}</span>
-
-            <vs-input class="w-full mt-4" label="Country" v-model="data_local.location" v-validate="'required|alpha'" name="country" />
-            <span class="text-danger text-sm"  v-show="errors.has('country')">{{ errors.first('country') }}</span>
-
+            
           </div>
       </div>
     </div>
@@ -140,6 +141,13 @@ export default {
         { label: 'German',   value: 'german'   },
         { label: 'Arabic',   value: 'arabic'   },
         { label: 'Sanskrit', value: 'sanskrit' }
+      ],
+      langOptions: [
+        { label: 'Web developement',  value: 'web development'  },
+        { label: 'Mobile development',  value: 'mobile development'  },
+        { label: '3D Design',   value: '3D design'   },
+        { label: 'Data entry',  value: 'data entry'  },
+        { label: 'Civil Engineering',   value: 'civil engineering'   }
       ]
     }
   },
@@ -149,14 +157,33 @@ export default {
     }
   },
   methods: {
-    save_changes () {
+    save_changes() {
       /* eslint-disable */
-      if (!this.validateForm) return
+      if (!this.validateForm) return;
 
-      // Here will go your API call for updating data
-      // You can get data in "this.data_local"
+      const payload = {
+        userDetails: {
+          dob: this.data_local.dob,
+          gender: this.data_local.gender,
+          role: this.data_local.role,
+        },
+        file: this.data_local.avatar,
+      };
 
-      /* eslint-enable */
+      // sending file to the backendthis.$store
+      this.$store
+        .dispatch("userManagement/updateUser", payload)
+        .then((res) => {
+          this.$router.push({ name: "Engineer List" });
+        })
+        .catch((err) => {
+          this.$vs.notify({
+            color: "danger",
+            title: "User Upload Failed!",
+            text: res.message,
+          });
+          console.error(err);
+        });
     },
     reset_data () {
       this.data_local = Object.assign({}, this.data)

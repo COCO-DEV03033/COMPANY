@@ -121,39 +121,40 @@
                 <td>{{ user_data.university }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Technology Field</td>
+                <td class="font-semibold">Tec License</td>
                 <td>{{ user_data.tech_field }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Dev Years</td>
-                <td>{{year - user_data.enter_date.split('-')[0] }} years</td>
+                <td>{{ user_data.dev_year}} year</td>
+              </tr>
+              
+              <tr>
+                <td class="font-semibold">Dev Area</td>
+                <td>{{ user_data.dev_area }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Main Skill</td>
-                <td>{{ user_data.main_skill }}</td>
+                <td class="font-semibold">Major Subject</td>
+                <td>{{ user_data.major_subject }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Enter Date</td>
-                <td>{{ user_data.enter_date.split('-')[0] + '-' + user_data.enter_date.split('-')[1] + '-' + user_data.enter_date.split('-')[2][0] + user_data.enter_date.split('-')[2][1] }} </td>
+                <td class="font-semibold">Language</td>
+                <td>{{ user_data.language }}</td>
               </tr>
               <tr>
-                <td class="font-semibold">Language Level</td>
-                <td>{{ user_data.lang_level }}</td>
-              </tr>
-              <tr>
-                <td class="font-semibold">Technology Level</td>
+                <td class="font-semibold">Tec Level</td>
                 <td>{{ user_data.tech_level }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Personalities</td>
-                <td>{{ user_data.special }}</td>
+                <td>{{ user_data.personality }}</td>
               </tr>           
             </table>
           </vx-card>
         </div>
 
         <div class="vx-col lg:w-1/2 w-full">
-          <vx-card title="Career & Evaluation:" class="mb-base" style="height: 428px;"> 
+          <vx-card title="Career & Evaluation:" class="mb-base">
             <table>
               <tr>
                 <td class="font-semibold">Project Site Number</td>
@@ -203,7 +204,6 @@ export default {
     return {
       user_data: null,
       user_not_found: false,
-      year: null
     };
   },
   
@@ -275,11 +275,6 @@ export default {
       this.$store.registerModule("userManagement", moduleUserManagement);
       moduleUserManagement.isRegistered = true;
     }
-    
-    const today = new Date();
-    
-    this.year = today.getFullYear();
-
 
     const userId = this.$route.params.userId;
 
