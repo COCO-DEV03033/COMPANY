@@ -6,19 +6,22 @@
       </div>
       <div class="main vx-row">
         <div 
-          v-for="(card, index) in list1" 
+          v-for="(card, index) in datas" 
           :key="index"
           :class="['team','sm:w-full', 'md:w-1/3', 'lg:w-1/4']"
         >
           <DragCard 
-            :team="index === '0' ? `Free Members` : `Team ${index}`"  
+            :team="Number(index) === 0 ? `Free Members` : `Team ${index}`"  
             :list_team="card"
-            :index_main = "index"
-            @delete-card="confirmDelete(index)"
+            :index_main = "Number(index)"
+            @delete-card="deleteFunction(index)"
             :color="colorValue[index % colorValue.length]" 
+            :teamAmount = "Number(index) === 0 ? 0 : teamAmountCalc(card)"
             @dragstart="handleDragEvent"
             @dragover="handleDragEvent"
             @drop="handleDragEvent"
+            @changeEvent="handleChangeEvent"
+            @inputChange="inputChangeEvent"
           />
         </div>
         <div>
@@ -32,6 +35,7 @@
 import DragCard from './component/DragCard.vue'
 import modulePlanManagement from '@/store/plan-management/modulePlanManagement.js'
 import addButton from './component/button/addButton.vue'
+import { ref } from "vue";
 export default {
   data () {
     return {   
@@ -44,27 +48,13 @@ export default {
     addButton
   },
   computed: {
-    list1 () {
-      
-      return this.$store.state.planManagement.plans
-      
-      // const teamArray = this.$store.state.planManagement.plans
-      // console.log('teamArray', teamArray)
-      // for (let i = 0; i < teamArray.length; i++) {
-      //   if (teamArray[i] === null) {
-      //     teamArray[i] = [] 
-      //   } else {
-      //     break
-      //   } 
-      // }
-      // return teamArray
-    },
-    
+    datas () {
+        console.log('res data-> ', this.$store.state.planManagement.plans)
+        return this.$store.state.planManagement.plans
+      },
   },
   methods: {
     confirmDelete (index) {
-      console.log("index", index)
-      // if (index === 0) return
       this.$vs.dialog({
         type: 'confirm',
         color: 'danger',
@@ -74,38 +64,86 @@ export default {
         acceptText: 'Delete'
       })
     },
+    teamAmountCalc(card){
+      const teamAmount = card.reduce((sum, member) => Number(sum) + Number(member.amount), 0);
+      return teamAmount;
+    },
     handleDragEvent () {
       this.saveButtonDisabled = false
     },
-    addCard () {
-      this.list1.push([])
+    inputChangeEvent () {      
+      this.saveButtonDisabled = false
+    },
+    handleChangeEvent(event) {
+      console.log('Change event:', event);
+      // Handle the updated order of items here
+    },
+    addCard() {
+      const newTeamIndex = Object.keys(this.datas).length; // Calculate the new team index
+      this.$set(this.datas, newTeamIndex, []); // Add a new team with an empty array of members
     },
     bothFunction () {
       this.handleDragEvent()
       this.addCard()
     },
-    removeCard (index) {
-      const firstIndex = 0
-      if (index !== firstIndex) {
-        const deletedItem = this.list1.splice(index, 1)[0]
-        console.log('deletedItem', deletedItem)
-        if (this.list1.length > 0) {
-          this.list1[firstIndex].push(...deletedItem)
+    deleteFunction (index) {
+      this.confirmDelete (index)
+      this.inputChangeEvent()
+    },
+    removeCard(index) {
+      var deleting = ref("eee");
+      const firstIndex = '0';
+      const index_ = index.toString();
+      if (index_ !== firstIndex) {
+        const deletedItem = this.datas[index_];
+        if (deletedItem) {
+          if (Array.isArray(deletedItem) && Array.isArray(this.datas[firstIndex])) {
+            this.datas[firstIndex].push(...deletedItem);
+          } else {
+            console.error('Deleted item or first index is not an array:', deletedItem, this.datas[firstIndex]);
+          }
+          delete this.datas[index];
+          
+          // Get the keys and sort them numerically
+          let sortedKeys = Object.keys(this.datas).sort((a, b) => a - b);
+
+          // Create a new object with keys in order
+          let updateTeams = {};
+          let nextAvailableTeam = 0;
+
+          sortedKeys.forEach((key) => {
+            updateTeams[nextAvailableTeam] = this.datas[key];
+            updateTeams[nextAvailableTeam].forEach(member => member.team = nextAvailableTeam.toString());
+            nextAvailableTeam++;
+          });
+
+          this.$store
+          .dispatch('planManagement/updatePlans', updateTeams)
+          .catch((err) => {
+            console.log(err)
+            this.user_not_found = true
+          })
         }
       }
     },
     Save () {
-      const payload = {
-        
+      const payload = { data : this.datas,
+        year: new Date().getFullYear(),
+        month: new Date().getMonth() + 1,
       }
+      this.$store
+        .dispatch('planManagement/savePlans', payload)
+        .catch((err) => {
+          console.log(err)
+          this.user_not_found = true
+        })
     },
     handleInputChange () {
       this.showSaveButton = true
     }
   },
   mounted () {
-    console.log("response", this.$store.state.planManagement.plans)
-    console.log("list1", list1)
+    // console.log("datas--------->", this.datas)
   },
   beforeCreate () {
     if (!this.$store.state.auth.isUserLoggedIn()) this.$router.push('/login')
@@ -121,7 +159,6 @@ export default {
     this.$store
       .dispatch('planManagement/fetchPlans', payload)
       .then((res) => {
-        console.log('response data', res.plans.length)
       })
       .catch((err) => {
         console.log(err)

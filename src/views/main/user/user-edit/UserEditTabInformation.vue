@@ -19,33 +19,13 @@
         </div>
 
         <!-- Col Content -->
-        <div>
-
+        <div>          
           <!-- DOB -->
           <div class="mt-4">
             <label class="text-sm">Birth Date</label>
             <flat-pickr v-model="data_local.dob" :config="{ dateFormat: 'd F Y', maxDate: new Date() }" class="w-full" v-validate="'required'" name="dob" />
             <span class="text-danger text-sm"  v-show="errors.has('dob')">{{ errors.first('dob') }}</span>
           </div>
-
-          <vs-input class="w-full mt-4" label="Address" v-model="data_local.mobile" v-validate="{regex: '^\\+?([0-9]+)$' }" name="mobile" />
-          <span class="text-danger text-sm"  v-show="errors.has('mobile')">{{ errors.first('mobile') }}</span>
-
-          <vs-input class="w-full mt-4" label="Old Job" v-model="data_local.website" v-validate="'url:require_protocol'" name="website" data-vv-as="field" />
-          <span class="text-danger text-sm"  v-show="errors.has('website')">{{ errors.first('website') }}</span>
-
-          <div class="mt-4">
-            <label class="text-sm">University</label>
-            <v-select v-model="data_local.languages_known" multiple :closeOnSelect="false" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-            <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
-          </div>
-
-          <div class="mt-4">
-            <label class="text-sm">Enter Date</label>
-            <flat-pickr v-model="data_local.dob" :config="{ dateFormat: 'd F Y', maxDate: new Date() }" class="w-full" v-validate="'required'" name="dob" />
-            <span class="text-danger text-sm"  v-show="errors.has('dob')">{{ errors.first('dob') }}</span>
-          </div>
-
           <!-- Gender -->
           <div class="mt-4">
             <label class="text-sm">Gender</label>
@@ -54,15 +34,43 @@
               <vs-radio v-model="data_local.gender" vs-value="female" class="mr-4">Female</vs-radio>
             </div>
           </div>
+           <!-- Address -->
+          <vs-input
+            class="w-full mt-4"
+            label="Current Address"
+            v-model="data_local.current_address"
+            v-validate="'required'"
+            name="address"
+            default=""
+          />
+           <!-- University -->
+          <vs-input
+            class="w-full mt-4"
+            label="University"
+            v-model="data_local.university"
+            v-validate="'required'"
+            name="university"            
+          /> 
+          <span class="text-danger text-sm" v-show="errors.has('university')">{{
+          errors.first("university")
+        }}</span>
+           <!-- Old job -->
+          <vs-input
+            class="w-full mt-4"
+            label="Old Job"
+            v-model="data_local.old_job"
+            v-validate="'required'"
+            name="old_job"
+            default=""
+          />
+          <!-- Enter Date -->
+          <div class="mt-4">
+            <label class="text-sm">Enter Date</label>
+            <flat-pickr v-model="data_local.enter_date" :config="{ dateFormat: 'd F Y', maxDate: new Date() }" class="w-full" v-validate="'required'" name="dob" />
+            <span class="text-danger text-sm"  v-show="errors.has('dob')">{{ errors.first('dob') }}</span>
+          </div>
 
-          <!-- <div class="mt-6">
-            <label>Contact Options</label>
-            <div class="flex flex-wrap mt-1">
-            <vs-checkbox v-model="data_local.contact_options" vs-value="email" class="mr-4 mb-2">Email</vs-checkbox>
-            <vs-checkbox v-model="data_local.contact_options" vs-value="message" class="mr-4 mb-2">Message</vs-checkbox>
-            <vs-checkbox v-model="data_local.contact_options" vs-value="Phone" class=" mb-2">Phone</vs-checkbox>
-            </div>
-          </div> -->
+          
 
         </div>
       </div>
@@ -78,22 +86,37 @@
 
           <!-- Col Content -->
           <div>
-            <div class="mt-4">
-              <label class="text-sm">Main Skill</label>
-              <v-select v-model="data_local.languages_known" :options="langOptions" multiple :closeOnSelect="false" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-              <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
-            </div>
+          <vs-input
+            class="w-full mt-4"
+            label="Major Subject"
+            v-model="data_local.major_subject"
+            v-validate="'required'"
+            name="major_subject"
+            default=""
+          />
+          <div class="mt-4">
+            <label class="text-sm">Technical Field</label>
+            <v-select  v-model="data_local.main_skill" :options="stackOptions"  v-validate="'required'" name="main_skill" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+            <span class="text-danger text-sm"  v-show="errors.has('main_skill')">{{ errors.first('main_skill') }}</span>
+          </div>
 
-            <vs-input class="w-full mt-4" label="Technology License" v-model="data_local.location" />
-
-            <div class="mt-4">
-              <label class="text-sm">Language</label>
-              <v-select v-model="data_local.languages_known" :options="langOptions" multiple :closeOnSelect="false" v-validate="'required'" name="lang_known" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
-              <span class="text-danger text-sm"  v-show="errors.has('lang_known')">{{ errors.first('lang_known') }}</span>
-            </div>
-
-            <vs-input class="w-full mt-4" label="Special" v-model="data_local.location" v-validate="'required|alpha'" name="city" />
-            <span class="text-danger text-sm"  v-show="errors.has('city')">{{ errors.first('city') }}</span>
+          <vs-input class="w-full mt-4" label="Technology License" v-model="data_local.tech_field" />
+          <div class="mt-3 w-full">
+            <label for="item-skills" class="vs-input--label">Required Skills</label>
+            <v-select id="item-skills" multiple v-model="data_local.lang_level" :options="langOptions" :closeOnSelect="false" :dir="$vs.rtl ? 'rtl' : 'ltr'" />
+          </div>
+          <!-- <vs-select v-model="data_local.lang_level" multiple :closeOnSelect="false" v-validate="'required'" label="Language" class="mt-3 w-full" name="lang_level">
+            <vs-select-item :key="item.value" :value="item.value" :text="item.text" v-for="item in langOptions" />
+          </vs-select>           -->
+          
+          <vs-input
+            class="w-full mt-4"
+            label="Major Subject"
+            v-model="data_local.special"
+            v-validate="'required'"
+            name="major_subject"
+            default=""
+          />
 
             
           </div>
@@ -106,6 +129,7 @@
         <div class="mt-8 flex flex-wrap items-center justify-end">
           <vs-button class="ml-auto mt-2" @click="save_changes" :disabled="!validateForm">Save Changes</vs-button>
           <vs-button class="ml-4 mt-2" type="border" color="warning" @click="reset_data">Reset</vs-button>
+          <vs-button class="ml-4 mt-2" type="border" color="danger" @click="cancel_edit">Cancel</vs-button>
         </div>
       </div>
     </div>
@@ -130,25 +154,17 @@ export default {
   },
   data () {
     return {
-
-      data_local: JSON.parse(JSON.stringify(this.data)),
-
-      langOptions: [
-        { label: 'English',  value: 'english'  },
-        { label: 'Spanish',  value: 'spanish'  },
-        { label: 'French',   value: 'french'   },
-        { label: 'Russian',  value: 'russian'  },
-        { label: 'German',   value: 'german'   },
-        { label: 'Arabic',   value: 'arabic'   },
-        { label: 'Sanskrit', value: 'sanskrit' }
-      ],
-      langOptions: [
-        { label: 'Web developement',  value: 'web development'  },
-        { label: 'Mobile development',  value: 'mobile development'  },
-        { label: '3D Design',   value: '3D design'   },
-        { label: 'Data entry',  value: 'data entry'  },
-        { label: 'Civil Engineering',   value: 'civil engineering'   }
+      data_local: JSON.parse(JSON.stringify(this.data)),       
+      langOptions: ['English', 'Spanish', 'French', 'Russian', 'German', 'Arabic', 'Sanskrit'],
+      stackOptions: ['Web developement', 'Mobile development', '3D Design', 'Data Science', 'Civil Engineering'],
+      chips: [
+        'Dribbble',
+        'GitHub',
+        'Behance',
+        'Vuejs',
+        'Vuexy'
       ]
+      
     }
   },
   computed: {
@@ -161,20 +177,13 @@ export default {
       /* eslint-disable */
       if (!this.validateForm) return;
 
-      const payload = {
-        userDetails: {
-          dob: this.data_local.dob,
-          gender: this.data_local.gender,
-          role: this.data_local.role,
-        },
-        file: this.data_local.avatar,
-      };
-
+      const payload = this.data_local;
+      console.log("localData:", payload);
       // sending file to the backendthis.$store
       this.$store
         .dispatch("userManagement/updateUser", payload)
         .then((res) => {
-          this.$router.push({ name: "Engineer List" });
+          this.$router.push({ name: "engineer-view" });
         })
         .catch((err) => {
           this.$vs.notify({
@@ -187,7 +196,11 @@ export default {
     },
     reset_data () {
       this.data_local = Object.assign({}, this.data)
-    }
+    },
+    cancel_edit (){
+      this.$router.push({name: "engineer-view"});
+
+    }  
   }
 }
 </script>

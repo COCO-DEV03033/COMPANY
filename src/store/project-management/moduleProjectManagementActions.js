@@ -6,7 +6,7 @@ const API_URL = 'http://localhost:5050'
 
 export default {
   
-  fetchProjects ({ commit }) {
+  async fetchProjects ({ commit }) {
    
     return new Promise((resolve, reject) => {
       axios.get(`${API_URL}/api/project`)
@@ -19,7 +19,7 @@ export default {
     })
   },
 
-  fetchProject ({commit}, payload) {
+  async fetchProject ({commit}, payload) {
     return new Promise((resolve, reject) => {
       axios.get(`${API_URL}/api/project/${payload}`)
         .then((response) => {
@@ -31,11 +31,12 @@ export default {
     })
   },
 
-  updateProject ({ commit }, payload) {
+  async updateProject ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       axios.post(`${API_URL}/api/project/${payload.id}`, payload)
         .then((res) => {
-          // commit('UPDATE_YEARMONTH', { updatedata:payload })
+          commit('UPDATE_PROJECT', payload)
+          console.log("payload==========>", payload.id)
           if (res.data.status_code==0) {
             this._vm.$vs.notify({
               color: 'success',
@@ -58,12 +59,13 @@ export default {
     })
   },
   
-  addProject ({ commit }, payload) {
+  async addProject ({ commit }, payload) {
     console.log(payload);
     return new Promise((resolve, reject) => {
       axios.post(`${API_URL}/api/project`, payload)
         .then((res) => {
           if (res.data.status_code == 0) {
+            commit('ADD_PROJECT', res.data.data.project )
             this._vm.$vs.notify({
               color: 'success',
               title: 'Success',
@@ -84,12 +86,13 @@ export default {
     })
   },
 
-  deleteProject ({ commit }, payload) {
+  async deleteProject ({ commit }, payload) {
     console.log('projectID', payload)
     return new Promise((resolve, reject) => {
       axios.delete(`${API_URL}/api/project/${payload.id}`, payload)
         .then((res) => {
           if (res.data.status_code == 0) {
+            commit('DELETE_PROJECT', payload.id)
             this._vm.$vs.notify({
               color: 'success',
               title: 'Success',
@@ -111,7 +114,7 @@ export default {
   },
 
   
-  removeRecord ({ commit }, userId) {
+  async removeRecord ({ commit }, userId) {
     return new Promise((resolve, reject) => {
       axios.delete(`${API_URL}/api/auth/users/${userId}`)
         .then((response) => {

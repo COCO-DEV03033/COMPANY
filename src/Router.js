@@ -59,6 +59,11 @@ const router = new Router({
           name: 'Project View',
           component: () => import('./views/main/project2/ProjectView.vue'),
           meta: {
+            breadcrumb: [
+              { title: 'Home', url: '/' },
+              { title: 'ProjectLists', url: '/project/list' },
+              { title: 'View', active: true }
+            ],
             rule: 'admin'
           }
         },

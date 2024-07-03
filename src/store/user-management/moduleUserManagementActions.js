@@ -47,19 +47,27 @@ export default {
     return new Promise((resolve, reject) => {
       const formData = new FormData();
       formData.append("file", payload.file); // appending file
-      formData.append("userID", payload.userDetails.userID);
-      formData.append("name", payload.userDetails.name);
-      formData.append("dob", payload.userDetails.dob);
-      formData.append("organization", payload.userDetails.organization);
-      formData.append("department", payload.userDetails.department);
-      formData.append("team", payload.userDetails.team);
-      formData.append("gender", payload.userDetails.gender);
-      formData.append("role", payload.userDetails.role);
+      formData.append("userID", payload.userID);
+      formData.append("name", payload.name);
+      formData.append("dob", payload.dob);
+      formData.append("organization", payload.organization);
+      formData.append("department", payload.department);
+      formData.append("team", payload.team);
+      formData.append("gender", payload.gender);
+      formData.append("role", payload.role);
+      formData.append("university", payload.university);
+      formData.append("old_job", payload.old_job);
+      formData.append("enter_date", payload.enter_date);
+      formData.append("main_skill", payload.main_skill);
+      formData.append("language", payload.lang_level);
+      formData.append("special", payload.special);
+      formData.append("current_address", payload.current_address);
+      formData.append("major_subject", payload.major_subject);
+    
       axios
         .post("/api/auth/updateUser", formData)
         .then((res) => {
-          commit('UPDATE_USER', { user: payload.userDetails, path: res.data.file ? res.data.path : '' })
-          console.log(res.data)
+          commit('UPDATE_USER', { user: payload, path: res.data.file ? res.data.path : '' })        
           this._vm.$vs.notify({
             color: "success",
             title: "User Update Success!",

@@ -1,10 +1,6 @@
 /*=========================================================================================
-  File Name: moduleCalendarMutations.js
-  Description: Calendar Module Mutations
-  ----------------------------------------------------------------------------------------
-  Item Name: Vuexy - Vuejs, HTML & Laravel Admin Dashboard Template
-  Author: Pixinvent
-  Author URL: http://www.themeforest.net/user/pixinvent
+  File Name: moduleProjectMutations.js
+  Description: Project Module Mutations
 ==========================================================================================*/
 
 
@@ -17,9 +13,10 @@ export default {
     state.user = user
   },
   
-  REMOVE_RECORD (state, itemId) {
-    const userIndex = state.users.findIndex((u) => u.id === itemId)
-    state.users.splice(userIndex, 1)
+  DELETE_PROJECT (state, itemId) {
+    console.log('itemID', itemId);
+    const userIndex = state.project.findIndex((u) => u.id === itemId)
+    state.project.splice(userIndex, 1)
   },
 
   SET_PROJECTS (state, {projects}) {
@@ -29,7 +26,22 @@ export default {
   SET_PROJECT (state, {project}) {
     state.project = project
   },
+
+  UPDATE_PROJECT(state, updatedProject) {   
+    
+    for (let i=0;i<state.project.length;i++) {
+      if (state.project[i].id == updatedProject.id) {
+        state.project.splice(i,1,updatedProject)
+      }
+    }    
+    console.log('Updated Project=====================================================>', state.project[0], updatedProject)
+  },
+
   ADD_PROJECT (state, project) {
-    state.projects.push(project)
-  }
+    console.log('project', project);
+    state.project.push(project)
+    console.log('project', state.project);
+
+
+  },
 }

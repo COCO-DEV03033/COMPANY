@@ -11,6 +11,10 @@ export default {
     state.overView = overView
   },
   
+  GET_OVERVIEWFORCARD(state, datas) {
+    state.overViewForCard = datas
+  },
+  
   GET_TOTALSUMS(state, {totalSums, months}) {
     state.totalSums = totalSums
     state.months = months

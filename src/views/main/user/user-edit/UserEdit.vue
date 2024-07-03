@@ -23,11 +23,11 @@
               <user-edit-tab-information class="mt-4" :data="user_data" />
             </div>
           </vs-tab>
-          <vs-tab label="Social" icon-pack="feather" icon="icon-share-2">
+          <!-- <vs-tab label="Social" icon-pack="feather" icon="icon-share-2">
             <div class="tab-text">
               <user-edit-tab-social class="mt-4" :data="user_data" />
             </div>
-          </vs-tab>
+          </vs-tab> -->
         </vs-tabs>
       </div>
     </vx-card>

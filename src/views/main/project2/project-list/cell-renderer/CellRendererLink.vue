@@ -15,8 +15,19 @@ export default {
 
       // Below line will be for actual product
       // Currently it's commented due to demo purpose - Above url is for demo purpose
-      return `/project/view/${this.params.userId}`
+      return `/project/view/${this.params.data.userID}`
+      // this.$router.push(`/project/project-view/${  268}`).catch(() => {})
+  
+      // /project/edit/${id}
+      // Below line will be for actual product
+      // Currently it's commented due to demo purpose - Above url is for demo purpose
+  
+      // this.$router.push(`/project/view/${this.params.data.userID}`).catch(() => {})
+      console.log(' >>>>>>>>>>>>>>>>>>>>>>>>>>> ', this.params.data.userID)
+            
     }
+   
+    
   },
   mounted () {
     console.log(this.params.userId);

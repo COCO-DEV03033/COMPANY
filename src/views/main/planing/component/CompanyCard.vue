@@ -18,12 +18,16 @@
           </p>
         </div>
         <div align="center">
-          <RouterLink :to="`/create-plan/${companyName}`">
+          <RouterLink 
+            :to="`/create-plan/${companyName}`" 
+            :class="{ 'disabled': isButtonDisabled }" 
+            @click.prevent="isButtonDisabled ? null : $emit('More')"  >
             <vs-button
               icon-pack="feather"
               icon="icon-chevrons-right"
               icon-after
               class="shadow-md w-full lg:mt-0 mt-4 p-2"
+              :disabled="!isCurrentYearMonth"
             >More</vs-button>
           </RouterLink>
         </div>
@@ -71,7 +75,9 @@ export default {
     growthrate: Number,
     TotalUserByCompany: Array,
     RealUserByCompany: Array,
-    color: String
+    color: String,
+    isCurrentYearMonth: Boolean,
+    yearmonth: String
   },
   components: {
     VueApexCharts,
@@ -80,6 +86,22 @@ export default {
   },
   created () {
     // console.log('bardata', companyPlan.bardata)
+  },
+  mounted() {
+    
+  },
+  computed :{
+    isButtonDisabled() {
+      return this.selectedYearMonth !== this.currentYearMonth;
+    },
+    selectedYearMonth() {
+      const selectedDate = new Date(this.yearmonth);
+      return `${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}`;
+    },
+    currentYearMonth() {
+      const currentDate = new Date();
+      return `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}`;
+    }
   }
 }
 </script>
@@ -95,5 +117,9 @@ export default {
     span{
       font-size: 12px;
     }
+  }
+  .disabled {
+    pointer-events: none;
+    opacity: 0.5;
   }
 </style>

@@ -4,9 +4,11 @@ export default {
   GET_PLANS (state, { plans }) {
     state.plans = plans
   },
-  UPDATE_PLANS (state, { updatedata }) {
-    let changedatas = updateArrays(state.plans, updatedata)
-    state.plans = changedatas
+  GET_COMPANYPLANS (state, { companyPlans}) {
+    state.companyPlans = companyPlans
+  },
+  UPDATE_PLANS (state, updatedata ) {
+    state.plans = updatedata
   },
   
   ADD_PLANS (state, { adddata }) {

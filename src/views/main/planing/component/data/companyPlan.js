@@ -4,8 +4,8 @@ export default {
     plan: [200000, 200000, 100000, 100000, 12000],
     growthrate: [5.2, 6.2, 7.2, 8.2, 1.5]
   },
-  TotalUserByCompany : [100, 100, 50, 50, 12],
-  RealUserByCompany : [90, 93, 47, 48, 9],
+  TotalUserByCompany : [7, 0, 9, 0, 0],
+  RealUserByCompany : [6, 0, 9, 0, 0],
   bardata: {
     bar_514 : [200000, 180000, 170000, 190000, 200000, 210000],
     bar_AI : [150000, 180000, 170000, 190000, 200000, 210000],

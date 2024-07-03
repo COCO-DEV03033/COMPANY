@@ -43,7 +43,7 @@
             @input="updateSearchQuery"
             placeholder="Search..."
           />
-          <vs-button class="mb-4 md:mb-0" @click="gridApi.exportDataAsCsv()"
+          <vs-button class="mb-4 md:mb-0" @click="exportData()"
             >Export as CSV</vs-button
           >
           <vs-button color="success" class="ml-4 mb-4 md:mb-0" @click="save"
@@ -61,8 +61,6 @@
         :columnDefs="columnDefs"
         :defaultColDef="defaultColDef"
         :rowData="groupincomes"
-        rowSelection="multiple"
-        colResizeDefault="shift"
         :animateRows="true"
         :floatingFilter="false"
         :suppressPaginationPanel="true"
@@ -124,6 +122,9 @@ export default {
       columnDefs: [],
       rowClassRules: {
         // row style function
+
+        'disabled-row': params => (params.data.company || params.data.teamshow), 
+
         "display-company": (params) => {
           var company = params.data.company;
           return (
@@ -164,6 +165,13 @@ export default {
       this.gridApi.setQuickFilter(val);
     },
 
+    importData() {
+      this.$router.push('/income/import')
+    },
+    exportData() {
+      this.$router.push('/income/export')
+    },
+
     onGridReady(params) {
       this.columnDefs = [
         {
@@ -174,21 +182,21 @@ export default {
         {
           headerName: "Company",
           field: "company",
-          width: 100,
+          width: 150,
           editable: false,
           pinned: "left",
         },
         {
           headerName: "Team",
           field: "teamshow",
-          width: 100,
+          width: 120,
           editable: false,
           pinned: "left",
         },
         {
           headerName: "Name",
           field: "name",
-          width: 100,
+          width: 200,
           editable: false,
           pinned: "left",
         },

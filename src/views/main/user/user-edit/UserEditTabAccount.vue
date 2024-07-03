@@ -112,7 +112,7 @@
           <span class="text-danger text-sm" v-show="errors.has('department')">{{
             errors.first("department")
           }}</span>
-        </div>
+        </div>         
 
         <div class="mt-4">
           <label class="vs-input--label">Team</label>
@@ -140,6 +140,9 @@
           >
           <vs-button class="ml-4 mt-2" type="border" color="warning" @click="reset_data"
             >Reset</vs-button
+          >
+          <vs-button class="ml-4 mt-2" type="border" color="danger" @click="cancel_edit"
+            >Cancel</vs-button
           >
         </div>
       </div>
@@ -238,26 +241,13 @@ export default {
       if (!this.validateForm) return;
 
       let avatarName = "";
-      const payload = {
-        userDetails: {
-          name: this.data_local.name,
-          userID: this.data_local.userID,
-          dob: this.data_local.dob,
-          organization: this.data_local.organization,
-          department: this.data_local.department,
-          team: this.data_local.team,
-          gender: this.data_local.gender,
-          department: this.data_local.department,
-          role: this.data_local.role,
-        },
-        file: this.data_local.avatar,
-      };
+      const payload = this.data_local;
 
       // sending file to the backendthis.$store
       this.$store
         .dispatch("userManagement/updateUser", payload)
         .then((res) => {
-          this.$router.push({ name: "Engineer List" });
+          this.$router.push({ name: "engineer-view" });
         })
         .catch((err) => {
           this.$vs.notify({
@@ -275,6 +265,9 @@ export default {
     },
     reset_data() {
       this.data_local = JSON.parse(JSON.stringify(this.data));
+    },
+    cancel_edit(){
+      this.$router.push({ name: "engineer-view" });
     },
     update_avatar(e) {
       let files = e.target.files || e.dataTransfer.files;
