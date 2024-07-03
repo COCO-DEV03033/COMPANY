@@ -246,17 +246,17 @@ export default {
         },
         {
           headerName: 'Tenure',
-          field: 'tenure',
+          field: 'tech_field',
           width: 125
         },
         {
           headerName: 'Development Area',
-          field: 'devArea',
+          field: 'main_skill',
           width: 200
         },
         {
           headerName: 'Language Skill',
-          field: 'language',
+          field: 'lang_level',
           width: 200
         },
         {

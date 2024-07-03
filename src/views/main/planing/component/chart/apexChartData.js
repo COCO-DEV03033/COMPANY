@@ -1368,7 +1368,7 @@ export default {
   }
 </script>`,
   donutChart: {
-    series: [200000, 200000, 100000, 100000],
+    series: [],
     chartOptions: {
       plotOptions: {
         pie: {
@@ -1381,13 +1381,13 @@ export default {
                 },
                 show: true,
                 label : 'Total Plan',
-                formatter: () => '$600,000'
+                // formatter: () => 
               }
             }
           }
         }
       },
-      labels: ['5*4', 'AI', '3*9', '8*2'],
+      labels: ['5*4', 'AI', '3*9', '8*2', 'CT'],
       colors: donutChartColors,
       responsive: [
         {

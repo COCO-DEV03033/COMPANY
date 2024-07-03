@@ -31,7 +31,7 @@
               </tr>
               <tr>
                 <td class="font-semibold">DOB</td>
-                <td>{{ userData.dob }}</td>
+                <td >{{ userData.dob }}</td>
               </tr>
               <tr>
                 <td class="font-semibold">Company</td>
@@ -97,7 +97,7 @@
                       </td>                    
                   </tr>
                   <tr>
-                    <td class="font-semibold">Project Description</td>
+                    <td class="font-semibold" style="padding-right: 15px;">Project Description</td>
                     <td>{{ project.description }}</td>
                   </tr>
                   <tr>
@@ -117,7 +117,7 @@
                     <td>{{ project.potentialBudget }}</td>
                   </tr>
                   <tr>
-                    <td class="font-semibold">Payment Day and Cost</td>                   
+                    <td class="font-semibold ml-4" style="padding-right: 15px;">Payment Day and Cost</td>                   
                       <td>
                         <vs-chip v-for="(earning, index) in project.earnings" :key="index" color="primary">
                         <!-- <vs-avatar :text="earning.date" />{{ earning.cost }} -->{{ earning.date }}-{{ earning.cost }}
@@ -142,7 +142,7 @@
             <vs-td class="whitespace-no-wrap mt-4 mb-base" style="padding-top: 20px;">           
               <div class="vx-col w-full flex" id="account-manage-buttons">
                 <vs-button icon-pack="feather" icon="icon-edit" class="mr-4" @click="editProject(project)">Edit</vs-button>
-                <vs-button type="border" color="danger" icon-pack="feather" icon="icon-trash" @click="deleteProject">Delete</vs-button>
+                <vs-button type="border" color="danger" icon-pack="feather" icon="icon-trash" @click="confirmDeleteRecord(project)">Delete</vs-button>
               </div>                        
             </vs-td>
           </vx-card>
@@ -242,6 +242,7 @@
 import moduleProjectManagement from '@/store/project-management/moduleProjectManagement.js'
 import moduleUserManagement from '@/store/user-management/moduleUserManagement.js'
 import vSelect from 'vue-select'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data () {
@@ -296,25 +297,26 @@ export default {
         { text: 'Other', value: 'other' }
       ],
       options: ['Vue.js', 'Node.js', 'Express', 'MongoDB', 'Laravel', 'React', 'Shopify', 'WordPress', 'Angular'],
-      clientLocation: ['US', 'UA', 'UAE', 'UK', 'China', 'Japan', 'Russia', 'Poland', 'Canada']
+      clientLocation: ['US', 'UA', 'UAE', 'UK', 'China', 'Japan', 'Russia', 'Poland', 'Canada'],
+    projectData: {}
     }
   },
-  computed: { 
-    projectData () {
-      return this.$store.state.projectManagement.project
-    }
-  },
+  // computed: { 
+  //   projectData () {
+  //     return this.$store.state.projectManagement.project
+  //   }
+  // },
   components: {
     'v-select': vSelect
   },
   methods: {
-    confirmDeleteRecord () {
+    confirmDeleteRecord (project) {
       this.$vs.dialog({
         type: 'confirm',
         color: 'danger',
         title: 'Confirm Delete',
-        text: `You are about to delete "${this.projectData.title}"`,
-        accept: this.deleteRecord,
+        text: `You are about to delete "${project.title}"`,
+        accept: () => this.deleteProject(project),
         acceptText: 'Delete'
       })
     },
@@ -349,16 +351,17 @@ export default {
       this.popupActive = true
     },
 
-    deleteProject () {      
-      this.$store.dispatch('projectManagement/deleteProject', )
+    deleteProject (project) {      
+      this.$store.dispatch('projectManagement/deleteProject', project)
+      console.log('Project ID===========================>', project)
         .then(()   => { this.$router.push({name:'Project View'}); this.showDeleteSuccess() })
         .catch(err => { console.error(err)       })
     },
     showDeleteSuccess () {
       this.$vs.notify({
         color: 'success',
-        title: 'User Deleted',
-        text: 'The selected user was successfully deleted'
+        title: 'Project Deleted',
+        text: 'The selected Project was successfully deleted'
       })
     },
     // Method to add new instance of earning date and cost forms
@@ -511,7 +514,11 @@ export default {
     this.fetch_user_data(this.$route.params.userId)
 
     this.$store
-      .dispatch('projectManagement/fetchProject', this.$route.params.userId)      
+      .dispatch('projectManagement/fetchProject', this.$route.params.userId)
+      .then((res) => {
+        console.log(res)
+        this.projectData = res.data.data.projects
+      })
       .catch((err) => {
         console.log(err)
       })
@@ -564,7 +571,7 @@ only screen and (min-width:636px) and (max-width:991px) {
   margin-top: 10px;
 }
 .vs-popup {
-  width: 1000px !important;
+  width: 1300px !important;
 }
 
 </style>

@@ -11,11 +11,11 @@ export default {
         .then((res) => {
           if(res.data.status_code==0){
             commit('GET_INCOMES', { incomes:res.data.data.incomes , dates: res.data.data.dates })
-            this._vm.$vs.notify({
-              color: "success",
-              title: "Success",
-              text: res.data.message,
-            });
+            // this._vm.$vs.notify({
+            //   color: "success",
+            //   title: "Success",
+            //   text: res.data.message,
+            // });
             resolve(res.data.data)
           } else if(res.data.status_code==1){
             this._vm.$vs.notify({
@@ -40,6 +40,35 @@ export default {
         .then((res) => {
           if(res.data.status_code==0){
             commit('GET_OVERVIEW', res.data.data.overView)
+            // this._vm.$vs.notify({
+            //   color: "success",
+            //   title: "Success",
+            //   text: res.data.message,
+            // });
+            resolve(res.data.data)
+          } else if(res.data.status_code==1){
+            this._vm.$vs.notify({
+              color: "warning",
+              title: "Warning",
+              text: res.data.message,
+            });
+            commit('GET_INCOMES', { incomes:[] , dates: [] })
+            resolve([])
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          reject(err)
+        })
+    })
+  },
+  
+  fetchOverViewForCard({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      axios.post(`${API_URL}/api/income/overViewForCard`, payload)
+        .then((res) => {
+          if(res.data.status_code==0){
+            commit('GET_OVERVIEWFORCARD', res.data.data)
             // this._vm.$vs.notify({
             //   color: "success",
             //   title: "Success",
@@ -101,7 +130,7 @@ export default {
           this._vm.$vs.notify({
             color: "success",
             title: "Success",
-            text: 'Update Data Successfully!!!',
+            text: 'Selected Income Updated Successfully!!!',
           });
           resolve(response)
         })
@@ -115,11 +144,11 @@ export default {
         .then((res) => {
           if(res.data.status_code==0){
             commit('GET_YEARMONTHS', { yearmonths:res.data.data.yearmonths })
-            this._vm.$vs.notify({
-              color: "success",
-              title: "Success",
-              text: res.data.message,
-            });
+            // this._vm.$vs.notify({
+            //   color: "success",
+            //   title: "Success",
+            //   text: res.data.message,
+            // });
             resolve(res.data.data)
           } else if(res.data.status_code==1){
             this._vm.$vs.notify({

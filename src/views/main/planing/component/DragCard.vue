@@ -4,7 +4,7 @@
       <vs-list  >
         <deleteButton v-if="index_main !== 0" @click="deleteCard" />
         <div class="col text-center px-2 py-3 bg-light border rounded">
-          <p class="text-success font-bold text-2xl" >{{team}}</p>
+          <p class="text-primary font-bold text-2xl" >{{team}} ( <span class="text-danger">${{ teamAmount }}</span> )</p>
         </div>
           <draggable 
             :list="list_team" 
@@ -13,7 +13,8 @@
             @start="emitDragEvent" 
             @end="emitDragEvent" 
             @drop="emitDragEvent"
-        >
+            @change="emitChangeEvent"
+          >
           <vs-list-item 
             @change="finish"
             v-for="(listItem, index) in list_team" 
@@ -21,9 +22,15 @@
             :title="listItem.name" 
             :class="['base_item',{'first_item': index===0}]"
           >
-            <input type="text" placeholder="$" class="input" v-model="listItem.amount" />
+            <input 
+              type="text" 
+              placeholder="$"  
+              class="input" 
+              @input="emitInputChange" 
+              v-model="listItem.amount" 
+            />
             <vs-avatar slot="avatar" :text="listItem.avatar" />
-          </vs-list-item>
+          </vs-list-item>  
         </draggable>
       </vs-list>
     </vx-card>
@@ -45,7 +52,8 @@ export default {
     list_team: Array,
     team: String,
     color: Array,
-    index_main: Number
+    index_main: Number,
+    teamAmount: Number
   },
   methods: {
     deleteCard () {
@@ -53,7 +61,13 @@ export default {
     },
     emitDragEvent () {
       this.$emit('dragstart')
-    }
+    },
+    emitInputChange () {
+      this.$emit('inputChange')
+    },
+    emitChangeEvent(event) {
+      this.$emit('changeEvent', event);
+    },
   },
   created () {
   },  
