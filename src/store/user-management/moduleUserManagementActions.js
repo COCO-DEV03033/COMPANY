@@ -46,7 +46,7 @@ export default {
   updateUser({ commit }, payload) {
     return new Promise((resolve, reject) => {
       const formData = new FormData();
-      formData.append("file", payload.file); // appending file
+      formData.append("file", payload.avatar); // appending file
       formData.append("userID", payload.userID);
       formData.append("name", payload.name);
       formData.append("dob", payload.dob);
